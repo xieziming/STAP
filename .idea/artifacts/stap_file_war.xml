@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="stap-file:war">
+    <output-path>$PROJECT_DIR$/stap-file/target</output-path>
+    <root id="archive" name="stap-file.war">
+      <element id="artifact" artifact-name="stap-file:war exploded" />
+    </root>
+  </artifact>
+</component>
