@@ -12,6 +12,7 @@
         <module>stap-db</module>
         <module>stap-core</module>
         <module>stap-file</module>
+        <module>stap-execution</module>
     </modules>
 
     <properties>

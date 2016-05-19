@@ -1,13 +1,13 @@
-package com.xieziming.stap.core.execution.plan;
+package com.xieziming.stap.core.execution;
 
 import com.xieziming.stap.core.common.StapLog;
 
 /**
  * Created by Suny on 5/9/16.
  */
-public class ExecutionPlanLog {
+public class ExecutionStepLog {
     private Integer id;
-    private Integer executionPlanId;
+    private ExecutionStep executionStep;
     private StapLog stapLog;
 
     public Integer getId() {
@@ -18,12 +18,12 @@ public class ExecutionPlanLog {
         this.id = id;
     }
 
-    public Integer getExecutionPlanId() {
-        return executionPlanId;
+    public ExecutionStep getExecutionStep() {
+        return executionStep;
     }
 
-    public void setExecutionPlanId(Integer executionPlanId) {
-        this.executionPlanId = executionPlanId;
+    public void setExecutionStep(ExecutionStep executionStep) {
+        this.executionStep = executionStep;
     }
 
     public StapLog getStapLog() {

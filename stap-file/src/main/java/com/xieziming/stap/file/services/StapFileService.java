@@ -1,7 +1,7 @@
 package com.xieziming.stap.file.services;
 
-import com.xieziming.stap.core.common.StapFileDetail;
-import com.xieziming.stap.core.common.StapGenericException;
+import com.xieziming.stap.core.file.StapFileDetail;
+import com.xieziming.stap.core.common.StapException;
 import com.xieziming.stap.core.common.StapMeta;
 import com.xieziming.stap.file.util.StapFileDbUtil;
 import com.xieziming.stap.file.util.StapFileUtil;
@@ -94,9 +94,9 @@ public class StapFileService {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<StapGenericException> handleAllException(Exception exception) {
+    public ResponseEntity<StapException> handleAllException(Exception exception) {
         logger.error("Stap File Service Exception", exception);
-        return new ResponseEntity<StapGenericException>(new StapGenericException(exception),HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<StapException>(new StapException(exception),HttpStatus.BAD_REQUEST);
     }
 
     private Integer getIdByPath(String path){

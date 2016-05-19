@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="stap-core" />
         <module name="stap-db" />
+        <module name="stap-execution" />
         <module name="stap-file" />
       </profile>
     </annotationProcessing>
@@ -31,6 +32,7 @@
       <module name="Stap" target="1.5" />
       <module name="stap-core" target="1.5" />
       <module name="stap-db" target="1.5" />
+      <module name="stap-execution" target="1.6" />
       <module name="stap-file" target="1.6" />
     </bytecodeTargetLevel>
   </component>

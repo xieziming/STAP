@@ -5,9 +5,9 @@ import com.xieziming.stap.core.common.StapLog;
 /**
  * Created by Suny on 5/9/16.
  */
-public class ExecutionLog {
+public class ExecutionPlanLog {
     private Integer id;
-    private Execution execution;
+    private ExecutionPlan executionPlan;
     private StapLog stapLog;
 
     public Integer getId() {
@@ -18,12 +18,12 @@ public class ExecutionLog {
         this.id = id;
     }
 
-    public Execution getExecution() {
-        return execution;
+    public ExecutionPlan getExecutionPlan() {
+        return executionPlan;
     }
 
-    public void setExecution(Execution execution) {
-        this.execution = execution;
+    public void setExecutionPlan(ExecutionPlan executionPlan) {
+        this.executionPlan = executionPlan;
     }
 
     public StapLog getStapLog() {

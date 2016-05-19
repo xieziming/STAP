@@ -9,9 +9,18 @@ import java.util.Date;
  * Created by Suny on 5/8/16.
  */
 public class StapMeta {
+    private Integer id;
     private String metaKey;
     private String metaValue;
     private Date lastUpdate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getMetaKey() {
         return metaKey;

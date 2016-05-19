@@ -1,6 +1,6 @@
 package com.xieziming.stap.core.testcase;
 
-import com.xieziming.stap.core.common.StapFile;
+import com.xieziming.stap.core.file.StapFile;
 
 import java.util.Date;
 
@@ -9,10 +9,12 @@ import java.util.Date;
  */
 public class TestData {
     private Integer id;
+    private TestCase testCase;
     private String field;
     private String value;
-    private StapFile fileReference;
+    private StapFile stapFile;
     private String remark;
+    private String type;
     private Date lastUpdate;
 
     public Integer getId() {
@@ -21,6 +23,14 @@ public class TestData {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public TestCase getTestCase() {
+        return testCase;
+    }
+
+    public void setTestCase(TestCase testCase) {
+        this.testCase = testCase;
     }
 
     public String getField() {
@@ -39,12 +49,12 @@ public class TestData {
         this.value = value;
     }
 
-    public StapFile getFileReference() {
-        return fileReference;
+    public StapFile getStapFile() {
+        return stapFile;
     }
 
-    public void setFileReference(StapFile fileReference) {
-        this.fileReference = fileReference;
+    public void setStapFile(StapFile stapFile) {
+        this.stapFile = stapFile;
     }
 
     public String getRemark() {
@@ -53,6 +63,14 @@ public class TestData {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Date getLastUpdate() {

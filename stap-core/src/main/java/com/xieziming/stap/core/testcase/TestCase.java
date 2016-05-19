@@ -1,5 +1,7 @@
 package com.xieziming.stap.core.testcase;
 
+import com.xieziming.stap.core.teststep.TestStep;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
 public class TestCase {
     private Integer id;
     private String name;
-    private Integer parentTestCaseId;
+    private TestCase parentTestCase;
     private String remark;
     private List<TestCaseMeta> testCaseMetaList;
     private List<TestData> testDataList;
@@ -32,12 +34,12 @@ public class TestCase {
         this.name = name;
     }
 
-    public Integer getParentTestCaseId() {
-        return parentTestCaseId;
+    public TestCase getParentTestCase() {
+        return parentTestCase;
     }
 
-    public void setParentTestCaseId(Integer parentTestCaseId) {
-        this.parentTestCaseId = parentTestCaseId;
+    public void setParentTestCase(TestCase parentTestCase) {
+        this.parentTestCase = parentTestCase;
     }
 
     public String getRemark() {

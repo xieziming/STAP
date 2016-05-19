@@ -5,7 +5,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 /**
  * Created by Suny on 5/18/16.
  */
-public class StapGenericException extends RuntimeException{
+public class StapException extends RuntimeException{
     private String errCode;
     private String errMsg;
     private String trace;
@@ -34,17 +34,17 @@ public class StapGenericException extends RuntimeException{
         this.trace = trace;
     }
 
-    public StapGenericException(String errCode, String errMsg, String trace) {
+    public StapException(String errCode, String errMsg, String trace) {
         this.errCode = errCode;
         this.errMsg = errMsg;
         this.trace = trace;
     }
 
-    public StapGenericException(String errCode, String errMsg) {
+    public StapException(String errCode, String errMsg) {
         this(errCode, errMsg, null);
     }
 
-    public StapGenericException(Exception exception) {
+    public StapException(Exception exception) {
         this("Unknown Exception", exception.getMessage(), ExceptionUtils.getStackTrace(exception));
     }
 }

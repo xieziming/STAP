@@ -1,6 +1,4 @@
-package com.xieziming.stap.core.testcase;
-
-import java.util.Date;
+package com.xieziming.stap.core.testaction;
 
 /**
  * Created by Suny on 5/8/16.
@@ -8,7 +6,7 @@ import java.util.Date;
 public class TestAction {
     private Integer id;
     private String name;
-    private String handler;
+    private TestActionHandler testActionHandler;
     private String remark;
 
     public Integer getId() {
@@ -27,12 +25,12 @@ public class TestAction {
         this.name = name;
     }
 
-    public String getHandler() {
-        return handler;
+    public TestActionHandler getTestActionHandler() {
+        return testActionHandler;
     }
 
-    public void setHandler(String handler) {
-        this.handler = handler;
+    public void setTestActionHandler(TestActionHandler testActionHandler) {
+        this.testActionHandler = testActionHandler;
     }
 
     public String getRemark() {
@@ -42,14 +40,4 @@ public class TestAction {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    private Date lastUpdate;
 }

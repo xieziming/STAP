@@ -1,7 +1,8 @@
-package com.xieziming.stap.core.common;
+package com.xieziming.stap.core.file;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.xieziming.stap.core.common.StapMeta;
 import com.xieziming.stap.core.util.JsonDateSerializer;
 
 import java.util.Date;

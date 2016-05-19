@@ -1,4 +1,4 @@
-package com.xieziming.stap.core.execution.plan;
+package com.xieziming.stap.core.execution;
 
 import com.xieziming.stap.core.common.StapMeta;
 
@@ -7,7 +7,7 @@ import com.xieziming.stap.core.common.StapMeta;
  */
 public class ExecutionPlanMeta {
     private Integer id;
-    private Integer executionPlanId;
+    private ExecutionPlan executionPlan;
     private StapMeta stapMeta;
 
     public Integer getId() {
@@ -18,12 +18,12 @@ public class ExecutionPlanMeta {
         this.id = id;
     }
 
-    public Integer getExecutionPlanId() {
-        return executionPlanId;
+    public ExecutionPlan getExecutionPlan() {
+        return executionPlan;
     }
 
-    public void setExecutionPlanId(Integer executionPlanId) {
-        this.executionPlanId = executionPlanId;
+    public void setExecutionPlan(ExecutionPlan executionPlan) {
+        this.executionPlan = executionPlan;
     }
 
     public StapMeta getStapMeta() {

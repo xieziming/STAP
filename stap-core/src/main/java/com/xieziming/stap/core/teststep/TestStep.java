@@ -1,11 +1,14 @@
-package com.xieziming.stap.core.testcase;
+package com.xieziming.stap.core.teststep;
+
+import com.xieziming.stap.core.testaction.TestAction;
+import com.xieziming.stap.core.testcase.TestCase;
 
 /**
  * Created by Suny on 5/8/16.
  */
 public class TestStep {
     private Integer id;
-    private Integer testCaseId;
+    private TestCase testCase;
     private Integer stepOrder;
     private TestAction testAction;
     private TestStepParameter testStepParameter;
@@ -18,12 +21,12 @@ public class TestStep {
         this.id = id;
     }
 
-    public Integer getTestCaseId() {
-        return testCaseId;
+    public TestCase getTestCase() {
+        return testCase;
     }
 
-    public void setTestCaseId(Integer testCaseId) {
-        this.testCaseId = testCaseId;
+    public void setTestCase(TestCase testCase) {
+        this.testCase = testCase;
     }
 
     public Integer getStepOrder() {

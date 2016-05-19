@@ -7,7 +7,7 @@ import com.xieziming.stap.core.common.StapMeta;
  */
 public class TestCaseMeta {
     private Integer id;
-    private Integer testCaseId;
+    private TestCase testCase;
     private StapMeta stapMeta;
 
     public Integer getId() {
@@ -18,12 +18,12 @@ public class TestCaseMeta {
         this.id = id;
     }
 
-    public Integer getTestCaseId() {
-        return testCaseId;
+    public TestCase getTestCase() {
+        return testCase;
     }
 
-    public void setTestCaseId(Integer testCaseId) {
-        this.testCaseId = testCaseId;
+    public void setTestCase(TestCase testCase) {
+        this.testCase = testCase;
     }
 
     public StapMeta getStapMeta() {

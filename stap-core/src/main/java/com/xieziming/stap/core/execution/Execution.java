@@ -1,6 +1,6 @@
 package com.xieziming.stap.core.execution;
 
-import com.xieziming.stap.core.execution.step.ExecutionStep;
+import com.xieziming.stap.core.testcase.TestCase;
 
 import java.util.Date;
 import java.util.List;
@@ -10,12 +10,13 @@ import java.util.List;
  */
 public class Execution {
     private Integer id;
-    private Integer testCaseId;
-    private Integer executionPlanId;
-    private Integer executionContextId;
+    private TestCase testCase;
+    private ExecutionPlan executionPlan;
+    private ExecutionContext executionContext;
     private Date startTime;
     private Date endTime;
     private String status;
+    private String result;
     private String remark;
     private List<ExecutionStep> executionStepList;
     private List<ExecutionLog> executionLogList;
@@ -28,28 +29,28 @@ public class Execution {
         this.id = id;
     }
 
-    public Integer getTestCaseId() {
-        return testCaseId;
+    public TestCase getTestCase() {
+        return testCase;
     }
 
-    public void setTestCaseId(Integer testCaseId) {
-        this.testCaseId = testCaseId;
+    public void setTestCase(TestCase testCase) {
+        this.testCase = testCase;
     }
 
-    public Integer getExecutionPlanId() {
-        return executionPlanId;
+    public ExecutionPlan getExecutionPlan() {
+        return executionPlan;
     }
 
-    public void setExecutionPlanId(Integer executionPlanId) {
-        this.executionPlanId = executionPlanId;
+    public void setExecutionPlan(ExecutionPlan executionPlan) {
+        this.executionPlan = executionPlan;
     }
 
-    public Integer getExecutionContextId() {
-        return executionContextId;
+    public ExecutionContext getExecutionContext() {
+        return executionContext;
     }
 
-    public void setExecutionContextId(Integer executionContextId) {
-        this.executionContextId = executionContextId;
+    public void setExecutionContext(ExecutionContext executionContext) {
+        this.executionContext = executionContext;
     }
 
     public Date getStartTime() {
@@ -74,6 +75,14 @@ public class Execution {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public String getRemark() {

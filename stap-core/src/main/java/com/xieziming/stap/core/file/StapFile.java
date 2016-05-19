@@ -1,4 +1,4 @@
-package com.xieziming.stap.core.common;
+package com.xieziming.stap.core.file;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xieziming.stap.core.util.JsonDateSerializer;
@@ -12,7 +12,7 @@ public class StapFile {
     private Integer id;
     private String name;
     private String uri;
-    private StapFileDetail stapFile;
+    private StapFileDetail stapFileDetail;
     private Date lastUpdate;
 
     public Integer getId() {
@@ -39,12 +39,12 @@ public class StapFile {
         this.uri = uri;
     }
 
-    public StapFileDetail getStapFile() {
-        return stapFile;
+    public StapFileDetail getStapFileDetail() {
+        return stapFileDetail;
     }
 
-    public void setStapFile(StapFileDetail stapFile) {
-        this.stapFile = stapFile;
+    public void setStapFileDetail(StapFileDetail stapFileDetail) {
+        this.stapFileDetail = stapFileDetail;
     }
 
     @JsonSerialize(using = JsonDateSerializer.class)
