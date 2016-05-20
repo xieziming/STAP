@@ -1,38 +1,37 @@
-package com.xieziming.stap.execution.services;
+package com.xieziming.stap.execution.queue;
 
 import com.xieziming.stap.core.execution.Execution;
 import com.xieziming.stap.core.execution.ExecutionPlan;
 import com.xieziming.stap.core.testcase.TestCase;
 import com.xieziming.stap.db.StapDbUtil;
-import com.xieziming.stap.execution.queue.ExecutionQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
- * Created by Suny on 5/19/16.
+ * Created by Suny on 5/20/16.
  */
-@Controller
-public class ExecutionDistributor {
-    private static Logger logger = LoggerFactory.getLogger(ExecutionDistributor.class);
-    private final String UTF8 = ";charset=UTF-8";
+public class ExecutionQueueCache {
+    private static Queue<Execution> executionQueue = new LinkedList<Execution>();
+    public static Queue<Execution> getExecutionQueue(){
+        if(executionQueue == null || executionQueue.size() == 0){
+            synchronized (ExecutionQueueCache.class){
+                if(executionQueue == null || executionQueue.size() == 0){
+                    List<Execution> executionList = getExecutionList();
+                    for (Execution execution : executionList){
+                        executionQueue.offer(execution);
+                    }
+                }
+            }
+        }
+        return executionQueue;
+    }
 
-    @Value("${execution.context.parser}")
-    private String executionContextParser;
-
-    @RequestMapping(value = "executions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
-    @ResponseBody
-    public List<Execution> getExecutions() {
+    public static List<Execution> getExecutionList(){
         String sql = "SELECT p.id AS Plan_Id, p.name AS Plan_Name, t.Id AS Test_Case_Id, t.Name AS Test_Case_Name, e.id AS Execution_Id, e.Start_Time, e.End_Time, e.Status, e.Result, e.Remark FROM Execution e LEFT JOIN execution_plan p ON e.Execution_Plan_Id = p.Id LEFT JOIN test_case t ON t.id = e.Test_Case_Id";
         return StapDbUtil.getJdbcTemplate().query(sql, new RowMapper<Execution>() {
             @Override
@@ -58,11 +57,5 @@ public class ExecutionDistributor {
                 return execution;
             }
         });
-    }
-
-    @RequestMapping(value = "execution/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
-    @ResponseBody
-    public Execution requestExecution() {
-        return new ExecutionQueue().getExecution(executionContextParser);
     }
 }

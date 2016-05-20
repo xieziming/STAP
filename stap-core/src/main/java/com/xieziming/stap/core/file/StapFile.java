@@ -13,6 +13,7 @@ public class StapFile {
     private String name;
     private String uri;
     private StapFileDetail stapFileDetail;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;
 
     public Integer getId() {
@@ -47,7 +48,6 @@ public class StapFile {
         this.stapFileDetail = stapFileDetail;
     }
 
-    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getLastUpdate() {
         return lastUpdate;
     }

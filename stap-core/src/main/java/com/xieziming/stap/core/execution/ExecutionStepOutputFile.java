@@ -1,6 +1,8 @@
 package com.xieziming.stap.core.execution;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xieziming.stap.core.file.StapFile;
+import com.xieziming.stap.core.util.JsonDateSerializer;
 
 import java.util.Date;
 
@@ -13,6 +15,7 @@ public final class ExecutionStepOutputFile {
     private String type;
     private String remark;
     private StapFile stapFile;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpDate;
 
     public Integer getId() {

@@ -1,6 +1,8 @@
 package com.xieziming.stap.core.execution;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xieziming.stap.core.teststep.TestStep;
+import com.xieziming.stap.core.util.JsonDateSerializer;
 
 import java.util.Date;
 import java.util.List;
@@ -12,7 +14,9 @@ public class ExecutionStep {
     private Integer id;
     private Execution execution;
     private TestStep testStep;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date startTime;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date endTime;
     private String status;
     private String result;

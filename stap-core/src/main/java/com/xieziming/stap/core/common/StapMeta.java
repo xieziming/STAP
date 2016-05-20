@@ -12,6 +12,7 @@ public class StapMeta {
     private Integer id;
     private String metaKey;
     private String metaValue;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;
 
     public Integer getId() {

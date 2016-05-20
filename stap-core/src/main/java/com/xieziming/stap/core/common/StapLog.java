@@ -1,5 +1,8 @@
 package com.xieziming.stap.core.common;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.xieziming.stap.core.util.JsonDateSerializer;
+
 import java.util.Date;
 
 /**
@@ -9,6 +12,7 @@ public class StapLog {
     private Integer id;
     private String level;
     private String content;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date time;
 
     public Integer getId() {

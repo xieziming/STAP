@@ -1,24 +1,20 @@
 package com.xieziming.stap.core.testaction;
 
-import com.xieziming.stap.core.testaction.parsers.DefaultParser;
-
 /**
  * Created by Suny on 5/20/16.
  */
 public class TestActionHandler {
     private String handler;
-    private TestActionHandlerParser testActionHandlerParser;
-
-    public TestActionHandler(String handler, TestActionHandlerParser testActionHandlerParser) {
-        this.handler = handler;
-        this.testActionHandlerParser = testActionHandlerParser;
-    }
 
     public TestActionHandler(String handler) {
-        this(handler, new DefaultParser());
+        this.handler = handler;
     }
 
-    public Object getHandler() {
-        return testActionHandlerParser.parse(handler);
+    public String getHandler() {
+        return handler;
+    }
+
+    public void setHandler(String handler) {
+        this.handler = handler;
     }
 }

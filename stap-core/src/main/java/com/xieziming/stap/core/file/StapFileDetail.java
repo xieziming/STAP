@@ -17,6 +17,7 @@ public class StapFileDetail {
     private String path;
     private byte[] content;
     private List<StapMeta> metaList;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;
 
     public Integer getId() {
@@ -51,7 +52,6 @@ public class StapFileDetail {
         this.metaList = metaList;
     }
 
-    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getLastUpdate() {
         return lastUpdate;
     }

@@ -1,5 +1,8 @@
 package com.xieziming.stap.core.execution;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.xieziming.stap.core.util.JsonDateSerializer;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +16,7 @@ public class ExecutionPlan {
     private List<ExecutionPlanMeta> executionPlanMetaList;
     private List<ExecutionPlanLog> executionPlanLogList;
     private List<Execution> executionList;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;
 
     public Integer getId() {
