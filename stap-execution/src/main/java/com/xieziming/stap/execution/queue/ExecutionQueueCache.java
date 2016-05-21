@@ -4,6 +4,7 @@ import com.xieziming.stap.core.execution.Execution;
 import com.xieziming.stap.core.execution.ExecutionPlan;
 import com.xieziming.stap.core.testcase.TestCase;
 import com.xieziming.stap.db.StapDbUtil;
+import com.xieziming.stap.execution.config.ExecutionConstants;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -32,8 +33,12 @@ public class ExecutionQueueCache {
     }
 
     public static List<Execution> getExecutionList(){
-        String sql = "SELECT p.id AS Plan_Id, p.name AS Plan_Name, t.Id AS Test_Case_Id, t.Name AS Test_Case_Name, e.id AS Execution_Id, e.Start_Time, e.End_Time, e.Status, e.Result, e.Remark FROM Execution e LEFT JOIN execution_plan p ON e.Execution_Plan_Id = p.Id LEFT JOIN test_case t ON t.id = e.Test_Case_Id";
-        return StapDbUtil.getJdbcTemplate().query(sql, new RowMapper<Execution>() {
+        String sql = "SELECT p.id AS Plan_Id, p.name AS Plan_Name, t.Id AS Test_Case_Id, t.Name AS Test_Case_Name, e.id AS Execution_Id, e.Start_Time, e.End_Time, e.Status, e.Result, e.Remark " +
+                        "FROM Execution e " +
+                        "LEFT JOIN execution_plan p ON e.Execution_Plan_Id = p.Id " +
+                        "LEFT JOIN test_case t ON t.id = e.Test_Case_Id " +
+                        "WHERE e.Status != ? AND p.Status=?";
+        return StapDbUtil.getJdbcTemplate().query(sql, new Object[]{ExecutionConstants.PASS.toString(), ExecutionConstants.OPENED.toString()}, new RowMapper<Execution>() {
             @Override
             public Execution mapRow(ResultSet resultSet, int i) throws SQLException {
                 Execution execution = new Execution();

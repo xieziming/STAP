@@ -26,8 +26,7 @@ public class ExecutionQueue {
                 List<ExecutionFilter> executionFilterList = executionContextParser.getExecutionFilterList();
                 executionFilterManager.addFilterList(executionFilterList);
                 if(executionFilterManager.shouldBeExecuted()){
-                    logger.info("Execution Delivered <Id:{}, Plan:{}, Test Case:{}>", execution.getId(), execution.getExecutionPlan().getName(), execution.getTestCase().getName());
-                    return execution;
+                    break;
                 }
             } catch (Exception e) {
                 logger.error("Execution Distribute Error", e);
@@ -35,6 +34,11 @@ public class ExecutionQueue {
                 executionFilterManager.removeAllFilters();
             }
         }
+
+        if(execution != null){
+            logger.info("Execution Delivered <Id:{}, Plan:{}, Test Case:{}>", execution.getId(), execution.getExecutionPlan().getName(), execution.getTestCase().getName());
+        }
+
         return null;
     }
 }

@@ -1,5 +1,7 @@
 package com.xieziming.stap.core.testaction;
 
+import java.util.Date;
+
 /**
  * Created by Suny on 5/8/16.
  */
@@ -8,6 +10,7 @@ public class TestAction {
     private String name;
     private TestActionHandler testActionHandler;
     private String remark;
+    private Date lastUpdate;
 
     public Integer getId() {
         return id;
@@ -39,5 +42,13 @@ public class TestAction {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 }

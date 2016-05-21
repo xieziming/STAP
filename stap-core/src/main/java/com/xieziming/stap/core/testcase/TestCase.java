@@ -1,6 +1,8 @@
 package com.xieziming.stap.core.testcase;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xieziming.stap.core.teststep.TestStep;
+import com.xieziming.stap.core.util.JsonDateSerializer;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +18,7 @@ public class TestCase {
     private List<TestCaseMeta> testCaseMetaList;
     private List<TestData> testDataList;
     private List<TestStep> testStepList;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;
 
     public Integer getId() {

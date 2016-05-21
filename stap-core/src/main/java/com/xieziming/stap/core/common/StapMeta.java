@@ -15,6 +15,11 @@ public class StapMeta {
     @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;
 
+    public StapMeta(String metaKey, String metaValue) {
+        this.metaKey = metaKey;
+        this.metaValue = metaValue;
+    }
+
     public Integer getId() {
         return id;
     }

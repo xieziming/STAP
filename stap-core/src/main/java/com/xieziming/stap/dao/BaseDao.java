@@ -1,6 +1,5 @@
 package com.xieziming.stap.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,10 +7,10 @@ import java.util.List;
  */
 public interface BaseDao<T> {
     /**
-     * Generic save
+     * Generic add
      * @param obj
      */
-    public void save(T obj);
+    public void add(T obj);
 
     /**
      * Generic update

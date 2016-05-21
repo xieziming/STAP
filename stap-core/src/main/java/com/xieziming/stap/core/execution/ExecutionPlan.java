@@ -13,6 +13,7 @@ public class ExecutionPlan {
     private Integer id;
     private String name;
     private String remark;
+    private String status;
     private List<ExecutionPlanMeta> executionPlanMetaList;
     private List<ExecutionPlanLog> executionPlanLogList;
     private List<Execution> executionList;
@@ -41,6 +42,14 @@ public class ExecutionPlan {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<ExecutionPlanMeta> getExecutionPlanMetaList() {
