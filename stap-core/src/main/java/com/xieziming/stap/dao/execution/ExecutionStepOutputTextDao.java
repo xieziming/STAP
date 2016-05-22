@@ -22,12 +22,12 @@ public class ExecutionStepOutputTextDao {
     private StapFileDao stapFileDao;
     public void add(ExecutionStepOutputText executionStepOutputText) {
         String sql = "INSERT INTO "+StapDbTables.EXECUTION_STEP_OUTPUT_TEXT.toString()+" SET Execution_Step_Id=?, `Type`=?, Field=?, `Value`=?, Remark";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionStepOutputText.getExecutionStep().getId(), executionStepOutputText.getType(), executionStepOutputText.getField(), executionStepOutputText.getValue(), executionStepOutputText.getRemark()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionStepOutputText.getBasicExecutionStep().getId(), executionStepOutputText.getType(), executionStepOutputText.getField(), executionStepOutputText.getValue(), executionStepOutputText.getRemark()});
     }
 
     public void update(ExecutionStepOutputText executionStepOutputText) {
         String sql = "UPDATE "+StapDbTables.EXECUTION_STEP_OUTPUT_TEXT.toString()+" SET Execution_Step_Id=?, `Type`=?, Field=?, `Value`=?, Remark WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionStepOutputText.getExecutionStep().getId(), executionStepOutputText.getType(), executionStepOutputText.getField(), executionStepOutputText.getValue(), executionStepOutputText.getRemark(), executionStepOutputText.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionStepOutputText.getBasicExecutionStep().getId(), executionStepOutputText.getType(), executionStepOutputText.getField(), executionStepOutputText.getValue(), executionStepOutputText.getRemark(), executionStepOutputText.getId()});
     }
 
     public void delete(ExecutionStepOutputText executionStepOutputText) {
@@ -41,7 +41,7 @@ public class ExecutionStepOutputTextDao {
             public ExecutionStepOutputText mapRow(ResultSet resultSet, int i) throws SQLException {
                 ExecutionStepOutputText executionStepOutputText = new ExecutionStepOutputText();
                 executionStepOutputText.setId(resultSet.getInt("Id"));
-                executionStepOutputText.setExecutionStep(executionStepDao.findById(resultSet.getInt("Execution_Step_Id")));
+                executionStepOutputText.setBasicExecutionStep(executionStepDao.findBasicById(resultSet.getInt("Execution_Step_Id")));
                 executionStepOutputText.setType(resultSet.getString("Type"));
                 executionStepOutputText.setField(resultSet.getString("Field"));
                 executionStepOutputText.setValue(resultSet.getString("Value"));

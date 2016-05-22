@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public final class ExecutionStepOutputText {
     private Integer id;
-    private ExecutionStep executionStep;
+    private BasicExecutionStep basicExecutionStep;
     private String type;
     private String field;
     private String value;
@@ -26,12 +26,12 @@ public final class ExecutionStepOutputText {
         this.id = id;
     }
 
-    public ExecutionStep getExecutionStep() {
-        return executionStep;
+    public BasicExecutionStep getBasicExecutionStep() {
+        return basicExecutionStep;
     }
 
-    public void setExecutionStep(ExecutionStep executionStep) {
-        this.executionStep = executionStep;
+    public void setBasicExecutionStep(BasicExecutionStep basicExecutionStep) {
+        this.basicExecutionStep = basicExecutionStep;
     }
 
     public String getType() {

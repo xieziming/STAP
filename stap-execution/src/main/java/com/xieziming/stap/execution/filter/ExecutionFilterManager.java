@@ -1,4 +1,7 @@
-package com.xieziming.stap.execution.filters;
+package com.xieziming.stap.execution.filter;
+
+import com.xieziming.stap.core.execution.BasicExecution;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +9,7 @@ import java.util.List;
 /**
  * Created by Suny on 5/21/16.
  */
+@Component
 public class ExecutionFilterManager implements ExecutionFilter{
     private List<ExecutionFilter> executionFilterList = new ArrayList<ExecutionFilter>();
 
@@ -22,9 +26,9 @@ public class ExecutionFilterManager implements ExecutionFilter{
     }
 
     @Override
-    public boolean shouldBeExecuted() {
+    public boolean shouldBeExecuted(BasicExecution execution) {
         for(ExecutionFilter executionFilter : executionFilterList){
-            if(executionFilter.shouldBeExecuted()) return true;
+            if(executionFilter.shouldBeExecuted(execution)) return true;
         }
         return false;
     }

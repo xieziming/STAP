@@ -21,12 +21,12 @@ public class TestDataDao {
     private TestDataDefinitionDao testDataDefinitionDao;
     public void add(TestData testData) {
         String sql = "INSERT INTO "+StapDbTables.TEST_DATA.toString()+" SET Test_Case_Id=?, Test_Data_Definition_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testData.getTestCase().getId(), testData.getTestDataDefinition().getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testData.getBasicTestCase().getId(), testData.getTestDataDefinition().getId()});
     }
 
     public void update(TestData testData) {
         String sql = "UPDATE "+StapDbTables.TEST_DATA.toString()+" SET Test_Case_Id=?, Test_Data_Definition_Id=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testData.getTestCase().getId(),testData.getTestDataDefinition().getId(), testData.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testData.getBasicTestCase().getId(),testData.getTestDataDefinition().getId(), testData.getId()});
     }
 
     public void delete(TestData testData) {
@@ -41,7 +41,7 @@ public class TestDataDao {
             public TestData mapRow(ResultSet resultSet, int i) throws SQLException {
                 TestData testData = new TestData();
                 testData.setId(resultSet.getInt("Id"));
-                testData.setTestCase(testCaseDao.findById(resultSet.getInt("Test_Case_Id")));
+                testData.setBasicTestCase(testCaseDao.findBasicById(resultSet.getInt("Test_Case_Id")));
                 testData.setTestDataDefinition(testDataDefinitionDao.findById(resultSet.getInt("Test_Definition_Id")));
                 testData.setLastUpdate(resultSet.getTimestamp("Last_Update"));
                 return testData;

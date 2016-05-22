@@ -7,7 +7,7 @@ import com.xieziming.stap.core.common.StapLog;
  */
 public class ExecutionPlanLog {
     private Integer id;
-    private ExecutionPlan executionPlan;
+    private BasicExecutionPlan basicExecutionPlan;
     private StapLog stapLog;
 
     public Integer getId() {
@@ -18,12 +18,12 @@ public class ExecutionPlanLog {
         this.id = id;
     }
 
-    public ExecutionPlan getExecutionPlan() {
-        return executionPlan;
+    public BasicExecutionPlan getBasicExecutionPlan() {
+        return basicExecutionPlan;
     }
 
-    public void setExecutionPlan(ExecutionPlan executionPlan) {
-        this.executionPlan = executionPlan;
+    public void setBasicExecutionPlan(BasicExecutionPlan basicExecutionPlan) {
+        this.basicExecutionPlan = basicExecutionPlan;
     }
 
     public StapLog getStapLog() {

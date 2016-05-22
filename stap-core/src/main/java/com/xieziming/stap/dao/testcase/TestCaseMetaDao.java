@@ -21,12 +21,12 @@ public class TestCaseMetaDao {
 
     public void add(TestCaseMeta testCaseMeta) {
         String sql = "INSERT INTO "+StapDbTables.TEST_CASE_META.toString()+" SET Test_Case_Id=?, Meta_Key=?, Meta_Value=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseMeta.getTestCase().getId(), testCaseMeta.getStapMeta().getMetaKey(), testCaseMeta.getStapMeta().getMetaValue()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseMeta.getBasicTestCase().getId(), testCaseMeta.getStapMeta().getMetaKey(), testCaseMeta.getStapMeta().getMetaValue()});
     }
 
     public void update(TestCaseMeta testCaseMeta) {
         String sql = "UPDATE "+StapDbTables.TEST_CASE_META.toString()+" SET Test_Case_Id=?, Meta_Key=?, Meta_Value=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseMeta.getTestCase().getId(), testCaseMeta.getStapMeta().getMetaKey(), testCaseMeta.getStapMeta().getMetaValue(), testCaseMeta.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseMeta.getBasicTestCase().getId(), testCaseMeta.getStapMeta().getMetaKey(), testCaseMeta.getStapMeta().getMetaValue(), testCaseMeta.getId()});
     }
 
     public void delete(TestCaseMeta testCaseMeta) {
@@ -40,7 +40,7 @@ public class TestCaseMetaDao {
             public TestCaseMeta mapRow(ResultSet resultSet, int i) throws SQLException {
                 TestCaseMeta testCaseMeta = new TestCaseMeta();
                 testCaseMeta.setId(resultSet.getInt("Id"));
-                testCaseMeta.setTestCase(testCaseDao.findById(resultSet.getInt("Test_Case_Id")));
+                testCaseMeta.setBasicTestCase(testCaseDao.findBasicById(resultSet.getInt("Test_Case_Id")));
                 testCaseMeta.setStapMeta(new StapMeta(resultSet.getString("Meta_Key"), resultSet.getString("Meta_Value")));
                 testCaseMeta.setLastUpdate(resultSet.getTimestamp("Last_Update"));
                 return testCaseMeta;

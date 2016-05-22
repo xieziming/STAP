@@ -1,11 +1,11 @@
-package com.xieziming.stap.execution.config;
+package com.xieziming.stap.core.common;
 
 /**
  * Created by Suny on 5/21/16.
  */
 public enum ExecutionConstants {
     STARTED("Started"),
-    INPROGRESS("InProgress"),
+    INPROGRESS("InProcess"),
     COMPLETED("Completed"),
     OPENED("Opened"),
     CLOSED("Closed"),

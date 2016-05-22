@@ -1,7 +1,6 @@
 package com.xieziming.stap.dao.testcase;
 
-import com.xieziming.stap.core.teststep.TestStep;
-import com.xieziming.stap.core.teststep.TestStepParameter;
+import com.xieziming.stap.core.testcase.TestStep;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +23,12 @@ public class TestStepDao {
 
     public void add(TestStep testStep) {
         String sql = "INSERT INTO "+StapDbTables.TEST_STEP.toString()+" SET Test_Case_Id =?, Step_Order=?, Test_Action_Id=?, Parameter=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testStep.getTestCase().getId(), testStep.getStepOrder(), testStep.getTestAction().getId(), testStep.getTestStepParameter().getParameter()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testStep.getBasicTestCase().getId(), testStep.getStepOrder(), testStep.getTestAction().getId(), testStep.getTestStepParameter()});
     }
 
     public void update(TestStep testStep) {
         String sql = "UPDATE "+StapDbTables.TEST_STEP.toString()+" SET Test_Case_Id =?, Step_Order=?, Test_Action_Id=?, Parameter=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testStep.getTestCase().getId(), testStep.getStepOrder(), testStep.getTestAction().getId(), testStep.getTestStepParameter().getParameter(), testStep.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testStep.getBasicTestCase().getId(), testStep.getStepOrder(), testStep.getTestAction().getId(), testStep.getTestStepParameter(), testStep.getId()});
     }
 
     public void delete(TestStep testStep) {
@@ -44,9 +43,9 @@ public class TestStepDao {
                 TestStep testStep = new TestStep();
                 testStep.setId(resultSet.getInt("Id"));
                 testStep.setStepOrder(resultSet.getInt("Step_Order"));
-                testStep.setTestCase(testCaseDao.findById(resultSet.getInt("Test_Case_Id")));
+                testStep.setBasicTestCase(testCaseDao.findBasicById(resultSet.getInt("Test_Case_Id")));
                 testStep.setTestAction(testActionDao.findById(resultSet.getInt("Test_Action_Id")));
-                testStep.setTestStepParameter(new TestStepParameter(resultSet.getString("Parameter")));
+                testStep.setTestStepParameter(resultSet.getString("Parameter"));
                 return testStep;
             }
         });

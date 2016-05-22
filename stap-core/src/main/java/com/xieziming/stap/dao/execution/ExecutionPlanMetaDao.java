@@ -21,12 +21,12 @@ public class ExecutionPlanMetaDao {
 
     public void add(ExecutionPlanMeta executionPlanMeta) {
         String sql = "INSERT INTO "+StapDbTables.EXECUTION_PLAN_META.toString()+" SET Execution_Plan_Id=?, Meta_Key=?, Meta_Value=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanMeta.getExecutionPlan().getId(), executionPlanMeta.getStapMeta().getMetaKey(), executionPlanMeta.getStapMeta().getMetaValue()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanMeta.getBasicExecutionPlan().getId(), executionPlanMeta.getStapMeta().getMetaKey(), executionPlanMeta.getStapMeta().getMetaValue()});
     }
 
     public void update(ExecutionPlanMeta executionPlanMeta) {
         String sql = "UPDATE "+StapDbTables.EXECUTION_PLAN_META.toString()+" SET Execution_Plan_Id=?, Meta_Key=?, Meta_Value=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanMeta.getExecutionPlan().getId(), executionPlanMeta.getStapMeta().getMetaKey(), executionPlanMeta.getStapMeta().getMetaValue(), executionPlanMeta.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanMeta.getBasicExecutionPlan().getId(), executionPlanMeta.getStapMeta().getMetaKey(), executionPlanMeta.getStapMeta().getMetaValue(), executionPlanMeta.getId()});
     }
 
     public void delete(ExecutionPlanMeta executionPlanMeta) {
@@ -40,7 +40,7 @@ public class ExecutionPlanMetaDao {
             public ExecutionPlanMeta mapRow(ResultSet resultSet, int i) throws SQLException {
                 ExecutionPlanMeta executionPlanMeta = new ExecutionPlanMeta();
                 executionPlanMeta.setId(resultSet.getInt("Id"));
-                executionPlanMeta.setExecutionPlan(executionPlanDao.findById(resultSet.getInt("Execution_Plan_Id")));
+                executionPlanMeta.setBasicExecutionPlan(executionPlanDao.findBasicById(resultSet.getInt("Execution_Plan_Id")));
                 executionPlanMeta.setStapMeta(new StapMeta(resultSet.getString("Meta_Key"), resultSet.getString("Meta_Value")));
                 executionPlanMeta.setLastUpdate(resultSet.getTimestamp("Last_Update"));
                 return executionPlanMeta;

@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public final class ExecutionStepOutputFile {
     private Integer id;
-    private ExecutionStep executionStep;
+    private BasicExecutionStep basicExecutionStep;
     private String type;
     private String remark;
     private StapFile stapFile;
@@ -26,12 +26,12 @@ public final class ExecutionStepOutputFile {
         this.id = id;
     }
 
-    public ExecutionStep getExecutionStep() {
-        return executionStep;
+    public BasicExecutionStep getBasicExecutionStep() {
+        return basicExecutionStep;
     }
 
-    public void setExecutionStep(ExecutionStep executionStep) {
-        this.executionStep = executionStep;
+    public void setBasicExecutionStep(BasicExecutionStep basicExecutionStep) {
+        this.basicExecutionStep = basicExecutionStep;
     }
 
     public String getType() {

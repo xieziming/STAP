@@ -10,20 +10,9 @@
             <param name="LevelMin" value="DEBUG" />
         </filter>
     </appender>
-    <appender name="EXECUTION_LOG" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="stap-execution.log" />
-        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss SSS\} %-5p] [%l] %n %m %n" />
-        </layout>
-        <filter class="org.apache.log4j.varia.LevelRangeFilter">
-            <param name="LevelMax" value="INFO" />
-            <param name="LevelMin" value="INFO" />
-        </filter>
-    </appender>
 
-    <appender name="EXECUTION_QUEUE_LOG" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="stap-execution-queue.log" />
+    <appender name="LOG" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="stap.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss SSS\} %-5p] %m %n" />
@@ -33,17 +22,16 @@
             <param name="LevelMin" value="INFO" />
         </filter>
     </appender>
+
     <root>
         <priority value="INFO" />
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="EXECUTION_LOG" />
     </root>
-    <category name="com.xieziming.stap.execution">
+
+    <category name="com.xieziming.stap">
         <priority value="INFO" />
-        <appender-ref ref="EXECUTION_LOG" />
+        <appender-ref ref="LOG" />
     </category>
-    <category name="com.xieziming.stap.execution.queue">
-        <priority value="INFO" />
-        <appender-ref ref="EXECUTION_QUEUE_LOG" />
-    </category>
+
 </log4j:configuration>

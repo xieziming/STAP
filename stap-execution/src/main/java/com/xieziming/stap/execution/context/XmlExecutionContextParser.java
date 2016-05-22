@@ -1,7 +1,9 @@
 package com.xieziming.stap.execution.context;
 
+import com.xieziming.stap.core.execution.BasicExecution;
 import com.xieziming.stap.core.execution.ExecutionContext;
-import com.xieziming.stap.execution.filters.ExecutionFilter;
+import com.xieziming.stap.execution.filter.ExecutionFilter;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +11,16 @@ import java.util.List;
 /**
  * Created by Suny on 5/21/16.
  */
-public class XmlExecutionContextParser extends ExecutionContextParser {
+@Component
+public class XmlExecutionContextParser implements ExecutionContextParser{
+    private ExecutionContext executionContext;
 
-    public XmlExecutionContextParser(ExecutionContext executionContext) {
-        super(executionContext);
+    public ExecutionContext getExecutionContext() {
+        return executionContext;
+    }
+
+    public void setExecutionContext(ExecutionContext executionContext) {
+        this.executionContext = executionContext;
     }
 
     @Override
@@ -20,7 +28,7 @@ public class XmlExecutionContextParser extends ExecutionContextParser {
         List<ExecutionFilter> executionFilterList = new ArrayList<ExecutionFilter>();
         ExecutionFilter executionFilter = new ExecutionFilter() {
             @Override
-            public boolean shouldBeExecuted() {
+            public boolean shouldBeExecuted(BasicExecution execution) {
                 return true;
             }
         };

@@ -22,12 +22,12 @@ public class ExecutionPlanLogDao {
     private StapLogDao stapLogDao;
     public void add(ExecutionPlanLog executionPlanLog) {
         String sql = "INSERT INTO "+StapDbTables.EXECUTION_PLAN_LOG.toString()+" SET Execution_Plan_d=?, Log_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanLog.getExecutionPlan().getId(), executionPlanLog.getStapLog().getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanLog.getBasicExecutionPlan().getId(), executionPlanLog.getStapLog().getId()});
     }
 
     public void update(ExecutionPlanLog executionPlanLog) {
         String sql = "UPDATE "+StapDbTables.EXECUTION_PLAN_LOG.toString()+" SET Execution_Plan_Id=?, Log_Id=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanLog.getExecutionPlan().getId(), executionPlanLog.getStapLog().getId(), executionPlanLog.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanLog.getBasicExecutionPlan().getId(), executionPlanLog.getStapLog().getId(), executionPlanLog.getId()});
     }
 
     public void delete(ExecutionPlanLog executionPlanLog) {
@@ -41,7 +41,7 @@ public class ExecutionPlanLogDao {
             public ExecutionPlanLog mapRow(ResultSet resultSet, int i) throws SQLException {
                 ExecutionPlanLog executionPlanLog = new ExecutionPlanLog();
                 executionPlanLog.setId(resultSet.getInt("Id"));
-                executionPlanLog.setExecutionPlan(executionPlanDao.findById(resultSet.getInt("Execution_Plan_Id")));
+                executionPlanLog.setBasicExecutionPlan(executionPlanDao.findBasicById(resultSet.getInt("Execution_Plan_Id")));
                 executionPlanLog.setStapLog(stapLogDao.findById(resultSet.getInt("Log_Id")));
                 return executionPlanLog;
             }

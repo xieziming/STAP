@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  * Created by Suny on 5/16/16.
  */
-@ComponentScan(value = {"com.xieziming.stap.execution"})
+@ComponentScan(value = {"com.xieziming.stap"})
 @Configuration
 @EnableWebMvc
 

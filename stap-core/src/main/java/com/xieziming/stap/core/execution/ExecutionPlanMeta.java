@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class ExecutionPlanMeta {
     private Integer id;
-    private ExecutionPlan executionPlan;
+    private BasicExecutionPlan basicExecutionPlan;
     private StapMeta stapMeta;
     @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;
@@ -24,12 +24,12 @@ public class ExecutionPlanMeta {
         this.id = id;
     }
 
-    public ExecutionPlan getExecutionPlan() {
-        return executionPlan;
+    public BasicExecutionPlan getBasicExecutionPlan() {
+        return basicExecutionPlan;
     }
 
-    public void setExecutionPlan(ExecutionPlan executionPlan) {
-        this.executionPlan = executionPlan;
+    public void setBasicExecutionPlan(BasicExecutionPlan basicExecutionPlan) {
+        this.basicExecutionPlan = basicExecutionPlan;
     }
 
     public StapMeta getStapMeta() {

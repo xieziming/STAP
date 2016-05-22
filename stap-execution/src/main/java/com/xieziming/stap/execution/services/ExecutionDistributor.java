@@ -1,23 +1,20 @@
 package com.xieziming.stap.execution.services;
 
+import com.xieziming.stap.core.execution.BasicExecution;
 import com.xieziming.stap.core.execution.Execution;
-import com.xieziming.stap.core.execution.ExecutionPlan;
-import com.xieziming.stap.core.testcase.TestCase;
-import com.xieziming.stap.db.StapDbUtil;
 import com.xieziming.stap.execution.queue.ExecutionQueue;
+import com.xieziming.stap.execution.queue.ExecutionQueueCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
+import java.util.Queue;
 
 /**
  * Created by Suny on 5/19/16.
@@ -30,39 +27,22 @@ public class ExecutionDistributor {
     @Value("${execution.context.parser}")
     private String executionContextParser;
 
+    @Autowired
+    private ExecutionQueueCache executionQueueCache;
+
+    @Autowired
+    private ExecutionQueue executionQueue;
+
     @RequestMapping(value = "executions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public List<Execution> getExecutions() {
-        String sql = "SELECT p.id AS Plan_Id, p.name AS Plan_Name, t.Id AS Test_Case_Id, t.Name AS Test_Case_Name, e.id AS Execution_Id, e.Start_Time, e.End_Time, e.Status, e.Result, e.Remark FROM Execution e LEFT JOIN execution_plan p ON e.Execution_Plan_Id = p.Id LEFT JOIN test_case t ON t.id = e.Test_Case_Id";
-        return StapDbUtil.getJdbcTemplate().query(sql, new RowMapper<Execution>() {
-            @Override
-            public Execution mapRow(ResultSet resultSet, int i) throws SQLException {
-                Execution execution = new Execution();
-                execution.setId(resultSet.getInt("Execution_Id"));
-                execution.setStatus(resultSet.getString("Status"));
-                execution.setStartTime(resultSet.getTimestamp("Start_Time"));
-                execution.setEndTime(resultSet.getTimestamp("End_Time"));
-                execution.setResult(resultSet.getString("Result"));
-                execution.setRemark(resultSet.getString("Remark"));
-
-                TestCase testCase = new TestCase();
-                testCase.setId(resultSet.getInt("Test_Case_Id"));
-                testCase.setName(resultSet.getString("Test_Case_Name"));
-                execution.setTestCase(testCase);
-
-                ExecutionPlan executionPlan = new ExecutionPlan();
-                executionPlan.setId(resultSet.getInt("Plan_Id"));
-                executionPlan.setName(resultSet.getString("Plan_Name"));
-                execution.setExecutionPlan(executionPlan);
-
-                return execution;
-            }
-        });
+    public Queue<BasicExecution> getExecutions() {
+        Queue<BasicExecution> basicExecutionList = executionQueueCache.getBasicExecutionQueue();
+        return basicExecutionList;
     }
 
     @RequestMapping(value = "execution/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public Execution requestExecution() {
-        return new ExecutionQueue().getExecution(executionContextParser);
+        return executionQueue.getExecution();
     }
 }

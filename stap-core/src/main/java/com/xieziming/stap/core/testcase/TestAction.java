@@ -8,10 +8,11 @@ import java.util.Date;
 /**
  * Created by Suny on 5/8/16.
  */
-public class TestData {
+public class TestAction {
     private Integer id;
-    private BasicTestCase basicTestCase;
-    private TestDataDefinition testDataDefinition;
+    private String name;
+    private String testActionHandler;
+    private String remark;
     @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;
 
@@ -23,20 +24,28 @@ public class TestData {
         this.id = id;
     }
 
-    public BasicTestCase getBasicTestCase() {
-        return basicTestCase;
+    public String getName() {
+        return name;
     }
 
-    public void setBasicTestCase(BasicTestCase basicTestCase) {
-        this.basicTestCase = basicTestCase;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public TestDataDefinition getTestDataDefinition() {
-        return testDataDefinition;
+    public String getTestActionHandler() {
+        return testActionHandler;
     }
 
-    public void setTestDataDefinition(TestDataDefinition testDataDefinition) {
-        this.testDataDefinition = testDataDefinition;
+    public void setTestActionHandler(String testActionHandler) {
+        this.testActionHandler = testActionHandler;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public Date getLastUpdate() {

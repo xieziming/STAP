@@ -21,8 +21,8 @@ public enum StapDbTables {
 
     EXECUTION_STEP("Execution_Step"),
     EXECUTION_STEP_LOG("Execution_Step_Log"),
-    EXECUTION_STEP_OUTPUT_TEXT("Executon_Step_Output_Text"),
-    EXECUTION_STEP_OUTPUT_FILE("Executon_Step_Output_File"),
+    EXECUTION_STEP_OUTPUT_TEXT("Execution_Step_Output_Text"),
+    EXECUTION_STEP_OUTPUT_FILE("Execution_Step_Output_File"),
 
     FILE("File"),
     LOG("Log");

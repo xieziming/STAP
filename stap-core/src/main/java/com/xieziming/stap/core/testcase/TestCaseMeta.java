@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class TestCaseMeta {
     private Integer id;
-    private TestCase testCase;
+    private BasicTestCase basicTestCase;
     private StapMeta stapMeta;
     @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;
@@ -24,12 +24,12 @@ public class TestCaseMeta {
         this.id = id;
     }
 
-    public TestCase getTestCase() {
-        return testCase;
+    public BasicTestCase getBasicTestCase() {
+        return basicTestCase;
     }
 
-    public void setTestCase(TestCase testCase) {
-        this.testCase = testCase;
+    public void setBasicTestCase(BasicTestCase basicTestCase) {
+        this.basicTestCase = basicTestCase;
     }
 
     public StapMeta getStapMeta() {
