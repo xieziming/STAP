@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="stap-gateway:war">
+    <output-path>$PROJECT_DIR$/stap-gateway/target</output-path>
+    <root id="archive" name="stap-gateway.war">
+      <element id="artifact" artifact-name="stap-gateway:war exploded" />
+    </root>
+  </artifact>
+</component>

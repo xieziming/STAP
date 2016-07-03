@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +26,8 @@ public class TestCaseDao {
     private TestDataDao testDataDao;
     @Autowired
     private TestCaseMetaDao testCaseMetaDao;
+    @Autowired
+    private TestCaseDependenceDao testCaseDependenceDao;
 
     public void add(BasicTestCase testCase) {
         if(testCase instanceof TestCase) {
@@ -50,8 +53,8 @@ public class TestCaseDao {
             }
         }
 
-        String sql = "INSERT INTO "+StapDbTables.TEST_CASE.toString()+" SET Name=?, Parent_Test_Case_Id=?, Remark=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCase.getName(), testCase.getBasicParentTestCase().getId(), testCase.getRemark()});
+        String sql = "INSERT INTO "+StapDbTables.TEST_CASE.toString()+" SET Name=?, Status=?, Remark=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCase.getName(), testCase.getStatus(), testCase.getRemark()});
     }
 
     public void update(BasicTestCase testCase) {
@@ -78,8 +81,8 @@ public class TestCaseDao {
             }
         }
 
-        String sql = "UPDATE "+StapDbTables.TEST_CASE.toString()+" SET Name=?, Parent_Test_Case_Id=?, Remark=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCase.getName(), testCase.getBasicParentTestCase().getId(), testCase.getRemark(), testCase.getId()});
+        String sql = "UPDATE "+StapDbTables.TEST_CASE.toString()+" SET Name=?, Status=?, Remark=? WHERE Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCase.getName(), testCase.getStatus(), testCase.getRemark(), testCase.getId()});
     }
 
     public void delete(TestCase testCase) {
@@ -115,17 +118,29 @@ public class TestCaseDao {
         }
 
         String sql = "SELECT * FROM " + StapDbTables.TEST_CASE.toString() + " WHERE Id=?";
-        return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<BasicTestCase>() {
+        BasicTestCase basicTestCase = StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<BasicTestCase>() {
             public BasicTestCase mapRow(ResultSet resultSet, int i) throws SQLException {
                 BasicTestCase basicTestCase = new BasicTestCase();
                 basicTestCase.setId(resultSet.getInt("Id"));
-                basicTestCase.setBasicParentTestCase(findBasicById(resultSet.getInt("Parent_Test_Case_Id")));
                 basicTestCase.setName(resultSet.getString("Name"));
                 basicTestCase.setRemark(resultSet.getString("Remark"));
                 basicTestCase.setLastUpdate(resultSet.getTimestamp("Last_Update"));
                 return basicTestCase;
             }
         });
+
+        List<BasicTestCaseDependence> basicTestCaseDependenceList = new ArrayList<BasicTestCaseDependence>();
+
+        sql = "SELECT Id FROM "+StapDbTables.TEST_CASE_DEPENDENCE+" WHERE Test_Case_Id=?";
+        List<Integer> test_dependence_ids = StapDbUtil.getJdbcTemplate().queryForList(sql, new Object[]{id}, Integer.class);
+        for(Integer test_dependence_id : test_dependence_ids){
+            basicTestCaseDependenceList.add(testCaseDependenceDao.findBasicById(test_dependence_id));
+        }
+
+        basicTestCase.setBasicTestCaseDependenceList(basicTestCaseDependenceList);
+
+        return basicTestCase;
+
     }
 
     public TestCase findById(int id){

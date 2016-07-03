@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/stap-db/stap-db.iml" filepath="$PROJECT_DIR$/stap-db/stap-db.iml" />
       <module fileurl="file://$PROJECT_DIR$/stap-execution/stap-execution.iml" filepath="$PROJECT_DIR$/stap-execution/stap-execution.iml" />
       <module fileurl="file://$PROJECT_DIR$/stap-file/stap-file.iml" filepath="$PROJECT_DIR$/stap-file/stap-file.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stap-portal/stap-portal.iml" filepath="$PROJECT_DIR$/stap-portal/stap-portal.iml" />
     </modules>
   </component>
 </project>

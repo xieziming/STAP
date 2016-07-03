@@ -7,12 +7,13 @@ import java.util.List;
  */
 public class TestCase extends BasicTestCase {
     private List<TestCaseMeta> testCaseMetaList;
+    private List<TestCaseDependence> testCaseDependenceList;
     private List<TestData> testDataList;
     private List<TestStep> testStepList;
 
     public TestCase(BasicTestCase basicTestCase) {
         super.setId(basicTestCase.getId());
-        super.setBasicParentTestCase(basicTestCase.getBasicParentTestCase());
+        super.setBasicTestCaseDependenceList(basicTestCase.getBasicTestCaseDependenceList());
         super.setName(basicTestCase.getName());
         super.setRemark(basicTestCase.getRemark());
         super.setLastUpdate(basicTestCase.getLastUpdate());
@@ -24,6 +25,14 @@ public class TestCase extends BasicTestCase {
 
     public void setTestCaseMetaList(List<TestCaseMeta> testCaseMetaList) {
         this.testCaseMetaList = testCaseMetaList;
+    }
+
+    public List<TestCaseDependence> getTestCaseDependenceList() {
+        return testCaseDependenceList;
+    }
+
+    public void setTestCaseDependenceList(List<TestCaseDependence> testCaseDependenceList) {
+        this.testCaseDependenceList = testCaseDependenceList;
     }
 
     public List<TestData> getTestDataList() {

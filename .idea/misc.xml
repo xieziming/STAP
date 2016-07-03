@@ -5,6 +5,7 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/stap-file" />
+    <file type="web" url="file://$PROJECT_DIR$/stap-gateway" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

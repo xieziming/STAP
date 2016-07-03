@@ -4,14 +4,16 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xieziming.stap.core.util.JsonDateSerializer;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Suny on 5/22/16.
  */
 public class BasicTestCase {
     private Integer id;
-    private BasicTestCase basicParentTestCase;
+    private List<BasicTestCaseDependence> basicTestCaseDependenceList;
     private String name;
+    private String status;
     private String remark;
     @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;
@@ -24,12 +26,12 @@ public class BasicTestCase {
         this.id = id;
     }
 
-    public BasicTestCase getBasicParentTestCase() {
-        return basicParentTestCase;
+    public List<BasicTestCaseDependence> getBasicTestCaseDependenceList() {
+        return basicTestCaseDependenceList;
     }
 
-    public void setBasicParentTestCase(BasicTestCase basicParentTestCase) {
-        this.basicParentTestCase = basicParentTestCase;
+    public void setBasicTestCaseDependenceList(List<BasicTestCaseDependence> basicTestCaseDependenceList) {
+        this.basicTestCaseDependenceList = basicTestCaseDependenceList;
     }
 
     public String getName() {
@@ -46,6 +48,14 @@ public class BasicTestCase {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Date getLastUpdate() {

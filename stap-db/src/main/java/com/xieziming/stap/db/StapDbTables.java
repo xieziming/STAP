@@ -6,6 +6,7 @@ package com.xieziming.stap.db;
 public enum StapDbTables {
     TEST_CASE("Test_Case"),
     TEST_CASE_META("Test_Case_Meta"),
+    TEST_CASE_DEPENDENCE("Test_Case_Dependence"),
     TEST_DATA("Test_Data"),
     TEST_DATA_DEFINITION("Test_Data_Definition"),
     TEST_STEP("Test_Step"),
