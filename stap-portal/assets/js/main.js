@@ -12,9 +12,9 @@ function ($rootScope, $state, $stateParams) {
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
-        name: 'Packet', // name of your project
-        author: 'ClipTheme', // author's name or company name
-        description: 'Angular Bootstrap Admin Template', // brief description
+        name: 'STAP', // name of your project
+        author: 'XIEZIMING.COM', // author's name or company name
+        description: 'Test Automation Platform', // brief description
         version: '1.0', // current version
         year: ((new Date()).getFullYear()), // automatic current year (for copyright information)
         isMobile: (function () {// true if the browser is a mobile device
@@ -56,7 +56,7 @@ function ($translateProvider) {
 
     // Since you've now registered more then one translation table, angular-translate has to know which one to use.
     // This is where preferredLanguage(langKey) comes in.
-    $translateProvider.preferredLanguage('en');
+    $translateProvider.preferredLanguage('en_US');
 
     // Store the language in the local storage
     $translateProvider.useLocalStorage();

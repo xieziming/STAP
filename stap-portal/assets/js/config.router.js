@@ -50,7 +50,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         }
     }).state('app.pagelayouts.fixedheader', {
         url: "/fixed-header",
-        templateUrl: "assets/views/dashboard-2.html",
+        templateUrl: "assets/views/dashboard.html",
         resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
         title: 'Fixed Header',
         ncyBreadcrumb: {
@@ -62,7 +62,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         }
     }).state('app.pagelayouts.fixedsidebar', {
         url: "/fixed-sidebar",
-        templateUrl: "assets/views/dashboard-3.html",
+        templateUrl: "assets/views/dashboard.html",
         resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
         title: 'Fixed Sidebar',
         ncyBreadcrumb: {
@@ -74,7 +74,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         }
     }).state('app.pagelayouts.fixedheadersidebar', {
         url: "/fixed-header-and-sidebar",
-        templateUrl: "assets/views/dashboard-4.html",
+        templateUrl: "assets/views/dashboard.html",
         resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
         title: 'Fixed Header &amp; Sidebar',
         ncyBreadcrumb: {
@@ -87,7 +87,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         }
     }).state('app.pagelayouts.fixedfooter', {
         url: "/fixed-footer",
-        templateUrl: "assets/views/dashboard-5.html",
+        templateUrl: "assets/views/dashboard.html",
         resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
         title: 'Fixed Footer',
         ncyBreadcrumb: {

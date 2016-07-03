@@ -25,6 +25,7 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
         } else {
             $body.removeClass("app-boxed-page");
         }
+        var name;
 		if(typeof CKEDITOR !== 'undefined'){
 	        for(name in CKEDITOR.instances)
 			{
@@ -127,9 +128,8 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
         listIsOpen: false,
         // list of available languages
         available: {
-            'en': 'English',
-            'it_IT': 'Italiano',
-            'de_DE': 'Deutsch'
+            'en_US': 'English',
+            'zh_CN': '简体中文'
         },
         // display always the current ui language
         init: function () {
