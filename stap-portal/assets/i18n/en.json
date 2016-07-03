@@ -1,8 +1,7 @@
 {
     "flagstyle": "flag-icon-us",
     "dashboard": {
-        "WELCOME": "Welcome to {{appName}}",
-        "PROJECT_LIST": "Project List"
+        "WELCOME": "Welcome to {{appName}}"
     },
     "search": {
         "PLACEHOLDER": "Enter search text here..."

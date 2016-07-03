@@ -26,7 +26,7 @@
                                     <div class="col-md-6">
                                         <h5 class="text-bold margin-top-25 margin-bottom-15">Inline</h5>
                                         <div class="inline-block min-height-180">
-                                            <uib-datepicker ng-model="dt" min-date="minDate" show-weeks="false" class="well well-sm clip-datepicker"></uib-datepicker>
+                                            <uib-datepicker ng-model="dt" class="well well-sm clip-datepicker" datepicker-options="datepickerOptions"></uib-datepicker>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -36,7 +36,7 @@
                                                 <label>
                                                     Inline
                                                 </label>
-                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" show-weeks="false" is-open="inputopened" ng-init="inputopened = false" ng-click="inputopened = !inputopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="inputopened" ng-init="inputopened = false" ng-click="inputopened = !inputopened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" />
                                             </div>
                                         </p>
                                         <p>
@@ -45,9 +45,9 @@
                                                     Component
                                                 </label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" show-weeks="false" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="datepickerOptions" ng-required="true" close-text="Close" />
                                                     <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-primary" ng-click="open($event)">
+                                                        <button type="button" class="btn btn-primary" ng-click="open()">
                                                             <i class="fa fa-calendar"></i>
                                                         </button>
                                                     </span>
@@ -59,7 +59,7 @@
                                                 <label>
                                                     Disable weekend selection
                                                 </label>
-                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" show-weeks="false" is-open="disabledopened" ng-init="disabledopened = false" ng-click="disabledopened = !disabledopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="disabledopened" ng-init="disabledopened = false" ng-click="disabledopened = !disabledopened" datepicker-options="dateDisabledOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                                             </div>
                                         </p>
                                         <div class="form-group">
@@ -76,7 +76,7 @@
                                             <button type="button" class="btn btn-sm btn-info" ng-click="today()">
                                                 Today
                                             </button>
-                                            <button type="button" class="btn btn-sm btn-default btn-o" ng-click="dt = '2009-08-24'">
+                                            <button type="button" class="btn btn-sm btn-default btn-o" ng-click="setDate(2009, 7, 24)">
                                                 2009-08-24
                                             </button>
                                             <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">
@@ -123,11 +123,11 @@
                                             </label>
                                             <div class="input-group range-picker">
                                                 <div class="start-date">
-                                                    <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="start" show-weeks="false" is-open="startOpened" ng-init="startOpened = false" min-date="'1970-12-31'" max-date="end" ng-required="true" close-text="Close" ng-click="startOpen($event)" />
+                                                    <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" datepicker-options="startOptions" ng-model="start" is-open="startOpened" ng-init="startOpened = false" ng-required="true" close-text="Close" ng-click="startOpen()" />
                                                 </div>
                                                 <span class="input-group-addon">to</span>
                                                 <div class="end-date">
-                                                    <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="end" show-weeks="false" is-open="endOpened" ng-init="endOpened = false" min-date="start" max-date="maxDate" ng-required="true" close-text="Close" ng-click="endOpen($event)" />
+                                                    <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" datepicker-options="endOptions" ng-model="end" is-open="endOpened" ng-init="endOpened = false" ng-required="true" close-text="Close" ng-click="endOpen()" />
                                                 </div>
                                             </div>
                                         </div>

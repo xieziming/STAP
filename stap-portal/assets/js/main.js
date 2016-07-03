@@ -12,9 +12,9 @@ function ($rootScope, $state, $stateParams) {
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
-        name: 'STAP', // name of your project
-        author: 'XIEZIMING.COM', // author's name or company name
-        description: 'Web Portal', // brief description
+        name: 'Packet', // name of your project
+        author: 'ClipTheme', // author's name or company name
+        description: 'Angular Bootstrap Admin Template', // brief description
         version: '1.0', // current version
         year: ((new Date()).getFullYear()), // automatic current year (for copyright information)
         isMobile: (function () {// true if the browser is a mobile device
@@ -95,16 +95,16 @@ app.filter('htmlToPlaintext', function () {
 );
 //Custom UI Bootstrap Calendar Popup Template
 app.run(["$templateCache", function ($templateCache) {
-    $templateCache.put("uib/template/datepicker/popup.html",
+    $templateCache.put("uib/template/datepickerPopup/popup.html",
         "<div>\n" +
 	    "  <ul class=\"uib-datepicker-popup clip-datepicker dropdown-menu\" dropdown-nested ng-if=\"isOpen\" ng-style=\"{top: position.top+'px', left: position.left+'px'}\" ng-keydown=\"keydown($event)\" ng-click=\"$event.stopPropagation()\">\n" +
 	    "    <li ng-transclude></li>\n" +
 	    "    <li ng-if=\"showButtonBar\" class=\"uib-button-bar\">\n" +
 	    "    <span class=\"btn-group pull-left\">\n" +
-	    "      <button type=\"button\" class=\"btn btn-sm btn-primary btn-o uib-datepicker-current\" ng-click=\"select('today')\" ng-disabled=\"isDisabled('today')\">{{ getText('current') }}</button>\n" +
-	    "      <button type=\"button\" class=\"btn btn-sm btn-primary btn-o uib-clear\" ng-click=\"select(null)\">{{ getText('clear') }}</button>\n" +
+	    "      <button type=\"button\" class=\"btn btn-sm btn-primary btn-o uib-datepicker-current\" ng-click=\"select('today', $event)\" ng-disabled=\"isDisabled('today')\">{{ getText('current') }}</button>\n" +
+	    "      <button type=\"button\" class=\"btn btn-sm btn-primary btn-o uib-clear\" ng-click=\"select(null, $event)\">{{ getText('clear') }}</button>\n" +
 	    "    </span>\n" +
-	    "      <button type=\"button\" class=\"btn btn-sm btn-primary pull-right uib-close\" ng-click=\"close()\">{{ getText('close') }}</button>\n" +
+	    "      <button type=\"button\" class=\"btn btn-sm btn-primary pull-right uib-close\" ng-click=\"close($event)\">{{ getText('close') }}</button>\n" +
 	    "    </li>\n" +
 	    "  </ul>\n" +
 	    "</div>\n" +

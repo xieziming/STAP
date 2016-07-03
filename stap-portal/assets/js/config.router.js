@@ -35,7 +35,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         abstract: true
     }).state('app.dashboard', {
         url: "/dashboard",
-        templateUrl: "assets/views/dashboard-2.html",
+        templateUrl: "assets/views/dashboard.html",
         resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
         title: 'Dashboard',
         ncyBreadcrumb: {
@@ -352,7 +352,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'Image Cropping'
         },
-        resolve: loadSequence('ngImgCrop', 'cropCtrl')
+        resolve: loadSequence('ngImgCrop', 'cropCtrl', 'jcrop-plugin', 'crop2Ctrl')
     }).state('app.form.upload', {
         url: '/file-upload',
         templateUrl: "assets/views/form_file_upload.html",

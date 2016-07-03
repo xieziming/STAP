@@ -1325,6 +1325,7 @@ span[role="slider"] {
   padding: 30px 10px;
   position: relative;
   background: #2C2F3B !important;
+  overflow: visible !important;
   z-index: 1;
 }
 #sidebar .nav-user-wrapper:before {

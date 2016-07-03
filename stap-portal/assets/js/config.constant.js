@@ -22,7 +22,9 @@ app.constant('JS_REQUIRES', {
         'touchspin-plugin': ['../../bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js', '../../bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'],
         'jquery-appear-plugin': ['../../bower_components/jquery-appear/build/jquery.appear.min.js'],
         'spectrum-plugin': ['../../bower_components/spectrum/spectrum.js', '../../bower_components/spectrum/spectrum.css'],
-
+		'jcrop-plugin': ['../../bower_components/Jcrop/js/jquery.Jcrop.min.js', '../../bower_components/Jcrop/css/jquery.Jcrop.min.css'],
+		
+		
         //*** Controllers
         'dashboardCtrl': 'assets/js/controllers/dashboardCtrl.js',
         'iconsCtrl': 'assets/js/controllers/iconsCtrl.js',
@@ -53,6 +55,7 @@ app.constant('JS_REQUIRES', {
         'notifyCtrl': 'assets/js/controllers/notifyCtrl.js',
         'sliderCtrl': 'assets/js/controllers/sliderCtrl.js',
         'knobCtrl': 'assets/js/controllers/knobCtrl.js',
+        'crop2Ctrl': 'assets/js/controllers/crop2Ctrl.js',
     },
     //*** angularJS Modules
     modules: [{

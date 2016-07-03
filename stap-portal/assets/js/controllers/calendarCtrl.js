@@ -63,6 +63,34 @@ app.controller('CalendarCtrl', ["$scope", "$aside", "moment", "SweetAlert", func
                 $scope.deleteEvent = function () {
                     $uibModalInstance.close($scope.event, $scope.event);
                 };
+                $scope.maxDate = new Date(2020, 5, 22);
+				$scope.minDate = new Date(1970, 12, 31);
+                
+                 $scope.startOptions = {
+					showWeeks : false,
+					startingDay : 1,
+					minDate: $scope.minDate,
+					maxDate: $scope.maxDate
+				};
+				
+				$scope.endOptions = {
+					showWeeks : false,
+					startingDay : 1,
+					minDate: $scope.minDate,
+					maxDate: $scope.maxDate
+				};
+			
+				$scope.endOpen = function() {
+					$scope.endOptions.minDate = $scope.event.startsAt;
+					$scope.startOpened = false;
+					$scope.endOpened = !$scope.endOpened;
+				};
+				
+				$scope.startOpen = function() {
+					$scope.startOptions.maxDate = $scope.event.endsAt;
+					$scope.endOpened = false;
+					$scope.startOpened = !$scope.startOpened;
+				};
 
             }
         });
@@ -81,7 +109,6 @@ app.controller('CalendarCtrl', ["$scope", "$aside", "moment", "SweetAlert", func
         $scope.events.push({
             title: 'New Event',
             startsAt: new Date(y, m, d, 10, 0),
-            endsAt: new Date(y, m, d, 11, 0),
             type: 'job'
         });
         $scope.eventEdited($scope.events[$scope.events.length - 1]);
@@ -120,7 +147,31 @@ app.controller('CalendarCtrl', ["$scope", "$aside", "moment", "SweetAlert", func
 
         event[field] = !event[field];
     };
+    
+    $scope.startOptions = {
+		showWeeks : false,
+		startingDay : 1,
+		minDate: $scope.minDate,
+		maxDate: $scope.maxDate
+	};
+	
+	$scope.endOptions = {
+		showWeeks : false,
+		startingDay : 1,
+		minDate: $scope.minDate,
+		maxDate: $scope.maxDate
+	};
 
-
+	$scope.endOpen = function() {
+		$scope.endOptions.minDate = $scope.event.startsAt;
+		$scope.startOpened = false;
+		$scope.endOpened = !$scope.endOpened;
+	};
+	
+	$scope.startOpen = function() {
+		$scope.startOptions.maxDate = $scope.event.endsAt;
+		$scope.endOpened = false;
+		$scope.startOpened = !$scope.startOpened;
+	};
 
 }]);

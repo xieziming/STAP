@@ -25,7 +25,12 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
         } else {
             $body.removeClass("app-boxed-page");
         }
-
+		if(typeof CKEDITOR !== 'undefined'){
+	        for(name in CKEDITOR.instances)
+			{
+			    CKEDITOR.instances[name].destroy();
+			}
+		}
     });
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
 
@@ -123,7 +128,8 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
         // list of available languages
         available: {
             'en': 'English',
-            'zh_CN': '简体中文'
+            'it_IT': 'Italiano',
+            'de_DE': 'Deutsch'
         },
         // display always the current ui language
         init: function () {
