@@ -18,8 +18,8 @@
         "user": {
             "PROFILE": "我的档案",
             "CALENDAR": "My Calendar",
-            "MESSAGES": "My Messages",
-            "LOCKSCREEN": "Lock Screen",
+            "MESSAGES": "我的消息",
+            "LOCKSCREEN": "锁屏",
             "LOGOUT": "退出"
         }
     },
@@ -41,7 +41,7 @@
             "SHOWUSERS": "Show Offline Users",
             "EMAILALERT": "E-mail Alerts",
             "SMSALERT": "SMS Alerts",
-            "SAVE": "Save Changes"
+            "SAVE": "保存"
         }
     },
     "sidebar": {
@@ -65,9 +65,6 @@
             "test_case": {
                 "MAIN": "测试用例"
             },
-            "components": {
-                "MAIN": "Components"
-            },
             "import_export": {
                 "MAIN": "导入/导出",
                 "CASE_IMPORT": "测试用例导入",
@@ -88,14 +85,15 @@
         }
     },
     "setting": {
-        "MAIN": "Style Selector",
-        "FIXEDHEADER": "Fixed header",
-        "FIXEDSIDEBAR": "Fixed sidebar",
-        "CLOSEDSIDEBAR": "Closed sidebar",
-        "FIXEDFOOTER": "Fixed footer"
+        "MAIN": "样式选择器",
+        "FIXEDHEADER": "固定顶部",
+        "FIXEDSIDEBAR": "固定侧栏",
+        "CLOSEDSIDEBAR": "关闭侧栏",
+        "FIXEDFOOTER": "固定底部"
     },
     "dashboard": {
         "WELCOME": "欢迎来到 {{appName}}",
+        "OVERVIEW": "概述",
         "project": {
             "LIST": "项目列表"
         }

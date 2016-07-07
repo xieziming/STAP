@@ -26,7 +26,10 @@ public enum StapDbTables {
     EXECUTION_STEP_OUTPUT_FILE("Execution_Step_Output_File"),
 
     FILE("File"),
-    LOG("Log");
+    LOG("Log"),
+
+    STAP_USER("stap_user"),
+    STAP_USER_ROLE("stap_user_role");
 
     private String tableName;
 

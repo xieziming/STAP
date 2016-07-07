@@ -93,6 +93,7 @@
     },
     "dashboard": {
         "WELCOME": "Welcome to {{appName}}",
+        "OVERVIEW": "Overview",
         "project": {
             "LIST": "Project List"
         }

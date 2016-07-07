@@ -41,7 +41,10 @@ public class ExecutionPlanMetaDao {
                 ExecutionPlanMeta executionPlanMeta = new ExecutionPlanMeta();
                 executionPlanMeta.setId(resultSet.getInt("Id"));
                 executionPlanMeta.setBasicExecutionPlan(executionPlanDao.findBasicById(resultSet.getInt("Execution_Plan_Id")));
-                executionPlanMeta.setStapMeta(new StapMeta(resultSet.getString("Meta_Key"), resultSet.getString("Meta_Value")));
+                StapMeta stapMeta = new StapMeta();
+                stapMeta.setMetaKey(resultSet.getString("Meta_Key"));
+                stapMeta.setMetaValue(resultSet.getString("Meta_Value"));
+                executionPlanMeta.setStapMeta(stapMeta);
                 executionPlanMeta.setLastUpdate(resultSet.getTimestamp("Last_Update"));
                 return executionPlanMeta;
             }

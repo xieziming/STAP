@@ -11,7 +11,7 @@
         </filter>
     </appender>
 
-    <appender name="LOG" class="org.apache.log4j.DailyRollingFileAppender">
+    <appender name="EXECUTION_LOG" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="File" value="stap.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
         <layout class="org.apache.log4j.PatternLayout">
@@ -31,7 +31,7 @@
 
     <category name="com.xieziming.stap">
         <priority value="INFO" />
-        <appender-ref ref="LOG" />
+        <appender-ref ref="EXECUTION_LOG" />
     </category>
 
 </log4j:configuration>

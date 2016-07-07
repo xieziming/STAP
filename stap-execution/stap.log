@@ -1,9 +1,5 @@
-[2016-05-22 17:31:03 959 INFO ] Execution Delivered <Id:2, Plan:Stap_Demo_Plan, Test Case:Blog_Search_Function> 
-[2016-05-22 17:35:50 175 INFO ] Execution Delivered <Id:2, Plan:Stap_Demo_Plan, Test Case:Blog_Search_Function> 
-[2016-05-22 17:38:45 100 INFO ] Execution Delivered <Id:2, Plan:Stap_Demo_Plan, Test Case:Blog_Search_Function> 
-[2016-05-22 17:52:20 453 INFO ] Execution Delivered <Id:2, Plan:Stap_Demo_Plan, Test Case:Blog_Search_Function> 
-[2016-05-22 17:53:39 370 INFO ] Execution Delivered <Id:2, Plan:Stap_Demo_Plan, Test Case:Blog_Search_Function> 
-[2016-05-22 18:22:10 321 INFO ] Execution Delivered <Id:2, Plan:Stap_Demo_Plan, Test Case:Blog_Search_Function> 
-[2016-05-22 18:24:01 968 INFO ] Execution Delivered <Id:2, Plan:Stap_Demo_Plan, Test Case:Blog_Search_Function> 
-[2016-05-22 18:32:17 716 INFO ] Execution Delivered <Id:2, Plan:Stap_Demo_Plan, Test Case:Blog_Search_Function> 
-[2016-05-22 18:33:05 824 INFO ] Execution Delivered <Id:2, Plan:Stap_Demo_Plan, Test Case:Blog_Search_Function> 
+[2016-07-08 00:00:24 690 INFO ] FrameworkServlet 'stap-execution-servlet': initialization started 
+[2016-07-08 00:00:24 698 INFO ] Refreshing WebApplicationContext for namespace 'stap-execution-servlet-servlet': startup date [Fri Jul 08 00:00:24 CST 2016]; parent: Root WebApplicationContext 
+[2016-07-08 00:00:24 713 INFO ] FrameworkServlet 'stap-execution-servlet': initialization completed in 17 ms 
+[2016-07-08 00:02:34 706 INFO ] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@28d7b6b3: startup date [Fri Jul 08 00:02:34 CST 2016]; root of context hierarchy 
+[2016-07-08 00:02:34 708 INFO ] Loading XML bean definitions from class path resource [stap-db-context.xml] 

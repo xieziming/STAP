@@ -1,4 +1,4 @@
-var app = angular.module('app', ['packet']);
+var app = angular.module('app', ['stap']);
 app.run(['$rootScope', '$state', '$stateParams',
 function ($rootScope, $state, $stateParams) {
 
@@ -38,9 +38,10 @@ function ($rootScope, $state, $stateParams) {
     };
     $rootScope.app.layout = angular.copy($rootScope.app.defaultLayout);
     $rootScope.user = {
-        name: 'Peter',
-        job: 'ng-Dev',
-        picture: 'app/img/user/02.jpg'
+        name: null,
+        group: null,
+		email: null,
+		avatar: 'app/img/user/02.jpg'
     };
 }]);
 // translate config

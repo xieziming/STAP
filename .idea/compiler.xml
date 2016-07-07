@@ -27,6 +27,7 @@
         <module name="stap-db" />
         <module name="stap-execution" />
         <module name="stap-file" />
+        <module name="stap-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -36,7 +37,7 @@
       <module name="stap-db" target="1.5" />
       <module name="stap-execution" target="1.6" />
       <module name="stap-file" target="1.6" />
-      <module name="stap-gateway" target="1.5" />
+      <module name="stap-gateway" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
