@@ -41,7 +41,10 @@ public class TestCaseMetaDao {
                 TestCaseMeta testCaseMeta = new TestCaseMeta();
                 testCaseMeta.setId(resultSet.getInt("Id"));
                 testCaseMeta.setBasicTestCase(testCaseDao.findBasicById(resultSet.getInt("Test_Case_Id")));
-                testCaseMeta.setStapMeta(new StapMeta(resultSet.getString("Meta_Key"), resultSet.getString("Meta_Value")));
+                StapMeta stapMeta = new StapMeta();
+                stapMeta.setMetaKey(resultSet.getString("Meta_Key"));
+                stapMeta.setMetaValue(resultSet.getString("Meta_Value"));
+                testCaseMeta.setStapMeta(stapMeta);
                 testCaseMeta.setLastUpdate(resultSet.getTimestamp("Last_Update"));
                 return testCaseMeta;
             }

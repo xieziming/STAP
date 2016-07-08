@@ -3,3 +3,26 @@
 [2016-07-08 00:00:24 713 INFO ] FrameworkServlet 'stap-execution-servlet': initialization completed in 17 ms 
 [2016-07-08 00:02:34 706 INFO ] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@28d7b6b3: startup date [Fri Jul 08 00:02:34 CST 2016]; root of context hierarchy 
 [2016-07-08 00:02:34 708 INFO ] Loading XML bean definitions from class path resource [stap-db-context.xml] 
+[2016-07-08 09:32:54 664 INFO ] FrameworkServlet 'stap-execution-servlet': initialization started 
+[2016-07-08 09:32:54 683 INFO ] Refreshing WebApplicationContext for namespace 'stap-execution-servlet-servlet': startup date [Fri Jul 08 09:32:54 CST 2016]; parent: Root WebApplicationContext 
+[2016-07-08 09:32:54 723 INFO ] FrameworkServlet 'stap-execution-servlet': initialization completed in 56 ms 
+[2016-07-08 09:33:02 322 INFO ] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@15d4d14c: startup date [Fri Jul 08 09:33:02 CST 2016]; root of context hierarchy 
+[2016-07-08 09:33:02 325 INFO ] Loading XML bean definitions from class path resource [stap-db-context.xml] 
+[2016-07-08 09:34:51 931 INFO ] FrameworkServlet 'stap-execution-servlet': initialization started 
+[2016-07-08 09:34:51 938 INFO ] Refreshing WebApplicationContext for namespace 'stap-execution-servlet-servlet': startup date [Fri Jul 08 09:34:51 CST 2016]; parent: Root WebApplicationContext 
+[2016-07-08 09:34:51 962 INFO ] FrameworkServlet 'stap-execution-servlet': initialization completed in 27 ms 
+[2016-07-08 12:08:52 201 INFO ] FrameworkServlet 'stap-execution-servlet': initialization started 
+[2016-07-08 12:08:52 209 INFO ] Refreshing WebApplicationContext for namespace 'stap-execution-servlet-servlet': startup date [Fri Jul 08 12:08:52 CST 2016]; parent: Root WebApplicationContext 
+[2016-07-08 12:08:52 224 INFO ] FrameworkServlet 'stap-execution-servlet': initialization completed in 19 ms 
+[2016-07-08 12:09:29 633 INFO ] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@31460cd7: startup date [Fri Jul 08 12:09:29 CST 2016]; root of context hierarchy 
+[2016-07-08 12:09:29 635 INFO ] Loading XML bean definitions from class path resource [stap-db-context.xml] 
+[2016-07-08 12:13:28 396 INFO ] FrameworkServlet 'stap-execution-servlet': initialization started 
+[2016-07-08 12:13:28 403 INFO ] Refreshing WebApplicationContext for namespace 'stap-execution-servlet-servlet': startup date [Fri Jul 08 12:13:28 CST 2016]; parent: Root WebApplicationContext 
+[2016-07-08 12:13:28 420 INFO ] FrameworkServlet 'stap-execution-servlet': initialization completed in 20 ms 
+[2016-07-08 12:13:39 012 INFO ] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@53fc37f0: startup date [Fri Jul 08 12:13:39 CST 2016]; root of context hierarchy 
+[2016-07-08 12:13:39 015 INFO ] Loading XML bean definitions from class path resource [stap-db-context.xml] 
+[2016-07-08 12:43:06 304 INFO ] FrameworkServlet 'stap-execution-servlet': initialization started 
+[2016-07-08 12:43:06 309 INFO ] Refreshing WebApplicationContext for namespace 'stap-execution-servlet-servlet': startup date [Fri Jul 08 12:43:06 CST 2016]; parent: Root WebApplicationContext 
+[2016-07-08 12:43:06 323 INFO ] FrameworkServlet 'stap-execution-servlet': initialization completed in 16 ms 
+[2016-07-08 12:43:08 273 INFO ] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3384fb02: startup date [Fri Jul 08 12:43:08 CST 2016]; root of context hierarchy 
+[2016-07-08 12:43:08 275 INFO ] Loading XML bean definitions from class path resource [stap-db-context.xml] 

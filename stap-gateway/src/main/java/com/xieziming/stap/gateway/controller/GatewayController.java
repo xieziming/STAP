@@ -1,7 +1,7 @@
 package com.xieziming.stap.gateway.controller;
 
 import com.google.common.cache.Cache;
-import com.xieziming.stap.gateway.mode.LoginResult;
+import com.xieziming.stap.gateway.mode.AuthResult;
 import com.xieziming.stap.gateway.service.GatewayService;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -33,10 +33,11 @@ import java.io.IOException;
 public class GatewayController {
     private static final Logger log = LoggerFactory.getLogger(GatewayController.class);
     private GatewayService gatewayService;
-    private Cache<String, LoginResult> userCache;
+    private Cache<String, AuthResult> userCache;
+    private final String UTF8 = ";charset=UTF-8";
 
     @Autowired
-    public GatewayController(GatewayService gatewayService, Cache<String, LoginResult> userCache) {
+    public GatewayController(GatewayService gatewayService, Cache<String, AuthResult> userCache) {
         this.gatewayService = gatewayService;
         this.userCache = userCache;
     }
@@ -44,21 +45,13 @@ public class GatewayController {
     @RequestMapping("/**")
     public ResponseEntity<?> getResponse(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         log.info("got request for " + req.getRequestURI());
-        //UserProfile userProfile = (UserProfile) session.getAttribute("userProfile");
-        //if (userProfile == null) return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
 
-        //userCache.getIfPresent(userProfile.getUserName());
         CloseableHttpResponse httpResponse = (CloseableHttpResponse) gatewayService.getResponse(req, resp);
         IOUtils.closeQuietly(req.getInputStream());
-        String response = IOUtils.toString(httpResponse.getEntity().getContent());
+        byte[] response = IOUtils.toByteArray(httpResponse.getEntity().getContent());
 
         httpResponse.close();
-        resp.setContentType(httpResponse.getEntity().getContentType().getValue());
-        if(httpResponse.getEntity().getContentType().getValue().contains("stream")) {
-            return new ResponseEntity<>(response.getBytes(), HttpStatus.valueOf(httpResponse.getStatusLine().getStatusCode()));
-        }else{
-            return new ResponseEntity<>(response, HttpStatus.valueOf(httpResponse.getStatusLine().getStatusCode()));
-        }
+        return new ResponseEntity<Object>(response, HttpStatus.valueOf(httpResponse.getStatusLine().getStatusCode()));
     }
 
     @RequestMapping("/resources/**")

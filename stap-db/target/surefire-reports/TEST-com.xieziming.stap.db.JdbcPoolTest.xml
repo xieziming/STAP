@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.xieziming.stap.db.JdbcPoolTest" time="1.26" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.xieziming.stap.db.JdbcPoolTest" time="1.346" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2016.1.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -12,12 +12,12 @@
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="idea.launcher.port" value="7536"/>
+    <property name="idea.launcher.port" value="7544"/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/Suny/IdeaProjects/Stap/stap-db"/>
+    <property name="user.dir" value="/Users/Suny/IdeaProjects/Stap"/>
     <property name="java.runtime.version" value="1.8.0_65-b17"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/endorsed"/>
@@ -64,5 +64,5 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.xieziming.stap.db.JdbcPoolTest" name="testPool" time="1.203"/>
+  <testcase classname="com.xieziming.stap.db.JdbcPoolTest" name="testPool" time="1.279"/>
 </testsuite>

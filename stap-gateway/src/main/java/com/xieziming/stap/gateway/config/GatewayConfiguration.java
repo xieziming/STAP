@@ -4,7 +4,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.RemovalListener;
 import com.google.common.cache.RemovalNotification;
-import com.xieziming.stap.gateway.mode.LoginResult;
+import com.xieziming.stap.gateway.mode.AuthResult;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
@@ -39,13 +39,13 @@ public class GatewayConfiguration {
     }
 
     @Bean
-    public Cache<String, LoginResult> userCache() {
-        Cache<String, LoginResult> userCache = CacheBuilder.newBuilder()
+    public Cache<String, AuthResult> userCache() {
+        Cache<String, AuthResult> userCache = CacheBuilder.newBuilder()
                 .maximumSize(10000L)
                 .expireAfterAccess(60, TimeUnit.MINUTES)
-                .removalListener(new RemovalListener<String, LoginResult>() {
-                    public void onRemoval(RemovalNotification<String, LoginResult> notification) {
-                        log.info("User " + notification.getKey() + "'s session has expired.");
+                .removalListener(new RemovalListener<String, AuthResult>() {
+                    public void onRemoval(RemovalNotification<String, AuthResult> notification) {
+                        log.info("User " + notification.getKey() + "'s authorization has expired.");
                     }
                 })
                 .build();

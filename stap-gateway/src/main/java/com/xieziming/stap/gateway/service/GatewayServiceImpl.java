@@ -1,6 +1,5 @@
 package com.xieziming.stap.gateway.service;
 
-import com.xieziming.stap.gateway.mode.UserProfile;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.*;
@@ -30,6 +29,9 @@ public class GatewayServiceImpl implements GatewayService{
     @Value("${channelUrl}")
     private String channelUrl;
 
+    @Value("${gatewayPrefix}")
+    private String gatewayPrefix;
+
     @Autowired
     public GatewayServiceImpl(PoolingHttpClientConnectionManager pcm){
         this.pcm = pcm;
@@ -39,17 +41,18 @@ public class GatewayServiceImpl implements GatewayService{
     public HttpResponse getResponse(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String queryString = req.getQueryString() == null ? "" : "?"+req.getQueryString();
         String channelUrlClean = channelUrl.endsWith("/") ? StringUtils.chop(channelUrl) : channelUrl;
-        String url = channelUrlClean + req.getRequestURI().replaceAll("/gateway","")+queryString;
-        HttpRequestBase httpRequestBase = getImplBaseMethod(req.getMethod(), url);
+        String url = channelUrlClean + req.getRequestURI().replaceAll(gatewayPrefix,"")+queryString;
+        HttpRequestBase httpRequest = getImplBaseMethod(req.getMethod(), url);
 
-        if(httpRequestBase instanceof HttpPost){
-            ((HttpPost) httpRequestBase).setEntity(new InputStreamEntity(req.getInputStream()));
+        if(httpRequest instanceof HttpPost){
+            ((HttpPost) httpRequest).setEntity(new InputStreamEntity(req.getInputStream()));
         }
 
-        log.info("sending request "+httpRequestBase);
+        addHeaders(httpRequest, req);
+        log.info("sending request "+ httpRequest);
 
         try(CloseableHttpClient httpClient = buildClient()){
-            CloseableHttpResponse httpResponse = httpClient.execute(httpRequestBase);
+            CloseableHttpResponse httpResponse = httpClient.execute(httpRequest);
             if(httpResponse.getEntity().getContentType() != null){
                 resp.setContentType(httpResponse.getEntity().getContentType().getValue());
             }
@@ -62,12 +65,11 @@ public class GatewayServiceImpl implements GatewayService{
         }
     }
 
-    private void addHeaders(UserProfile userProfile, HttpRequestBase httpRequestBase, HttpServletRequest httpServletRequest){
-        httpRequestBase.setHeader("X-STAP-USER", userProfile.getName());
+    private void addHeaders(HttpRequestBase httpRequestBase, HttpServletRequest httpServletRequest){
         Enumeration<String> headerNameEnum = httpServletRequest.getHeaderNames();
         while(headerNameEnum.hasMoreElements()){
             String headerName = headerNameEnum.nextElement();
-            if(!headerName.matches("Content-Length|Host")){
+            if(!headerName.matches("Content-Length")){
                 httpRequestBase.setHeader(headerName, httpServletRequest.getHeader(headerName));
             }
         }

@@ -28,7 +28,7 @@ public class CorsFilter implements Filter{
         String requestUrl = httpServletRequest.getRequestURI();
         String domainName = new URL(httpServletRequest.getRequestURL().toString()).getHost();
 
-        log.info("Cors filter:{} {} {}", requestUrl, hostName, domainName);
+        log.info("Cors filter: {} {} {}", requestUrl, hostName, domainName);
         httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
         httpServletResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         httpServletResponse.setHeader("Access-Control-Max-Age", "3600");

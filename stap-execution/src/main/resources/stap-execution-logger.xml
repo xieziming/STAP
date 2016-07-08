@@ -12,7 +12,7 @@
     </appender>
 
     <appender name="EXECUTION_LOG" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="stap.log" />
+        <param name="File" value="stap-execution.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss SSS\} %-5p] %m %n" />
