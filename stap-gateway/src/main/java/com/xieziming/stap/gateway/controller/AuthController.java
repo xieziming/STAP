@@ -30,7 +30,7 @@ public class AuthController {
         this.userCache = userCache;
     }
 
-    @RequestMapping(value = "authorize", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @RequestMapping(value = "/authorize", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE + UTF8, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public AuthResult doAuth(@RequestParam("principal") java.lang.String principal, @RequestParam("password") java.lang.String password){
         AuthResult authResult = authService.auth(principal.trim(), password.trim());

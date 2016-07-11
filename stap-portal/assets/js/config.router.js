@@ -469,7 +469,8 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
 	    abstract: true
 	}).state('login.signin', {
 	    url: '/signin',
-	    templateUrl: "assets/views/login_login.html"
+	    templateUrl: "assets/views/login_login.html",
+        resolve: loadSequence('loginCtrl'),
 	}).state('login.forgot', {
 	    url: '/forgot',
 	    templateUrl: "assets/views/login_forgot.html"

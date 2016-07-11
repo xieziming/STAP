@@ -40,8 +40,15 @@ public class GatewayServiceImpl implements GatewayService{
     @Override
     public HttpResponse getResponse(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String queryString = req.getQueryString() == null ? "" : "?"+req.getQueryString();
-        String channelUrlClean = channelUrl.endsWith("/") ? StringUtils.chop(channelUrl) : channelUrl;
-        String url = channelUrlClean + req.getRequestURI().replaceAll(gatewayPrefix,"")+queryString;
+
+        String url;
+        if(req.getRequestURI().startsWith("/authorize")){
+            url = req.getRequestURL().toString();
+        }else{
+            String cleanChannelUrl = channelUrl.endsWith("/") ? StringUtils.chop(channelUrl) : channelUrl;
+            url = cleanChannelUrl + req.getRequestURI().replaceAll(gatewayPrefix,"")+queryString;
+        }
+
         HttpRequestBase httpRequest = getImplBaseMethod(req.getMethod(), url);
 
         if(httpRequest instanceof HttpPost){

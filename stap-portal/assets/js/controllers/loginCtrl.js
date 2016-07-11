@@ -2,30 +2,24 @@
 /** 
   * controller for User Profile Example
 */
-app.controller('LoginCtrl', function ($scope) {
-    $scope.removeImage = function () {
-        $scope.noImage = true;
+app.controller('LoginCtrl', function ($scope, $rootScope, AUTH_EVENTS, AuthService, Session, $state) {
+    $scope.credentials = {
+        principal : '',
+        password : ''
     };
-    $scope.obj = new Flow();
-
-    $scope.userInfo = {
-        firstName: 'Peter',
-        lastName: 'Clark',
-        url: 'www.example.com',
-        email: 'peter@example.com',
-        phone: '(641)-734-4763',
-        gender: 'male',
-        zipCode: '12345',
-        city: 'London (UK)',
-        avatar: 'assets/images/avatar-1-xl.jpg',
-        twitter: '',
-        github: '',
-        facebook: '',
-        linkedin: '',
-        google: '',
-        skype: 'peterclark82'
+    $scope.login = function (credentials) {
+        AuthService.login(credentials).then(function (authResult) {
+            if(authResult.authSuccess) {
+                Session.create(authResult.userProfile);
+                $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                $scope.setCurrentUser(authResult.userProfile);
+                $state.go("app.dashboard");
+            }else{
+                $scope.result = authResult.authFailureReason;
+                $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+            }
+        }, function () {
+            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+        });
     };
-    if ($scope.userInfo.avatar == '') {
-        $scope.noImage = true;
-    }
-}};
+});

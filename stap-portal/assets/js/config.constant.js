@@ -56,6 +56,15 @@ app.constant('JS_REQUIRES', {
         'sliderCtrl': 'assets/js/controllers/sliderCtrl.js',
         'knobCtrl': 'assets/js/controllers/knobCtrl.js',
         'crop2Ctrl': 'assets/js/controllers/crop2Ctrl.js',
+        'loginCtrl': 'assets/js/controllers/loginCtrl.js',
+        
+        //** Constants
+        'loginConstant': 'assets/js/constants/loginConstant.js',
+        'userRoleConstant': 'assets/js/constants/userRoleConstant.js',
+        
+        //** Services
+        'authService': 'assets/js/services/authService.js',
+        
     },
     //*** angularJS Modules
     modules: [{

@@ -2,8 +2,8 @@
 /**
  * Clip-Two Main Controller
  */
-app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$swipe', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', 'Fullscreen',
-function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, Fullscreen) {
+app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$swipe', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', 'Fullscreen', 'USER_ROLES', 'AuthService',
+function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, Fullscreen, USER_ROLES, AuthService) {
 
     // Loading bar transition
     // -----------------------------------
@@ -215,4 +215,16 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
             $('footer').show();
         }
     });
+
+    $scope.currentUser = null;
+    $scope.userRoles = USER_ROLES;
+    $scope.isAuthorized = AuthService.isAuthorized;
+
+    $scope.setCurrentUser = function (userProfile) {
+        $scope.currentUser = userProfile;
+    };
+    
+    $scope.isLoginPage = function () {
+        
+    }
 }]);
