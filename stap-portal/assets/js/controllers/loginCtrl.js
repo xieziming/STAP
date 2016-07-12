@@ -2,7 +2,7 @@
 /** 
   * controller for User Profile Example
 */
-app.controller('LoginCtrl', function ($scope, $rootScope, AUTH_EVENTS, AuthService, Session, $state) {
+app.controller('LoginCtrl', function ($scope, $rootScope, $state, AUTH_EVENTS, AuthService) {
     $scope.credentials = {
         principal : '',
         password : ''
@@ -10,7 +10,6 @@ app.controller('LoginCtrl', function ($scope, $rootScope, AUTH_EVENTS, AuthServi
     $scope.login = function (credentials) {
         AuthService.login(credentials).then(function (authResult) {
             if(authResult.authSuccess) {
-                Session.create(authResult.userProfile);
                 $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                 $scope.setCurrentUser(authResult.userProfile);
                 $state.go("app.dashboard");
@@ -18,8 +17,6 @@ app.controller('LoginCtrl', function ($scope, $rootScope, AUTH_EVENTS, AuthServi
                 $scope.result = authResult.authFailureReason;
                 $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
             }
-        }, function () {
-            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
         });
     };
 });

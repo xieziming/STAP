@@ -8,4 +8,11 @@ app.constant('AUTH_EVENTS', {
     sessionTimeout: 'auth-session-timeout',
     notAuthenticated: 'auth-not-authenticated',
     notAuthorized: 'auth-not-authorized'
+})
+.constant('USER_ROLES', {
+    admin: 'admin',
+    manager: 'manager',
+    developer: 'developer',
+    tester: 'tester',
+    guest: 'guest'
 });

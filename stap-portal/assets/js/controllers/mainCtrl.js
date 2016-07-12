@@ -2,8 +2,8 @@
 /**
  * Clip-Two Main Controller
  */
-app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$swipe', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', 'Fullscreen', 'USER_ROLES', 'AuthService',
-function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, Fullscreen, USER_ROLES, AuthService) {
+app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$swipe', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', 'Fullscreen', 'AuthService',
+function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, Fullscreen, AuthService) {
 
     // Loading bar transition
     // -----------------------------------
@@ -216,15 +216,14 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
         }
     });
 
-    $scope.currentUser = null;
-    $scope.userRoles = USER_ROLES;
-    $scope.isAuthorized = AuthService.isAuthorized;
+    $scope.currentUser = AuthService.userProfile();
 
     $scope.setCurrentUser = function (userProfile) {
         $scope.currentUser = userProfile;
     };
-    
-    $scope.isLoginPage = function () {
-        
-    }
+
+    $scope.logout = function() {
+        AuthService.logout();
+        $state.go('login.signin');
+    };
 }]);

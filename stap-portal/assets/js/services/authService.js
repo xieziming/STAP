@@ -1,27 +1,35 @@
 /**
  * Created by Suny on 7/6/16.
  */
-app.service('Session', function () {
-    this.create = function (userProfile) {
-        this.sessionId = userProfile.token;
-        this.user = userProfile.name;
-        this.role = userProfile.role;
-        this.email = userProfile.email;
-        this.avatar = 'app/img/user/02.jpg';//userProfile.avatar;
-    };
 
-    this.destroy = function () {
-        this.sessionId = null;
-        this.user = null;
-        this.role = null;
-        this.email = null;
-        this.avatar = 'app/img/user/02.jpg';
-    };
-    return this;
-});
-
-app.factory('AuthService', function ($http, Session) {
+app.service('AuthService', function ($http) {
     var authService = {};
+    var STAP_AUTH_CACHE_KEY = 'stap_local_user_profile_key';
+    var authResult = {};
+
+    function loadAuthCache() {
+        var userProfileCache = window.localStorage.getItem(STAP_AUTH_CACHE_KEY);
+        if(userProfileCache){
+            useAuthCache(userProfileCache);
+        }
+    }
+
+    function writeAuthCache(authResult) {
+        var authResultCache = JSON.stringify(authResult)
+        window.localStorage.setItem(STAP_AUTH_CACHE_KEY, authResultCache);
+        useAuthCache(authResultCache)
+    }
+
+    function useAuthCache(authResultCache) {
+        authResult = JSON.parse(authResultCache);
+        //$http.defaults.headers.common['X-Auth-Token'] = authResult.token;
+    }
+
+    function destroyAuthCache() {
+        authResult = {};
+        window.localStorage.removeItem(STAP_AUTH_CACHE_KEY);
+        //$http.defaults.headers.common['X-Auth-Token'] = undefined;
+    }
 
     authService.login = function (credentials) {
         return $http
@@ -36,32 +44,50 @@ app.factory('AuthService', function ($http, Session) {
                     return str.join("&");
                 }})
             .then(function (res) {
-                if (res.status == 200 ){
-                    return res.data;
-                }else{
-                    return null;
-                }
+                writeAuthCache(res.data);
+                return res.data;
             });
     };
 
+    authService.logout = function () {
+        destroyAuthCache();
+    }
+
     authService.isAuthenticated = function () {
-        return !!Session.user;
+        return !!authResult.token;
     };
 
     authService.isAuthorized = function (authorizedRoles) {
         if (!angular.isArray(authorizedRoles)) {
             authorizedRoles = [authorizedRoles];
         }
-        return (authService.isAuthenticated() && authorizedRoles.indexOf(Session.role) !== -1);
+        return (authService.isAuthenticated() && authorizedRoles.indexOf(authResult.userProfile.role) !== -1);
     };
+
+    authService.userProfile = function () {
+        return authResult.userProfile;
+    }
+
+    loadAuthCache();
     return authService;
 });
 
-app.run(function ($rootScope, AUTH_EVENTS, AuthService, $state) {
-    $rootScope.$on('$stateChangeStart', function (event, next) {
+app.run(function ($rootScope, $state, AUTH_EVENTS, AuthService) {
+    $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {
+        if('data' in next && 'authorizedRoles' in next.data){
+            var authorizedRoles = next.data.authorizedRoles;
+            if(!AuthService.isAuthorized(authorizedRoles)){
+                event.preventDefault();
+                $state.go($state.current, {}, {reload: true});
+                $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+            }
+        }
+
         if(!AuthService.isAuthenticated()) {
-            $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+            if(next.name !== "login.signin"){
+                event.preventDefault();
+                $state.go('login.signin');
+            }
         }
     });
-    $rootScope.$on(AUTH_EVENTS.notAuthenticated, function (){ $state.go('login.signin');});
 });
