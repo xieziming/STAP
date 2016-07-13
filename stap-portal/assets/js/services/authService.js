@@ -2,7 +2,7 @@
  * Created by Suny on 7/6/16.
  */
 
-app.service('AuthService', function ($http) {
+app.service('AuthService', function ($http, ENV_CONFIG) {
     var authService = {};
     var STAP_AUTH_CACHE_KEY = 'stap_local_user_profile_key';
     var authResult = {};
@@ -34,7 +34,7 @@ app.service('AuthService', function ($http) {
     authService.login = function (credentials) {
         return $http
             ({ method: 'POST',
-                url: 'http://stap.xieziming.com:8080/stap-gateway/authorize',
+                url: ENV_CONFIG.gatewayUrl + '/authorize',
                 data: credentials,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 transformRequest: function(obj) {

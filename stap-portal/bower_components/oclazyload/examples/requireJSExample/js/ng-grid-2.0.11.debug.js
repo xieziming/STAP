@@ -977,7 +977,7 @@
 	};
 	var ngEventProvider = function (grid, $scope, domUtilityService, $timeout) {
 		var self = this;
-		// The init method gets called during the ng-grid directive execution.
+		// The init method gets called during the ng-grid directive channel.
 		self.colToMove = undefined;
 		self.groupToMove = undefined;
 		self.assignEvents = function() {

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="stap-channel:war">
+    <output-path>$PROJECT_DIR$/stap-channel/target</output-path>
+    <root id="archive" name="stap-channel.war">
+      <element id="artifact" artifact-name="stap-channel:war exploded" />
+    </root>
+  </artifact>
+</component>

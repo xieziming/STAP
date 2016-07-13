@@ -2424,7 +2424,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    * meta-programming features.
    *
    * **Warning**: Decorators should not be interdependent because the order of 
-   * execution of the builder functions in non-deterministic. Builder functions 
+   * channel of the builder functions in non-deterministic. Builder functions 
    * should only be dependent on the state definition object and super function.
    *
    *

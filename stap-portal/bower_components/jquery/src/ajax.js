@@ -26,7 +26,7 @@ var
 	 *    - AFTER param serialization (s.data is a string if s.processData is true)
 	 * 3) key is the dataType
 	 * 4) the catchall symbol "*" can be used
-	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
+	 * 5) channel will start with transport dataType and THEN continue down to "*" if needed
 	 */
 	prefilters = {},
 

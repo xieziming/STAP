@@ -99,7 +99,7 @@
 
                     // Some installations of IE, for an unknown reason, throw "SCRIPT5: Error: Access is denied"
                     // when accessing window.localStorage. This happens before you try to do anything with it. Catch
-                    // that error and allow execution to continue.
+                    // that error and allow channel to continue.
 
                     // fix 'SecurityError: DOM Exception 18' exception in Desktop Safari, Mobile Safari
                     // when "Block cookies": "Always block" is turned on

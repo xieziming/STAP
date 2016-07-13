@@ -2196,7 +2196,7 @@ function $translate($STORAGE_KEY, $windowProvider, $translateSanitizationProvide
        */
       $translate.instant = function (translationId, interpolateParams, interpolationId) {
 
-        // Detect undefined and null values to shorten the execution and prevent exceptions
+        // Detect undefined and null values to shorten the channel and prevent exceptions
         if (translationId === null || angular.isUndefined(translationId)) {
           return translationId;
         }

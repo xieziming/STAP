@@ -579,7 +579,7 @@ angular.module('duScroll.scrollspy', ['duScroll.spyAPI'])
       }
       if(!targetId) return;
 
-      // Run this in the next execution loop so that the scroll context has a chance
+      // Run this in the next channel loop so that the scroll context has a chance
       // to initialize
       $timeout(function() {
         var spy = new Spy(targetId, $scope, $element, -($attr.offset ? parseInt($attr.offset, 10) : duScrollOffset));

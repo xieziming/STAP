@@ -3,9 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Stap.iml" filepath="$PROJECT_DIR$/Stap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stap-channel/stap-channel.iml" filepath="$PROJECT_DIR$/stap-channel/stap-channel.iml" />
       <module fileurl="file://$PROJECT_DIR$/stap-core/stap-core.iml" filepath="$PROJECT_DIR$/stap-core/stap-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/stap-db/stap-db.iml" filepath="$PROJECT_DIR$/stap-db/stap-db.iml" />
       <module fileurl="file://$PROJECT_DIR$/stap-execution/stap-execution.iml" filepath="$PROJECT_DIR$/stap-execution/stap-execution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stap-executor/stap-executor.iml" filepath="$PROJECT_DIR$/stap-executor/stap-executor.iml" />
       <module fileurl="file://$PROJECT_DIR$/stap-file/stap-file.iml" filepath="$PROJECT_DIR$/stap-file/stap-file.iml" />
       <module fileurl="file://$PROJECT_DIR$/stap-gateway/stap-gateway.iml" filepath="$PROJECT_DIR$/stap-gateway/stap-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/stap-portal/stap-portal.iml" filepath="$PROJECT_DIR$/stap-portal/stap-portal.iml" />

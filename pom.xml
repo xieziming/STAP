@@ -12,8 +12,10 @@
         <module>stap-db</module>
         <module>stap-core</module>
         <module>stap-file</module>
-        <module>stap-execution</module>
+        <module>stap-channel</module>
         <module>stap-gateway</module>
+        <module>stap-execution</module>
+        <module>stap-executor</module>
     </modules>
 
     <properties>
@@ -44,6 +46,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>4.2.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>4.1.1.RELEASE</version>
         </dependency>
     </dependencies>
 </project>

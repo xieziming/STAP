@@ -3022,7 +3022,7 @@ function createEventHandler(element, events) {
       return event.immediatePropagationStopped === true;
     };
 
-    // Copy event handlers in case event handlers array is modified during execution.
+    // Copy event handlers in case event handlers array is modified during channel.
     if ((eventFnsLength > 1)) {
       eventFns = shallowCopy(eventFns);
     }
@@ -3247,7 +3247,7 @@ forEach({
         dummyEvent = extend(dummyEvent, event);
       }
 
-      // Copy event handlers in case event handlers array is modified during execution.
+      // Copy event handlers in case event handlers array is modified during channel.
       eventFnsCopy = shallowCopy(eventFns);
       handlerArgs = extraParameters ? [dummyEvent].concat(extraParameters) : [dummyEvent];
 
@@ -5292,8 +5292,8 @@ function Browser(window, document, $log, $sniffer) {
 
   /**
    * @name $browser#defer
-   * @param {function()} fn A function, who's execution should be deferred.
-   * @param {number=} [delay=0] of milliseconds to defer the function execution.
+   * @param {function()} fn A function, who's channel should be deferred.
+   * @param {number=} [delay=0] of milliseconds to defer the function channel.
    * @returns {*} DeferId that can be used to cancel the task via `$browser.defer.cancel()`.
    *
    * @description
@@ -13266,7 +13266,7 @@ function qFactory(nextTick, exceptionHandler) {
 
   function Deferred() {
     this.promise = new Promise();
-    //Necessary to support unbound execution :/
+    //Necessary to support unbound channel :/
     this.resolve = simpleBind(this, this.resolve);
     this.reject = simpleBind(this, this.reject);
     this.notify = simpleBind(this, this.notify);
@@ -13545,7 +13545,7 @@ function $$RAFProvider() { //rAF
  *     exposed as $$____ properties
  *
  * Loop operations are optimized by using while(count--) { ... }
- *   - this means that in order to keep the same order of execution as addition we have to add
+ *   - this means that in order to keep the same order of channel as addition we have to add
  *     items to the array at the beginning (unshift) instead of at the end (push)
  *
  * Child scopes are created and removed often
@@ -14480,9 +14480,9 @@ function $RootScopeProvider() {
        *   - it will execute after the function that scheduled the evaluation (preferably before DOM
        *     rendering).
        *   - at least one {@link ng.$rootScope.Scope#$digest $digest cycle} will be performed after
-       *     `expression` execution.
+       *     `expression` channel.
        *
-       * Any exceptions from the execution of the expression are forwarded to the
+       * Any exceptions from the channel of the expression are forwarded to the
        * {@link ng.$exceptionHandler $exceptionHandler} service.
        *
        * __Note:__ if this function is called outside of a `$digest` cycle, a new `$digest` cycle
@@ -14546,7 +14546,7 @@ function $RootScopeProvider() {
        *
        * 1. The {@link guide/expression expression} is executed using the
        *    {@link ng.$rootScope.Scope#$eval $eval()} method.
-       * 2. Any exceptions from the execution of the expression are forwarded to the
+       * 2. Any exceptions from the channel of the expression are forwarded to the
        *    {@link ng.$exceptionHandler $exceptionHandler} service.
        * 3. The {@link ng.$rootScope.Scope#$watch watch} listeners are fired immediately after the
        *    expression was executed using the {@link ng.$rootScope.Scope#$digest $digest()} method.

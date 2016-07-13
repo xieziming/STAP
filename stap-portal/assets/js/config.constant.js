@@ -121,3 +121,7 @@ app.constant('JS_REQUIRES', {
         files: ['bower_components/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.min.js']
     }]
 });
+
+app.constant('ENV_CONFIG', {
+    'gatewayUrl': 'http://stap.xieziming.com:8080/stap-gateway'
+});

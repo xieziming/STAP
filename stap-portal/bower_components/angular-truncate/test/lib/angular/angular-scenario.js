@@ -6996,7 +6996,7 @@ var r20 = /%20/g,
 	 *    - AFTER param serialization (s.data is a string if s.processData is true)
 	 * 3) key is the dataType
 	 * 4) the catchall symbol "*" can be used
-	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
+	 * 5) channel will start with transport dataType and THEN continue down to "*" if needed
 	 */
 	prefilters = {},
 
@@ -8028,7 +8028,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			}
 		});
 
-		// Use data converter to retrieve json after script execution
+		// Use data converter to retrieve json after script channel
 		s.converters["script json"] = function() {
 			if ( !responseContainer ) {
 				jQuery.error( jsonpCallback + " was not called" );
@@ -12667,8 +12667,8 @@ function Browser(window, document, $log, $sniffer) {
   /**
    * @name ng.$browser#defer
    * @methodOf ng.$browser
-   * @param {function()} fn A function, who's execution should be defered.
-   * @param {number=} [delay=0] of milliseconds to defer the function execution.
+   * @param {function()} fn A function, who's channel should be defered.
+   * @param {number=} [delay=0] of milliseconds to defer the function channel.
    * @returns {*} DeferId that can be used to cancel the task via `$browser.defer.cancel()`.
    *
    * @description
@@ -15401,7 +15401,7 @@ function parser(text, json, $filter, csp){
 
   if(json){
     // The extra level of aliasing is here, just in case the lexer misses something, so that
-    // we prevent any accidental execution in JSON.
+    // we prevent any accidental channel in JSON.
     assignment = logicalOR;
     functionCall =
       fieldAccess =
@@ -16913,7 +16913,7 @@ function $RouteParamsProvider() {
  *     exposed as $$____ properties
  *
  * Loop operations are optimized by using while(count--) { ... }
- *   - this means that in order to keep the same order of execution as addition we have to add
+ *   - this means that in order to keep the same order of channel as addition we have to add
  *     items to the array at the begging (shift) instead of at the end (push)
  *
  * Child scopes are created and removed often
@@ -17428,11 +17428,11 @@ function $RootScopeProvider(){
        *
        * The `$evalAsync` makes no guarantees as to when the `expression` will be executed, only that:
        *
-       *   - it will execute in the current script execution context (before any DOM rendering).
+       *   - it will execute in the current script channel context (before any DOM rendering).
        *   - at least one {@link ng.$rootScope.Scope#$digest $digest cycle} will be performed after
-       *     `expression` execution.
+       *     `expression` channel.
        *
-       * Any exceptions from the execution of the expression are forwarded to the
+       * Any exceptions from the channel of the expression are forwarded to the
        * {@link ng.$exceptionHandler $exceptionHandler} service.
        *
        * @param {(string|function())=} expression An angular expression to be executed.
@@ -17478,7 +17478,7 @@ function $RootScopeProvider(){
        *
        * 1. The {@link guide/expression expression} is executed using the
        *    {@link ng.$rootScope.Scope#$eval $eval()} method.
-       * 2. Any exceptions from the execution of the expression are forwarded to the
+       * 2. Any exceptions from the channel of the expression are forwarded to the
        *    {@link ng.$exceptionHandler $exceptionHandler} service.
        * 3. The {@link ng.$rootScope.Scope#$watch watch} listeners are fired immediately after the expression
        *    was executed using the {@link ng.$rootScope.Scope#$digest $digest()} method.
@@ -25370,7 +25370,7 @@ angular.scenario.Runner.prototype.run = function(application) {
  * This class is the "this" of the it/beforeEach/afterEach method.
  * Responsibilities:
  *   - "this" for it/beforeEach/afterEach
- *   - keep state for single it/beforeEach/afterEach execution
+ *   - keep state for single it/beforeEach/afterEach channel
  *   - keep track of all of the futures to execute
  *   - run single spec (execute each future)
  */

@@ -66,7 +66,7 @@ public class ExecutionDao {
 
     public BasicExecution findBasicById(int id) {
         if(id == 0) {
-            logger.error("Try to retrieve execution with null id");
+            logger.error("Try to retrieve channel with null id");
             return null;
         }
 
@@ -90,7 +90,7 @@ public class ExecutionDao {
 
     public Execution findById(int id){
         if(id == 0) {
-            logger.error("Try to retrieve execution with null id");
+            logger.error("Try to retrieve channel with null id");
             return null;
         }
 

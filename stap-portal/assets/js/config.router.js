@@ -249,41 +249,12 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'Typography'
         }
-    }).state('app.table', {
-        url: '/table',
-        template: '<div ui-view class="fade-in-up"></div>',
-        title: 'Tables',
-        ncyBreadcrumb: {
-            label: 'Tables'
-        }
-    }).state('app.table.basic', {
-        url: '/basic',
-        templateUrl: "assets/views/table_basic.html",
-        title: 'Basic Tables',
-        ncyBreadcrumb: {
-            label: 'Basic'
-        }
-    }).state('app.table.responsive', {
-        url: '/responsive',
-        templateUrl: "assets/views/table_responsive.html",
-        title: 'Responsive Tables',
-        ncyBreadcrumb: {
-            label: 'Responsive'
-        }
-    }).state('app.table.dynamic', {
-        url: '/dynamic',
-        templateUrl: "assets/views/table_dynamic.html",
-        title: 'Dynamic Tables',
-        ncyBreadcrumb: {
-            label: 'Dynamic'
-        },
-        resolve: loadSequence('dynamicTableCtrl')
-    }).state('app.table.data', {
-        url: '/data',
+    }).state('app.execution_plan', {
+        url: '/execution_plan',
         templateUrl: "assets/views/table_data.html",
-        title: 'ngTable',
+        title: 'Execution Plan',
         ncyBreadcrumb: {
-            label: 'ngTable'
+            label: 'Execution Plan'
         },
         resolve: loadSequence('ngTable', 'ngTableCtrl')
     }).state('app.table.export', {
