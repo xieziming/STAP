@@ -1,18 +1,17 @@
 package com.xieziming.stap.gateway.mode;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by Suny on 7/5/16.
  */
 @Component
-@Scope("session")
 public class UserProfile {
     private String name;
     private String nickName;
     private String email;
     private String role;
+    private String avatar;
 
     public String getName() {
         return name;
@@ -44,5 +43,13 @@ public class UserProfile {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

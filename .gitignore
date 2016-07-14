@@ -2,3 +2,5 @@ out
 */target
 *.log
 .DS_Store
+target/*
+stap-execution/*

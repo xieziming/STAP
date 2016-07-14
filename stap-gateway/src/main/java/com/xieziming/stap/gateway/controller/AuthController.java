@@ -20,19 +20,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AuthController {
     private static Logger log = LoggerFactory.getLogger(AuthController.class);
-    private final java.lang.String UTF8 = ";charset=UTF-8";
+    private final String UTF8 = ";charset=UTF-8";
     private AuthService authService;
-    private Cache<java.lang.String, AuthResult> userCache;
+    private Cache<String, AuthResult> userCache;
 
     @Autowired
-    public AuthController(AuthService authService, Cache<java.lang.String, AuthResult> userCache){
+    public AuthController(AuthService authService, Cache<String, AuthResult> userCache){
         this.authService = authService;
         this.userCache = userCache;
     }
 
-    @RequestMapping(value = "/authorize", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE + UTF8, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @RequestMapping(value = "authorize", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public AuthResult doAuth(@RequestParam("principal") java.lang.String principal, @RequestParam("password") java.lang.String password){
+    public AuthResult doAuth(@RequestParam("principal") String principal, @RequestParam("password") String password){
         AuthResult authResult = authService.auth(principal.trim(), password.trim());
         if(authResult.isAuthSuccess()){
             userCache.put(principal, authResult);
@@ -40,9 +40,9 @@ public class AuthController {
         return authResult;
     }
 
-    @RequestMapping(value = "/authorized", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @RequestMapping(value = "authorized", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public AuthResult isAuth(@RequestParam("principal") java.lang.String principal, @RequestParam("token") java.lang.String token){
+    public AuthResult isAuth(@RequestParam("principal") String principal, @RequestParam("token") String token){
         AuthResult authResult = userCache.getIfPresent(principal);
         if(token!=null && authResult.getToken().equals(token)){
             return authResult;
@@ -54,9 +54,9 @@ public class AuthController {
         }
     }
 
-    @RequestMapping(value = "/invalidate", method = RequestMethod.GET)
+    @RequestMapping(value = "invalidate", method = RequestMethod.GET)
     @ResponseBody
-    public void logout(@RequestParam("principal") java.lang.String principal){
+    public void logout(@RequestParam("principal") String principal){
         userCache.invalidate(principal);
     }
 }

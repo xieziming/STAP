@@ -44,6 +44,9 @@
             "SAVE": "Save Changes"
         }
     },
+    "execution_plan": {
+        "ExecutionPlan": "Execution Plan"
+    },
     "sidebar": {
         "heading": {
             "NAVIGATION": "Main Navigation",

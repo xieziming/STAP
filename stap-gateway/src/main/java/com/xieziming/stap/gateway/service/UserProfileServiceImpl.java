@@ -15,7 +15,7 @@ import java.sql.SQLException;
 @Component
 public class UserProfileServiceImpl implements UserProfileService {
     public UserProfile getUserProfile(String principal) {
-        String sql = "SELECT u.NAME, u.Nick_Name, u.Email, r.Name AS Role                                               " +
+        String sql = "SELECT u.NAME, u.Nick_Name, u.Email, u.Avatar, r.Name AS Role                                               " +
                      "FROM " + StapDbTables.STAP_USER.toString() + " u, "+StapDbTables.STAP_USER_ROLE.toString()+" r    " +
                      "WHERE u.Name=? OR u.Email=?                                                                       ";
 
@@ -26,6 +26,7 @@ public class UserProfileServiceImpl implements UserProfileService {
                 profile.setNickName(resultSet.getString("Nick_Name"));
                 profile.setEmail(resultSet.getString("Email"));
                 profile.setRole(resultSet.getString("Role"));
+                profile.setAvatar(resultSet.getString("Avatar"));
                 return profile;
             }
         });

@@ -44,6 +44,9 @@
             "SAVE": "保存"
         }
     },
+    "execution_plan": {
+        "ExecutionPlan": "执行计划"
+    },
     "sidebar": {
         "heading": {
             "NAVIGATION": "页面导航",

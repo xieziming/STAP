@@ -251,7 +251,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         }
     }).state('app.execution_plan', {
         url: '/execution_plan',
-        templateUrl: "assets/views/table_data.html",
+        templateUrl: "assets/views/execution_plan.html",
         title: 'Execution Plan',
         ncyBreadcrumb: {
             label: 'Execution Plan'
