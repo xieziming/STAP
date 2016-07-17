@@ -1,7 +1,7 @@
 package com.xieziming.stap.file.services;
 
 import com.xieziming.stap.core.file.StapFileDetail;
-import com.xieziming.stap.core.common.StapException;
+import com.xieziming.stap.core.exceptions.StapException;
 import com.xieziming.stap.core.common.StapMeta;
 import com.xieziming.stap.file.util.StapFileDbUtil;
 import com.xieziming.stap.file.util.StapFileUtil;

@@ -22,12 +22,12 @@ public class ExecutionStepLogDao {
     private StapLogDao stapLogDao;
     public void add(ExecutionStepLog executionStepLog) {
         String sql = "INSERT INTO "+StapDbTables.EXECUTION_STEP_LOG.toString()+" SET Execution_Step_Id=?, Log_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionStepLog.getBasicExecutionStep().getId(), executionStepLog.getStapLog().getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionStepLog.getRawExecutionStep().getId(), executionStepLog.getStapLog().getId()});
     }
 
     public void update(ExecutionStepLog executionStepLog) {
         String sql = "UPDATE "+StapDbTables.EXECUTION_STEP_LOG.toString()+" SET Execution_Step_Id=?, Log_Id=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionStepLog.getBasicExecutionStep().getId(), executionStepLog.getStapLog().getId(), executionStepLog.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionStepLog.getRawExecutionStep().getId(), executionStepLog.getStapLog().getId(), executionStepLog.getId()});
     }
 
     public void delete(ExecutionStepLog executionStepLog) {
@@ -41,7 +41,7 @@ public class ExecutionStepLogDao {
             public ExecutionStepLog mapRow(ResultSet resultSet, int i) throws SQLException {
                 ExecutionStepLog executionStepLog = new ExecutionStepLog();
                 executionStepLog.setId(resultSet.getInt("Id"));
-                executionStepLog.setBasicExecutionStep(executionStepDao.findBasicById(resultSet.getInt("Execution_Step_Id")));
+                executionStepLog.setRawExecutionStep(executionStepDao.findBasicById(resultSet.getInt("Execution_Step_Id")));
                 executionStepLog.setStapLog(stapLogDao.findById(resultSet.getInt("Log_Id")));
                 return executionStepLog;
             }

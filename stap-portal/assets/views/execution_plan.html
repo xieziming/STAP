@@ -16,7 +16,7 @@
                         <table ng-table="tableParams" show-filter="true" class="table table-striped">
                             <tr ng-repeat="execution_plan in $data">
                                 <td data-title="'ID'" filter="{ 'id': 'text' }" sortable="'id'"> {{execution_plan.id}} </td>
-                                <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'"> {{execution_plan.name}} </td>
+                                <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'"> <a ui-sref="app.execution_plan_detail">{{execution_plan.name}}</a></td>
                                 <td data-title="'Status'" filter="{ 'status': 'text' }" sortable="'status'">{{execution_plan.status}}</td>
                                 <td data-title="'Remark'" filter="{ 'remark': 'text' }">{{execution_plan.remark}}</td>
                                 <td data-title="'Last Update'" sortable="'lastUpdate'">{{execution_plan.lastUpdate}}</td>

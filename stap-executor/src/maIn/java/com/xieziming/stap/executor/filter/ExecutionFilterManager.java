@@ -1,6 +1,6 @@
 package com.xieziming.stap.executor.filter;
 
-import com.xieziming.stap.core.execution.BasicExecution;
+import com.xieziming.stap.core.execution.raw.RawExecution;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class ExecutionFilterManager implements ExecutionFilter{
     }
 
     @Override
-    public boolean shouldBeExecuted(BasicExecution execution) {
+    public boolean shouldBeExecuted(RawExecution execution) {
         for(ExecutionFilter executionFilter : executionFilterList){
             if(executionFilter.shouldBeExecuted(execution)) return true;
         }

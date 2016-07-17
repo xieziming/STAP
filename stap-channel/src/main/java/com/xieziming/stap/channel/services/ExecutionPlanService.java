@@ -1,6 +1,6 @@
 package com.xieziming.stap.channel.services;
 
-import com.xieziming.stap.core.execution.BasicExecutionPlan;
+import com.xieziming.stap.core.execution.raw.RawExecutionPlan;
 import com.xieziming.stap.core.execution.ExecutionPlan;
 import com.xieziming.stap.dao.execution.ExecutionPlanDao;
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ public class ExecutionPlanService {
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public List<BasicExecutionPlan> getExecutions() {
+    public List<RawExecutionPlan> getExecutions() {
         return executionPlanDao.findAllBasic();
     }
 

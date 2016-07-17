@@ -1,6 +1,8 @@
 package com.xieziming.stap.dao.execution;
 
 import com.xieziming.stap.core.execution.*;
+import com.xieziming.stap.core.execution.raw.RawExecution;
+import com.xieziming.stap.core.execution.raw.RawExecutionPlan;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +25,21 @@ public class ExecutionPlanDao {
     @Autowired
     private ExecutionPlanLogDao executionPlanLogDao;
 
-    public void add(BasicExecutionPlan executionPlan) {
+    public void add(RawExecutionPlan executionPlan) {
         String sql = "INSERT INTO "+ StapDbTables.EXECUTION_PLAN.toString()+" SET Name=?, Remark=?, Status=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlan.getName(), executionPlan.getRemark(), executionPlan.getStatus()});
     }
 
-    public void update(BasicExecutionPlan executionPlan) {
+    public void update(RawExecutionPlan executionPlan) {
         String sql = "UPDATE "+StapDbTables.EXECUTION_PLAN.toString()+" SET Name=?, Remark=?, Status=? WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlan.getName(), executionPlan.getRemark(), executionPlan.getStatus(), executionPlan.getId()});
     }
 
     public void delete(ExecutionPlan executionPlan) {
-        List<BasicExecution> basicExecutionList = executionPlan.getBasicExecutionList();
-        if(basicExecutionList != null){
-            for(BasicExecution basicExecution : basicExecutionList){
-                executionDao.delete(executionDao.findById(basicExecution.getId()));
+        List<RawExecution> rawExecutionList = executionPlan.getRawExecutionList();
+        if(rawExecutionList != null){
+            for(RawExecution rawExecution : rawExecutionList){
+                executionDao.delete(executionDao.findById(rawExecution.getId()));
             }
         }
 
@@ -59,11 +61,11 @@ public class ExecutionPlanDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlan.getId()});
     }
 
-    public BasicExecutionPlan findBasicById(int id) {
+    public RawExecutionPlan findBasicById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.EXECUTION_PLAN.toString() + " WHERE Id=?";
-        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<BasicExecutionPlan>() {
-            public BasicExecutionPlan mapRow(ResultSet resultSet, int i) throws SQLException {
-                BasicExecutionPlan basicExecutionPlan = new BasicExecutionPlan();
+        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<RawExecutionPlan>() {
+            public RawExecutionPlan mapRow(ResultSet resultSet, int i) throws SQLException {
+                RawExecutionPlan basicExecutionPlan = new RawExecutionPlan();
                 basicExecutionPlan.setId(resultSet.getInt("Id"));
                 basicExecutionPlan.setName(resultSet.getString("Name"));
                 basicExecutionPlan.setRemark(resultSet.getString("Remark"));
@@ -75,16 +77,16 @@ public class ExecutionPlanDao {
     }
 
     public ExecutionPlan findById(int id){
-        BasicExecutionPlan basicExecutionPlan = findBasicById(id);
+        RawExecutionPlan basicExecutionPlan = findBasicById(id);
         ExecutionPlan executionPlan = new ExecutionPlan(basicExecutionPlan);
 
         String sql = "SELECT Id FROM "+ StapDbTables.EXECUTION.toString()+" WHERE Execution_Plan_Id=?";
-        List<BasicExecution> executionList = StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlan.getId()}, new RowMapper<BasicExecution>() {
-            public BasicExecution mapRow(ResultSet resultSet, int i) throws SQLException {
+        List<RawExecution> executionList = StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlan.getId()}, new RowMapper<RawExecution>() {
+            public RawExecution mapRow(ResultSet resultSet, int i) throws SQLException {
                 return executionDao.findBasicById(resultSet.getInt("Id"));
             }
         });
-        executionPlan.setBasicExecutionList(executionList);
+        executionPlan.setRawExecutionList(executionList);
 
         sql = "SELECT Id FROM "+ StapDbTables.EXECUTION_PLAN_META.toString()+" WHERE Execution_Plan_Id=?";
         List<ExecutionPlanMeta> executionPlanMetaList = StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlan.getId()}, new RowMapper<ExecutionPlanMeta>() {
@@ -105,10 +107,10 @@ public class ExecutionPlanDao {
         return executionPlan;
     }
 
-    public List<BasicExecutionPlan> findAllBasic(){
+    public List<RawExecutionPlan> findAllBasic(){
         String sql = "SELECT Id FROM "+StapDbTables.EXECUTION_PLAN.toString();
-        return StapDbUtil.getJdbcTemplate().query(sql, new RowMapper<BasicExecutionPlan>() {
-            public BasicExecutionPlan mapRow(ResultSet resultSet, int i) throws SQLException{
+        return StapDbUtil.getJdbcTemplate().query(sql, new RowMapper<RawExecutionPlan>() {
+            public RawExecutionPlan mapRow(ResultSet resultSet, int i) throws SQLException{
                 return findBasicById(resultSet.getInt("Id"));
             }
         });

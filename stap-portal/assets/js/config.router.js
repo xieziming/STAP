@@ -257,10 +257,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Execution Plan'
         },
         resolve: loadSequence('ngTable', 'ngTableCtrl')
-    }).state('app.table.export', {
-        url: '/export',
-        templateUrl: "assets/views/table_export.html",
-        title: 'Table'
+    }).state('app.execution_plan_detail', {
+        url: '/execution_plan/detail',
+        templateUrl: "assets/views/execution_plan_detail.html",
+        title: 'Execution Plan Detail',
+        ncyBreadcrumb: {
+            label: 'User Profile'
+        },
+        resolve: loadSequence('flow', 'userCtrl')
     }).state('app.form', {
         url: '/form',
         template: '<div ui-view class="fade-in-up"></div>',
@@ -339,9 +343,9 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'Pages'
         }
-    }).state('app.pages.user', {
+    }).state('app.pages.user2', {
         url: '/user',
-        templateUrl: "assets/views/pages_user_profile.html",
+        templateUrl: "assets/views/execution_plan_detail.html",
         title: 'User Profile',
         ncyBreadcrumb: {
             label: 'User Profile'

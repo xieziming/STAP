@@ -1,10 +1,10 @@
 package com.xieziming.stap.dao.execution;
 
-import com.xieziming.stap.core.execution.BasicExecution;
+import com.xieziming.stap.core.execution.raw.RawExecution;
 import com.xieziming.stap.core.execution.Execution;
 import com.xieziming.stap.core.execution.ExecutionLog;
 import com.xieziming.stap.core.execution.ExecutionStep;
-import com.xieziming.stap.dao.testcase.TestCaseDao;
+import com.xieziming.stap.dao.testcase.raw.RawTestCaseDao;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.slf4j.Logger;
@@ -29,20 +29,20 @@ public class ExecutionDao {
     @Autowired
     private ExecutionLogDao executionLogDao;
     @Autowired
-    private TestCaseDao testCaseDao;
+    private RawTestCaseDao testCaseDao;
     @Autowired
     private ExecutionPlanDao executionPlanDao;
     @Autowired
     private ExecutionContextDao executionContextDao;
 
-    public void add(BasicExecution basicExecution) {
+    public void add(RawExecution rawExecution) {
         String sql = "INSERT INTO "+ StapDbTables.EXECUTION.toString()+" SET Execution_Plan_Id=?, Test_Case_Id=?, Execution_Context_Id=?, Stat_Time=?, End_Time=?, Status=?, Result=?, Remark=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{basicExecution.getBasicExecutionPlan().getId(), basicExecution.getBasicTestCase().getId(), basicExecution.getExecutionContext().getId(), basicExecution.getStartTime(), basicExecution.getEndTime(), basicExecution.getStatus(), basicExecution.getResult(), basicExecution.getRemark()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{rawExecution.getBasicExecutionPlan().getId(), rawExecution.getBasicTestCase().getId(), rawExecution.getExecutionContext().getId(), rawExecution.getStartTime(), rawExecution.getEndTime(), rawExecution.getStatus(), rawExecution.getResult(), rawExecution.getRemark()});
     }
 
-    public void update(BasicExecution basicExecution) {
+    public void update(RawExecution rawExecution) {
         String sql = "UPDATE "+StapDbTables.EXECUTION.toString()+" SET Execution_Plan_Id=?, Test_Case_Id=?, Execution_Context_Id=?, Stat_Time=?, End_Time=?, Status=?, Result=?, Remark=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{basicExecution.getBasicExecutionPlan().getId(), basicExecution.getBasicTestCase().getId(), basicExecution.getExecutionContext().getId(), basicExecution.getStartTime(), basicExecution.getEndTime(), basicExecution.getStatus(), basicExecution.getResult(), basicExecution.getRemark(), basicExecution.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{rawExecution.getBasicExecutionPlan().getId(), rawExecution.getBasicTestCase().getId(), rawExecution.getExecutionContext().getId(), rawExecution.getStartTime(), rawExecution.getEndTime(), rawExecution.getStatus(), rawExecution.getResult(), rawExecution.getRemark(), rawExecution.getId()});
     }
 
     public void delete(Execution execution) {
@@ -64,26 +64,26 @@ public class ExecutionDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{execution.getId()});
     }
 
-    public BasicExecution findBasicById(int id) {
+    public RawExecution findBasicById(int id) {
         if(id == 0) {
             logger.error("Try to retrieve channel with null id");
             return null;
         }
 
         String sql = "SELECT * FROM " + StapDbTables.EXECUTION.toString() + " WHERE Id=?";
-        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<BasicExecution>() {
-            public BasicExecution mapRow(ResultSet resultSet, int i) throws SQLException {
-                BasicExecution basicExecution = new BasicExecution();
-                basicExecution.setId(resultSet.getInt("Id"));
-                basicExecution.setBasicTestCase(testCaseDao.findBasicById(resultSet.getInt("Test_Case_Id")));
-                basicExecution.setBasicExecutionPlan(executionPlanDao.findBasicById(resultSet.getInt("Execution_Plan_Id")));
-                basicExecution.setExecutionContext(executionContextDao.findById(resultSet.getInt("Execution_Context_Id")));
-                basicExecution.setStartTime(resultSet.getTimestamp("Start_Time"));
-                basicExecution.setEndTime(resultSet.getTimestamp("End_Time"));
-                basicExecution.setStatus(resultSet.getString("Status"));
-                basicExecution.setResult(resultSet.getString("Result"));
-                basicExecution.setRemark(resultSet.getString("Remark"));
-                return basicExecution;
+        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<RawExecution>() {
+            public RawExecution mapRow(ResultSet resultSet, int i) throws SQLException {
+                RawExecution rawExecution = new RawExecution();
+                rawExecution.setId(resultSet.getInt("Id"));
+                rawExecution.setBasicTestCase(testCaseDao.findBasicById(resultSet.getInt("Test_Case_Id")));
+                rawExecution.setBasicExecutionPlan(executionPlanDao.findBasicById(resultSet.getInt("Execution_Plan_Id")));
+                rawExecution.setExecutionContext(executionContextDao.findById(resultSet.getInt("Execution_Context_Id")));
+                rawExecution.setStartTime(resultSet.getTimestamp("Start_Time"));
+                rawExecution.setEndTime(resultSet.getTimestamp("End_Time"));
+                rawExecution.setStatus(resultSet.getString("Status"));
+                rawExecution.setResult(resultSet.getString("Result"));
+                rawExecution.setRemark(resultSet.getString("Remark"));
+                return rawExecution;
             }
         });
     }
@@ -94,8 +94,8 @@ public class ExecutionDao {
             return null;
         }
 
-        BasicExecution basicExecution = findBasicById(id);
-        Execution execution = new Execution(basicExecution);
+        RawExecution rawExecution = findBasicById(id);
+        Execution execution = new Execution(rawExecution);
 
         String sql = "SELECT Id FROM "+ StapDbTables.EXECUTION_STEP.toString()+" WHERE Execution_Id=?";
         List<ExecutionStep> executionStepList = StapDbUtil.getJdbcTemplate().query(sql, new Object[]{execution.getId()}, new RowMapper<ExecutionStep>() {
@@ -116,10 +116,10 @@ public class ExecutionDao {
         return execution;
     }
 
-    public List<BasicExecution> findAllBasic(){
+    public List<RawExecution> findAllBasic(){
         String sql = "SELECT Id FROM "+StapDbTables.EXECUTION.toString();
-        return StapDbUtil.getJdbcTemplate().query(sql, new RowMapper<BasicExecution>() {
-            public BasicExecution mapRow(ResultSet resultSet, int i) throws SQLException{
+        return StapDbUtil.getJdbcTemplate().query(sql, new RowMapper<RawExecution>() {
+            public RawExecution mapRow(ResultSet resultSet, int i) throws SQLException{
                 return findBasicById(resultSet.getInt("Id"));
             }
         });

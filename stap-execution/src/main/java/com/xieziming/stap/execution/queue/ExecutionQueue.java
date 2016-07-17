@@ -1,6 +1,6 @@
 package com.xieziming.stap.execution.queue;
 
-import com.xieziming.stap.core.execution.BasicExecution;
+import com.xieziming.stap.core.execution.raw.RawExecution;
 import com.xieziming.stap.core.execution.Execution;
 import com.xieziming.stap.dao.execution.ExecutionDao;
 import com.xieziming.stap.channel.context.XmlExecutionContextParser;
@@ -36,16 +36,16 @@ public class ExecutionQueue {
     private static Logger logger = LoggerFactory.getLogger(ExecutionQueue.class);
 
     public Execution getExecution(){
-        Queue<BasicExecution> executionQueue = executionQueueCache.getBasicExecutionQueue();
-        BasicExecution basicExecution;
-        while((basicExecution = executionQueue.poll()) != null){
+        Queue<RawExecution> executionQueue = executionQueueCache.getRawExecutionQueue();
+        RawExecution rawExecution;
+        while((rawExecution = executionQueue.poll()) != null){
             try {
-                xmlExecutionContextParser.setExecutionContext(basicExecution.getExecutionContext());
+                xmlExecutionContextParser.setExecutionContext(rawExecution.getExecutionContext());
                 List<ExecutionFilter> executionFilterList = xmlExecutionContextParser.getExecutionFilterList();
                 executionFilterManager.addFilter(new ExecutionPlanStatusFilter());
                 executionFilterManager.addFilter(new ExecutionResultFilter());
                 executionFilterManager.addFilterList(executionFilterList);
-                if(executionFilterManager.shouldBeExecuted(basicExecution)){
+                if(executionFilterManager.shouldBeExecuted(rawExecution)){
                     break;
                 }
             } catch (Exception e) {
@@ -55,9 +55,9 @@ public class ExecutionQueue {
             }
         }
 
-        if(basicExecution != null){
-            logger.info("Execution Delivered <Id:{}, Plan:{}, Test Case:{}>", basicExecution.getId(), basicExecution.getBasicExecutionPlan().getName(), basicExecution.getBasicTestCase().getName());
-            return executionDao.findById(basicExecution.getId());
+        if(rawExecution != null){
+            logger.info("Execution Delivered <Id:{}, Plan:{}, Test Case:{}>", rawExecution.getId(), rawExecution.getBasicExecutionPlan().getName(), rawExecution.getBasicTestCase().getName());
+            return executionDao.findById(rawExecution.getId());
         }
 
         return null;
