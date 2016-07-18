@@ -1,7 +1,7 @@
 package com.xieziming.stap.channel.services;
 
-import com.xieziming.stap.core.execution.pojo.ExecutionPlan;
-import com.xieziming.stap.core.execution.dao.ExecutionPlanDao;
+import com.xieziming.stap.core.model.execution.pojo.ExecutionPlan;
+import com.xieziming.stap.core.model.execution.dao.ExecutionPlanDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.xieziming.stap.execution.queue;
 
-import com.xieziming.stap.core.execution.pojo.Execution;
-import com.xieziming.stap.core.execution.dao.ExecutionDao;
+import com.xieziming.stap.core.model.execution.pojo.Execution;
+import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
 import com.xieziming.stap.channel.context.XmlExecutionContextParser;
 import com.xieziming.stap.channel.filter.ExecutionFilter;
 import com.xieziming.stap.channel.filter.ExecutionFilterManager;

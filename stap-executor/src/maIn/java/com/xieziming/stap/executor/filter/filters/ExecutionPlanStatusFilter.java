@@ -1,7 +1,7 @@
 package com.xieziming.stap.executor.filter.filters;
 
 import com.xieziming.stap.core.constants.ExecutionResultType;
-import com.xieziming.stap.core.execution.pojo.Execution;
+import com.xieziming.stap.core.model.execution.pojo.Execution;
 import com.xieziming.stap.executor.filter.ExecutionFilter;
 
 /**
