@@ -1,8 +1,7 @@
 package com.xieziming.stap.channel.services;
 
-import com.xieziming.stap.core.execution.raw.RawExecutionPlan;
-import com.xieziming.stap.core.execution.ExecutionPlan;
-import com.xieziming.stap.dao.execution.ExecutionPlanDao;
+import com.xieziming.stap.core.execution.pojo.ExecutionPlan;
+import com.xieziming.stap.core.execution.dao.ExecutionPlanDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class ExecutionPlanService {
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public List<RawExecutionPlan> getExecutions() {
+    public List<ExecutionPlan> getExecutions() {
         return executionPlanDao.findAllBasic();
     }
 

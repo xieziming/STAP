@@ -1,7 +1,7 @@
 package com.xieziming.stap.executor.filter.filters;
 
-import com.xieziming.stap.core.constants.ExecutionResultConstants;
-import com.xieziming.stap.core.execution.raw.RawExecution;
+import com.xieziming.stap.core.constants.ExecutionResultType;
+import com.xieziming.stap.core.execution.pojo.Execution;
 import com.xieziming.stap.executor.filter.ExecutionFilter;
 
 /**
@@ -9,8 +9,8 @@ import com.xieziming.stap.executor.filter.ExecutionFilter;
  */
 public class ExecutionPlanStatusFilter implements ExecutionFilter {
     @Override
-    public boolean shouldBeExecuted(RawExecution execution) {
-        if(execution.getBasicExecutionPlan().getStatus().equalsIgnoreCase(ExecutionResultConstants.CLOSED.toString())) return false;
+    public boolean shouldBeExecuted(Execution execution) {
+        if(execution.getBasicExecutionPlan().getStatus().equalsIgnoreCase(ExecutionResultType.CLOSED.toString())) return false;
         return true;
     }
 }

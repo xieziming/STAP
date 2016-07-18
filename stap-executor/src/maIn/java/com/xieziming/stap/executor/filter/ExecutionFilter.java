@@ -1,10 +1,10 @@
 package com.xieziming.stap.executor.filter;
 
-import com.xieziming.stap.core.execution.raw.RawExecution;
+import com.xieziming.stap.core.execution.pojo.Execution;
 
 /**
  * Created by Suny on 5/21/16.
  */
 public interface ExecutionFilter {
-    public boolean shouldBeExecuted(RawExecution execution);
+    public boolean shouldBeExecuted(Execution execution);
 }

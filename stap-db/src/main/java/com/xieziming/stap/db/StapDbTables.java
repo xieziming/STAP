@@ -26,7 +26,7 @@ public class StapDbTables {
 
     public static final String EXECUTION_REVISION = "Execution_Revision";
 
-    public static final String STAP_FILE = "Stap_File";
+    public static final String FILE_REPO = "File_Repo";
 
     public static final String STAP_USER = "stap_user";
     public static final String STAP_USER_ROLE = "stap_user_role";

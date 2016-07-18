@@ -1,7 +1,7 @@
 package com.xieziming.stap.execution.queue;
 
-import com.xieziming.stap.core.execution.raw.RawExecution;
-import com.xieziming.stap.dao.execution.ExecutionDao;
+import com.xieziming.stap.core.execution.pojo.Execution;
+import com.xieziming.stap.core.execution.dao.ExecutionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,20 +14,20 @@ import java.util.Queue;
  */
 @Component
 public class ExecutionQueueCache {
-    private Queue<RawExecution> rawExecutionQueue = new LinkedList<RawExecution>();
+    private Queue<Execution> executionQueue = new LinkedList<Execution>();
     @Autowired
     private ExecutionDao executionDao;
-    public Queue<RawExecution> getRawExecutionQueue(){
-        if(rawExecutionQueue == null || rawExecutionQueue.size() == 0){
+    public Queue<Execution> getExecutionQueue(){
+        if(executionQueue == null || executionQueue.size() == 0){
             synchronized (ExecutionQueueCache.class){
-                if(rawExecutionQueue == null || rawExecutionQueue.size() == 0){
-                    List<RawExecution> rawExecutionList = executionDao.findAllBasic();
-                    for (RawExecution rawExecution : rawExecutionList){
-                        rawExecutionQueue.offer(rawExecution);
+                if(executionQueue == null || executionQueue.size() == 0){
+                    List<Execution> executionList = executionDao.findAllBasic();
+                    for (Execution execution : executionList){
+                        executionQueue.offer(execution);
                     }
                 }
             }
         }
-        return rawExecutionQueue;
+        return executionQueue;
     }
 }

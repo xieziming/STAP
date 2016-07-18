@@ -1,7 +1,7 @@
 package com.xieziming.stap.executor.filter.filters;
 
-import com.xieziming.stap.core.constants.ExecutionResultConstants;
-import com.xieziming.stap.core.execution.raw.RawExecution;
+import com.xieziming.stap.core.constants.ExecutionResultType;
+import com.xieziming.stap.core.execution.pojo.Execution;
 import com.xieziming.stap.channel.filter.ExecutionFilter;
 
 /**
@@ -9,8 +9,8 @@ import com.xieziming.stap.channel.filter.ExecutionFilter;
  */
 public class ExecutionResultFilter implements ExecutionFilter {
     @Override
-    public boolean shouldBeExecuted(RawExecution execution) {
-        if(execution.getResult().equalsIgnoreCase(ExecutionResultConstants.PASS.toString())) return false;
+    public boolean shouldBeExecuted(Execution execution) {
+        if(execution.getResult().equalsIgnoreCase(ExecutionResultType.PASS.toString())) return false;
         return true;
     }
 }
