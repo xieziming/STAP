@@ -26,7 +26,6 @@
         <module name="stap-channel" />
         <module name="stap-core" />
         <module name="stap-db" />
-        <module name="stap-execution" />
         <module name="stap-executor" />
         <module name="stap-file" />
         <module name="stap-gateway" />

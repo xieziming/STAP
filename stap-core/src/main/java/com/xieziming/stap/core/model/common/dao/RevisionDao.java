@@ -16,27 +16,27 @@ import java.sql.SQLException;
 public class RevisionDao {
 
     public void add(Revision revision) {
-        String sql = "INSERT INTO "+StapDbTables.TEST_CASE_REVISION+" SET Source=?, Reference=?, Content=?, Operator=?, `Time`=?";
+        String sql = "INSERT INTO "+StapDbTables.REVISION+" SET Source=?, Reference=?, Content=?, Operator=?, `Time`=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{revision.getSource(), revision.getReference(), revision.getContent(), revision.getOperator(), revision.getTime()});
     }
 
     public void update(Revision revision) {
-        String sql = "UPDATE "+StapDbTables.TEST_CASE_REVISION+" SET Source=?, Reference=?, Content=?, Operator=?, `Time`=? WHERE Id=?";
+        String sql = "UPDATE "+StapDbTables.REVISION+" SET Source=?, Reference=?, Content=?, Operator=?, `Time`=? WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{revision.getSource(), revision.getReference(), revision.getContent(), revision.getOperator(), revision.getTime(), revision.getId()});
     }
 
     public void delete(Revision revision) {
-        String sql = "DELETE FROM "+StapDbTables.TEST_CASE_REVISION+" WHERE Id=?";
+        String sql = "DELETE FROM "+StapDbTables.REVISION+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{revision.getId()});
     }
 
     public Revision findById(int id) {
-        String sql = "SELECT * FROM " + StapDbTables.TEST_CASE_REVISION + " WHERE Id=?";
+        String sql = "SELECT * FROM " + StapDbTables.REVISION + " WHERE Id=?";
         return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, revisionRowMapper);
     }
 
     public Revision findAll(String source, String reference) {
-        String sql = "SELECT * FROM " + StapDbTables.TEST_CASE_REVISION + " WHERE Source=? AND Reference=?";
+        String sql = "SELECT * FROM " + StapDbTables.REVISION + " WHERE Source=? AND Reference=?";
         return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{source, reference}, revisionRowMapper);
     }
 

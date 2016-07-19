@@ -14,7 +14,6 @@
         <module>stap-file</module>
         <module>stap-channel</module>
         <module>stap-gateway</module>
-        <module>stap-execution</module>
         <module>stap-executor</module>
     </modules>
 

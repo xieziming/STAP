@@ -1,7 +1,6 @@
 package com.xieziming.stap.core.model.execution.dao;
 
 import com.xieziming.stap.core.model.execution.pojo.Execution;
-import com.xieziming.stap.core.model.testcase.dao.TestCaseDao;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.slf4j.Logger;
@@ -26,16 +25,19 @@ public class ExecutionDao {
     @Autowired
     private ExecutionLogDao executionLogDao;
     @Autowired
-    private TestCaseDao testCaseDao;
-    @Autowired
-    private ExecutionPlanDao executionPlanDao;
-    @Autowired
-    private ExecutionContextDao executionContextDao;
-    @Autowired
     private ExecutionOutputFileDao executionOutputFileDao;
-
     @Autowired
     private ExecutionOutputTextDao executionOutputTextDao;
+
+    public Execution findById(int id) {
+        String sql = "SELECT * FROM " + StapDbTables.EXECUTION+ " WHERE Id=?";
+        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, executionRowMapper);
+    }
+
+    public List<Execution> findAllByExecutionPlanId(int executionPlanId) {
+        String sql = "SELECT * FROM " + StapDbTables.EXECUTION + " WHERE Execution_Plan_Id=?";
+        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlanId}, executionRowMapper);
+    }
 
     public void add(Execution execution) {
         String sql = "INSERT INTO "+ StapDbTables.EXECUTION.toString()+" SET Execution_Plan_Id=?, Test_Case_Id=?, Execution_Context_Id=?, Stat_Time=?, End_Time=?, Status=?, Result=?, Remark=?";
@@ -74,16 +76,6 @@ public class ExecutionDao {
 
         String sql = "DELETE FROM "+StapDbTables.EXECUTION+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanId});
-    }
-
-    public Execution findById(int id) {
-        String sql = "SELECT * FROM " + StapDbTables.EXECUTION+ " WHERE Id=?";
-        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, executionRowMapper);
-    }
-
-    public List<Execution> findAllByExecutionPlanId(int executionPlanId) {
-        String sql = "SELECT * FROM " + StapDbTables.EXECUTION + " WHERE Execution_Plan_Id=?";
-        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlanId}, executionRowMapper);
     }
 
     private RowMapper<Execution> executionRowMapper = new RowMapper<Execution>() {

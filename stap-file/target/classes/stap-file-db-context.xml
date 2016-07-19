@@ -10,7 +10,7 @@
     <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
         <property name="poolProperties">
             <bean class="org.apache.tomcat.jdbc.pool.PoolProperties">
-                <property name="url" value="jdbc:mysql://192.168.1.107:3306/stap-file"/>
+                <property name="url" value="jdbc:mysql://192.168.1.103:3306/stap-file"/>
                 <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
                 <property name="username" value="stap"/>
                 <property name="password" value="stap"/>
