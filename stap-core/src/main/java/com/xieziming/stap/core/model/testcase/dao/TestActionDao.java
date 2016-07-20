@@ -25,9 +25,9 @@ public class TestActionDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testAction.getName(), testAction.getHandler(), testAction.getRemark(), testAction.getId()});
     }
 
-    public void delete(TestAction testAction) {
+    public void deleteById(int id) {
         String sql = "DELETE FROM "+StapDbTables.TEST_ACTION+" WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testAction.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
     }
 
     public TestAction findById(int id) {

@@ -35,9 +35,16 @@ public class TestDataDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testData.getId()});
     }
 
-    public void deleteById(Integer id) {
+    public void deleteById(int id) {
         TestData testData = findById(id);
         delete(testData);
+    }
+
+    public void deleteAllByTestCaseId(int testCaseId){
+        List<TestData> testDataList = findAllByTestCaseId(testCaseId);
+        for(TestData testData : testDataList){
+            delete(testData);
+        }
     }
 
     public TestData findById(int id) {
@@ -46,7 +53,7 @@ public class TestDataDao {
     }
 
 
-    public List<TestData> findAll(int testCaseId){
+    public List<TestData> findAllByTestCaseId(int testCaseId){
         String sql = "SELECT * FROM " + StapDbTables.TEST_DATA + " WHERE Test_Case_Id=?";
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId}, testDataRowMapper);
     }
@@ -56,7 +63,7 @@ public class TestDataDao {
             TestData testData = new TestData();
             testData.setId(resultSet.getInt("Id"));
             testData.setTestCaseId(resultSet.getInt("Test_Case_Id"));
-            testData.setTestDataDefinitionId(resultSet.getInt("Test_Definition_Id"));
+            testData.setTestDataDefinitionId(resultSet.getInt("Test_Data_Definition_Id"));
             return testData;
         }
     };

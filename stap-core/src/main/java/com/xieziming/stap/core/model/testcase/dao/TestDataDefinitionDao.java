@@ -26,10 +26,6 @@ public class TestDataDefinitionDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testDataDefinition.getField(), testDataDefinition.getValue(), testDataDefinition.getRemark(), testDataDefinition.getType(), testDataDefinition.getFileId(), testDataDefinition.getId()});
     }
 
-    public void delete(TestDataDefinition testDataDefinition) {
-        deleteById(testDataDefinition.getId());
-    }
-
     public void deleteById(Integer id){
         String sql = "DELETE FROM "+StapDbTables.TEST_DATA_DEFINITION+" WHERE Type != ? AND Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{TestDataType.GLOBAL, id});

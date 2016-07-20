@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TestStepDto {
     private Integer id;
-    private Integer testCaseId;
     private Integer stepOrder;
     private TestAction testAction;
     private String parameter;

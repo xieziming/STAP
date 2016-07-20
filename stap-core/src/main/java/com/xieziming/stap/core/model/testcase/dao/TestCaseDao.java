@@ -1,9 +1,6 @@
 package com.xieziming.stap.core.model.testcase.dao;
 
 import com.xieziming.stap.core.model.testcase.pojo.TestCase;
-import com.xieziming.stap.core.model.testcase.pojo.TestCaseRelation;
-import com.xieziming.stap.core.model.testcase.pojo.TestData;
-import com.xieziming.stap.core.model.testcase.pojo.TestStep;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Created by Suny on 5/10/16.
@@ -41,26 +37,12 @@ public class TestCaseDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCase.getName(), testCase.getStatus(), testCase.getDescription(), testCase.getId()});
     }
 
-    public void delete(TestCase testCase) {
-        List<TestStep> testStepList = testStepDao.findAll(testCase.getId());
-        for(TestStep testStep : testStepList){
-            testStepDao.delete(testStep);
-        }
+    public void deleteById(int id) {
+        testStepDao.deleteAllByTestCaseId(id);
+        testCaseMetaDao.deleteByTestCaseId(id);
+        testDataDao.deleteAllByTestCaseId(id);
+        testCaseRelationDao.deleteAllByTestCaseId(id);
 
-        List<TestData> testDataList = testDataDao.findAll(testCase.getId());
-        for(TestData testData : testDataList){
-            testDataDao.delete(testData);
-        }
-
-        List<TestCaseRelation> testCaseRelationList = testCaseRelationDao.findAll(testCase.getId());
-        for(TestCaseRelation testCaseRelation : testCaseRelationList){
-            testCaseRelationDao.delete(testCaseRelation);
-        }
-
-        deleteById(testCase.getId());
-    }
-
-    public void deleteById(Integer id) {
         String sql = "DELETE FROM "+StapDbTables.TEST_CASE+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
     }

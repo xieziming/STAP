@@ -26,9 +26,14 @@ public class TestCaseRelationDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseRelation.getTestCaseId(), testCaseRelation.getRelatedTestCaseId(), testCaseRelation.getRemark(), testCaseRelation.getId()});
     }
 
-    public void delete(TestCaseRelation testCaseRelation) {
+    public void deleteById(int id) {
         String sql = "DELETE FROM "+StapDbTables.TEST_CASE_RELATION+" WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseRelation.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
+    }
+
+    public void deleteAllByTestCaseId(int testCaseId) {
+        String sql = "DELETE FROM "+StapDbTables.TEST_CASE_RELATION+" WHERE Test_Case_Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseId});
     }
 
     public TestCaseRelation findById(int id) {
@@ -36,7 +41,7 @@ public class TestCaseRelationDao {
         return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, testCaseRelationRowMapper);
     }
 
-    public List<TestCaseRelation> findAll(int testCaseId) {
+    public List<TestCaseRelation> findAllByTestCaseId(int testCaseId) {
         String sql = "SELECT * FROM " + StapDbTables.TEST_CASE_RELATION + " WHERE Test_Case_Id=?";
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId}, testCaseRelationRowMapper);
     }

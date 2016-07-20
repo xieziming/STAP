@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Suny on 5/10/16.
@@ -25,23 +26,35 @@ public class TestCaseMetaDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseMeta.getTestCaseId(), testCaseMeta.getMetaKey(), testCaseMeta.getMetaValue(), testCaseMeta.getId()});
     }
 
-    public void delete(TestCaseMeta testCaseMeta) {
+    public void delete(int id) {
         String sql = "DELETE FROM "+StapDbTables.TEST_CASE_META+" WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseMeta.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
+    }
+
+    public void deleteByTestCaseId(int testCaseId) {
+        String sql = "DELETE FROM "+StapDbTables.TEST_CASE_META+" WHERE Test_Case_Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseId});
     }
 
     public TestCaseMeta findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.TEST_CASE_META+" WHERE Id=?";
-        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<TestCaseMeta>() {
-            public TestCaseMeta mapRow(ResultSet resultSet, int i) throws SQLException {
-                TestCaseMeta testCaseMeta = new TestCaseMeta();
-                testCaseMeta.setId(resultSet.getInt("Id"));
-                testCaseMeta.setTestCaseId(resultSet.getInt("Test_Case_Id"));
-                testCaseMeta.setMetaKey(resultSet.getString("Meta_Key"));
-                testCaseMeta.setMetaValue(resultSet.getString("Meta_Value"));
-                testCaseMeta.setLastUpdate(resultSet.getTimestamp("Last_Update"));
-                return testCaseMeta;
-            }
-        });
+        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, testCaseMetaRowMapper);
     }
+
+    public List<TestCaseMeta> findAllByTestCaseId(int testCaseId) {
+        String sql = "SELECT * FROM " + StapDbTables.TEST_CASE_META+" WHERE Test_Case_Id=?";
+        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId}, testCaseMetaRowMapper);
+    }
+
+    private RowMapper<TestCaseMeta> testCaseMetaRowMapper = new RowMapper<TestCaseMeta>() {
+        public TestCaseMeta mapRow(ResultSet resultSet, int i) throws SQLException {
+            TestCaseMeta testCaseMeta = new TestCaseMeta();
+            testCaseMeta.setId(resultSet.getInt("Id"));
+            testCaseMeta.setTestCaseId(resultSet.getInt("Test_Case_Id"));
+            testCaseMeta.setMetaKey(resultSet.getString("Meta_Key"));
+            testCaseMeta.setMetaValue(resultSet.getString("Meta_Value"));
+            testCaseMeta.setLastUpdate(resultSet.getTimestamp("Last_Update"));
+            return testCaseMeta;
+        }
+    };
 }

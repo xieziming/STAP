@@ -26,9 +26,14 @@ public class TestStepDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testStep.getTestCaseId(), testStep.getStepOrder(), testStep.getTestActionId(), testStep.getParameter(), testStep.getId()});
     }
 
-    public void delete(TestStep testStep) {
+    public void deleteById(int id) {
         String sql = "DELETE FROM "+StapDbTables.TEST_STEP+" WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testStep.getId()});
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
+    }
+
+    public void deleteAllByTestCaseId(int testCaseId) {
+        String sql = "DELETE FROM "+StapDbTables.TEST_STEP+" WHERE Test_Case_Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseId});
     }
 
     public TestStep findById(int id) {
@@ -36,7 +41,7 @@ public class TestStepDao {
         return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, testStepRowMapper);
     }
 
-    public List<TestStep> findAll(int testCaseId){
+    public List<TestStep> findAllByTestCaseId(int testCaseId){
         String sql = "SELECT * FROM " + StapDbTables.TEST_STEP + " WHERE Test_Case_Id=?";
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId}, testStepRowMapper);
     }

@@ -39,13 +39,18 @@ public class ExecutionDao {
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlanId}, executionRowMapper);
     }
 
+    public List<Execution> findAll() {
+        String sql = "SELECT * FROM " + StapDbTables.EXECUTION;
+        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[0], executionRowMapper);
+    }
+
     public void add(Execution execution) {
-        String sql = "INSERT INTO "+ StapDbTables.EXECUTION.toString()+" SET Execution_Plan_Id=?, Test_Case_Id=?, Execution_Context_Id=?, Stat_Time=?, End_Time=?, Status=?, Result=?, Remark=?";
+        String sql = "INSERT INTO "+ StapDbTables.EXECUTION+" SET Execution_Plan_Id=?, Test_Case_Id=?, Execution_Context_Id=?, Start_Time=?, End_Time=?, Status=?, Result=?, Remark=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{execution.getExecutionPlanId(), execution.getTestCaseId(), execution.getExecutionContextId(), execution.getStartTime(), execution.getEndTime(), execution.getStatus(), execution.getResult(), execution.getRemark()});
     }
 
     public void update(Execution execution) {
-        String sql = "UPDATE "+StapDbTables.EXECUTION.toString()+" SET Execution_Plan_Id=?, Test_Case_Id=?, Execution_Context_Id=?, Stat_Time=?, End_Time=?, Status=?, Result=?, Remark=? WHERE Id=?";
+        String sql = "UPDATE "+StapDbTables.EXECUTION+" SET Execution_Plan_Id=?, Test_Case_Id=?, Execution_Context_Id=?, Start_Time=?, End_Time=?, Status=?, Result=?, Remark=? WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{execution.getExecutionPlanId(), execution.getTestCaseId(), execution.getExecutionContextId(), execution.getStartTime(), execution.getEndTime(), execution.getStatus(), execution.getResult(), execution.getRemark(), execution.getId()});
     }
 
@@ -59,7 +64,7 @@ public class ExecutionDao {
         executionOutputFileDao.deleteAllByExecutionId(executionId);
         executionOutputTextDao.deleteAllByExecutionId(executionId);
 
-        String sql = "DELETE FROM "+StapDbTables.EXECUTION.toString()+" WHERE Id=?";
+        String sql = "DELETE FROM "+StapDbTables.EXECUTION+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionId});
     }
 

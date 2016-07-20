@@ -15,6 +15,5 @@ import java.util.List;
 @AllArgsConstructor
 public class TestDataDto {
     private Integer id;
-    private Integer testCaseId;
     private List<TestDataDefinition> testDataDefinitionList;
 }

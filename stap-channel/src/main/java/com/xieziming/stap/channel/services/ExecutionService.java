@@ -1,7 +1,12 @@
 package com.xieziming.stap.channel.services;
 
-import com.xieziming.stap.core.model.execution.dao.ExecutionPlanDao;
-import com.xieziming.stap.core.model.execution.pojo.ExecutionPlan;
+import com.xieziming.stap.core.execution.ExecutionController;
+import com.xieziming.stap.core.execution.ExecutionRequest;
+import com.xieziming.stap.core.execution.ExecutionResponse;
+import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
+import com.xieziming.stap.core.model.execution.dao.ExecutionDtoDao;
+import com.xieziming.stap.core.model.execution.dto.ExecutionDto;
+import com.xieziming.stap.core.model.execution.pojo.Execution;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +29,29 @@ public class ExecutionService {
     private final String UTF8 = ";charset=UTF-8";
 
     @Autowired
-    private ExecutionPlanDao executionPlanDao;
+    private ExecutionDtoDao executionDtoDao;
+    @Autowired
+    private ExecutionDao executionDao;
+    @Autowired
+    private ExecutionController executionController;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public List<ExecutionPlan> getExecutions() {
-        return executionPlanDao.findAll();
+    public List<ExecutionDto> getExecutions() {
+        List<Execution> executionList = executionDao.findAll();
+        return executionDtoDao.createDto(executionList);
     }
 
-    @RequestMapping(value = "{execution_plan_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @RequestMapping(value = "{execution_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public ExecutionPlan getExecutionPlan(@PathVariable("execution_plan_id") int executionPlanId) {
-        return executionPlanDao.findById(executionPlanId);
+    public ExecutionDto getExecution(@PathVariable("execution_id") int executionId) {
+        Execution execution = executionDao.findById(executionId);
+        return executionDtoDao.createDto(execution);
+    }
+
+    @RequestMapping(value = "{execution_id}/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public ExecutionResponse requestExecution(@PathVariable("execution_id") int executionId) {
+        return executionController.request(new ExecutionRequest(executionId, "suny", "124"));
     }
 }
