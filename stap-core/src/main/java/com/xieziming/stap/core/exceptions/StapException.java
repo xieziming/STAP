@@ -19,4 +19,12 @@ public class StapException extends RuntimeException{
     public StapException(Exception exception) {
         this("Unknown Exception", exception.getMessage(), ExceptionUtils.getStackTrace(exception));
     }
+
+    public StapException(String errCode, String errMsg){
+        this(errCode, errMsg, null);
+    }
+
+    public StapException(String errMsg){
+        this(null, errMsg, null);
+    }
 }

@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
  * Created by Suny on 7/17/16.
  */
@@ -15,5 +13,5 @@ import java.util.List;
 @AllArgsConstructor
 public class TestDataDto {
     private Integer id;
-    private List<TestDataDefinition> testDataDefinitionList;
+    private TestDataDefinition testDataDefinition;
 }

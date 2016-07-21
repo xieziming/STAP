@@ -15,8 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 public class TestCaseDto {
     private TestCase testCase;
-    private List<TestCaseMeta> testCaseMetaList;
-    private List<TestCaseRelation> testCaseRelationList;
+    private List<TestCaseMetaDto> testCaseMetaDtoList;
+    private List<TestCaseRelationDto> testCaseRelationDtoList;
     private List<TestStepDto> testStepDtoList;
     private List<TestDataDto> testDataDtoList;
 }

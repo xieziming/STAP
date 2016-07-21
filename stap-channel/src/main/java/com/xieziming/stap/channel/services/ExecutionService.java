@@ -3,8 +3,8 @@ package com.xieziming.stap.channel.services;
 import com.xieziming.stap.core.execution.ExecutionController;
 import com.xieziming.stap.core.execution.ExecutionRequest;
 import com.xieziming.stap.core.execution.ExecutionResponse;
+import com.xieziming.stap.core.model.execution.builder.ExecutionDtoBuilder;
 import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
-import com.xieziming.stap.core.model.execution.dao.ExecutionDtoDao;
 import com.xieziming.stap.core.model.execution.dto.ExecutionDto;
 import com.xieziming.stap.core.model.execution.pojo.Execution;
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ public class ExecutionService {
     private final String UTF8 = ";charset=UTF-8";
 
     @Autowired
-    private ExecutionDtoDao executionDtoDao;
+    private ExecutionDtoBuilder executionDtoBuilder;
     @Autowired
     private ExecutionDao executionDao;
     @Autowired
@@ -39,14 +39,14 @@ public class ExecutionService {
     @ResponseBody
     public List<ExecutionDto> getExecutions() {
         List<Execution> executionList = executionDao.findAll();
-        return executionDtoDao.createDto(executionList);
+        return executionDtoBuilder.buildAll(executionList);
     }
 
     @RequestMapping(value = "{execution_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionDto getExecution(@PathVariable("execution_id") int executionId) {
         Execution execution = executionDao.findById(executionId);
-        return executionDtoDao.createDto(execution);
+        return executionDtoBuilder.build(execution);
     }
 
     @RequestMapping(value = "{execution_id}/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)

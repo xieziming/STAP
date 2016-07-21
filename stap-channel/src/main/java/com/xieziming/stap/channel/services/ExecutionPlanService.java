@@ -1,11 +1,11 @@
 package com.xieziming.stap.channel.services;
 
+import com.xieziming.stap.core.model.execution.builder.ExecutionDtoBuilder;
+import com.xieziming.stap.core.model.execution.builder.ExecutionPlanDtoBuilder;
 import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
-import com.xieziming.stap.core.model.execution.dao.ExecutionDtoDao;
 import com.xieziming.stap.core.model.execution.dao.ExecutionPlanDao;
 import com.xieziming.stap.core.model.execution.dto.ExecutionDto;
-import com.xieziming.stap.core.model.execution.pojo.Execution;
-import com.xieziming.stap.core.model.execution.pojo.ExecutionPlan;
+import com.xieziming.stap.core.model.execution.dto.ExecutionPlanDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,28 +30,27 @@ public class ExecutionPlanService {
     @Autowired
     private ExecutionPlanDao executionPlanDao;
     @Autowired
-    private ExecutionDtoDao executionDtoDao;
+    private ExecutionPlanDtoBuilder executionPlanDtoBuilder;
+    @Autowired
+    private ExecutionDtoBuilder executionDtoBuilder;
     @Autowired
     private ExecutionDao executionDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public List<ExecutionPlan> getAllExecutionPlans() {
-        return executionPlanDao.findAll();
+    public List<ExecutionPlanDto> getAllExecutionPlans() {
+        return executionPlanDtoBuilder.buildAll(executionPlanDao.findAll());
     }
 
     @RequestMapping(value = "{execution_plan_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public ExecutionPlan getExecutionPlan(@PathVariable("execution_plan_id") int executionPlanId) {
-        return executionPlanDao.findById(executionPlanId);
+    public ExecutionPlanDto getExecutionPlan(@PathVariable("execution_plan_id") int executionPlanId) {
+        return executionPlanDtoBuilder.build(executionPlanDao.findById(executionPlanId));
     }
 
-    @RequestMapping(value = "{execution_plan_id}/executions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @RequestMapping(value = "{execution_plan_id}/execution_list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public List<ExecutionDto> getExecutions(@PathVariable("execution_plan_id") int executionPlanId) {
-        List<Execution> executionList = executionDao.findAllByExecutionPlanId(executionPlanId);
-        return executionDtoDao.createDto(executionList);
+        return executionDtoBuilder.buildAll(executionDao.findAllByExecutionPlanId(executionPlanId));
     }
-
-
 }

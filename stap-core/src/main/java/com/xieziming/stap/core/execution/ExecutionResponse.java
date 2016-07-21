@@ -1,6 +1,6 @@
 package com.xieziming.stap.core.execution;
 
-import com.xieziming.stap.core.model.execution.dto.ExecutionDataDto;
+import com.xieziming.stap.core.model.execution.dto.ExecutionDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ExecutionResponse {
     private String approved;
-    private ExecutionDataDto executionDataDto;
+    private ExecutionDto executionDto;
 }

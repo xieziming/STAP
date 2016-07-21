@@ -18,7 +18,6 @@ import java.util.List;
 @ComponentScan(value = {"com.xieziming.stap"})
 @Configuration
 @EnableWebMvc
-
 @PropertySources({
         @PropertySource("classpath:stap-channel.properties")
 })

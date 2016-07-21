@@ -59,17 +59,17 @@ public class ExecutionLogDao {
     }
 
     public List<ExecutionLog> findAllByExecutionPlanId(int executionPlanId) {
-        String sql = "SELECT * FROM " + StapDbTables.EXECUTION_LOG + " WHERE Id=?";
+        String sql = "SELECT * FROM " + StapDbTables.EXECUTION_LOG + " WHERE Execution_Plan_Id=?";
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlanId}, executionLogRowMapper);
     }
 
     public List<ExecutionLog> findAllByExecutionId(int executionId) {
-        String sql = "SELECT * FROM " + StapDbTables.EXECUTION_LOG + " WHERE Id=?";
+        String sql = "SELECT * FROM " + StapDbTables.EXECUTION_LOG + " WHERE Execution_Id=?";
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionId}, executionLogRowMapper);
     }
 
     public List<ExecutionLog> findAllByExecutionStepId(int executionStepId) {
-        String sql = "SELECT * FROM " + StapDbTables.EXECUTION_LOG + " WHERE Id=?";
+        String sql = "SELECT * FROM " + StapDbTables.EXECUTION_LOG + " WHERE Execution_Step_Id=?";
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionStepId}, executionLogRowMapper);
     }
 
@@ -77,8 +77,8 @@ public class ExecutionLogDao {
         public ExecutionLog mapRow(ResultSet resultSet, int i) throws SQLException {
             ExecutionLog executionLog = new ExecutionLog();
             executionLog.setId(resultSet.getInt("Id"));
-            executionLog.setExecutionId(resultSet.getInt("Execution_Plan_Id"));
-            executionLog.setExecutionStepId(resultSet.getInt("Execution_Id"));
+            executionLog.setExecutionPlanId(resultSet.getInt("Execution_Plan_Id"));
+            executionLog.setExecutionId(resultSet.getInt("Execution_Id"));
             executionLog.setExecutionStepId(resultSet.getInt("Execution_Step_Id"));
             executionLog.setLevel(resultSet.getString("Level"));
             executionLog.setContent(resultSet.getString("Content"));
