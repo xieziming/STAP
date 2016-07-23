@@ -3,8 +3,10 @@ package com.xieziming.stap.channel.services;
 import com.xieziming.stap.core.execution.ExecutionController;
 import com.xieziming.stap.core.execution.ExecutionRequest;
 import com.xieziming.stap.core.execution.ExecutionResponse;
+import com.xieziming.stap.core.model.execution.builder.ExecutionBriefDtoBuilder;
 import com.xieziming.stap.core.model.execution.builder.ExecutionDtoBuilder;
 import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
+import com.xieziming.stap.core.model.execution.dto.ExecutionBriefDto;
 import com.xieziming.stap.core.model.execution.dto.ExecutionDto;
 import com.xieziming.stap.core.model.execution.pojo.Execution;
 import org.slf4j.Logger;
@@ -34,6 +36,8 @@ public class ExecutionService {
     private ExecutionDao executionDao;
     @Autowired
     private ExecutionController executionController;
+    @Autowired
+    private ExecutionBriefDtoBuilder executionBriefDtoBuilder;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
@@ -47,6 +51,13 @@ public class ExecutionService {
     public ExecutionDto getExecution(@PathVariable("execution_id") int executionId) {
         Execution execution = executionDao.findById(executionId);
         return executionDtoBuilder.build(execution);
+    }
+
+    @RequestMapping(value = "{execution_id}/brief", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public ExecutionBriefDto getExecutionBrief(@PathVariable("execution_id") int executionId) {
+        Execution execution = executionDao.findById(executionId);
+        return executionBriefDtoBuilder.build(execution);
     }
 
     @RequestMapping(value = "{execution_id}/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)

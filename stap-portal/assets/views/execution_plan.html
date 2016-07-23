@@ -11,15 +11,13 @@
         <div class="col-md-12">
             <div class="panel panel-white">
                 <div class="panel-body">
-                    <div ng-controller="ngTableCtrl3">
-                        <strong>Filter:</strong> {{tableParams.filter()|json}}
+                    <div ng-controller="executionPlanCtrl">
                         <table ng-table="tableParams" show-filter="true" class="table table-striped">
                             <tr ng-repeat="execution_plan in $data">
-                                <td data-title="'ID'" filter="{ 'id': 'text' }" sortable="'id'"> {{execution_plan.id}} </td>
-                                <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'"> <a ui-sref="app.execution_plan_detail">{{execution_plan.name}}</a></td>
-                                <td data-title="'Status'" filter="{ 'status': 'text' }" sortable="'status'">{{execution_plan.status}}</td>
+                                <td class="col-md-1" data-title="'ID'" filter="{ 'id': 'text' }" sortable="'id'"> {{execution_plan.id}} </td>
+                                <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'"> <a ui-sref="app.execution_plan_detail({id : execution_plan.id})">{{execution_plan.name}}</a></td>
+                                <td class="col-md-1" data-title="'Status'" filter="{ 'status': 'text' }" sortable="'status'">{{execution_plan.status}}</td>
                                 <td data-title="'Remark'" filter="{ 'description': 'text' }">{{execution_plan.description}}</td>
-                                <td data-title="'Last Update'" sortable="'lastUpdate'">{{execution_plan.lastUpdate}}</td>
                             </tr>
                         </table>
                     </div>

@@ -1,10 +1,10 @@
 package com.xieziming.stap.channel.services;
 
-import com.xieziming.stap.core.model.execution.builder.ExecutionDtoBuilder;
+import com.xieziming.stap.core.model.execution.builder.ExecutionBriefDtoBuilder;
 import com.xieziming.stap.core.model.execution.builder.ExecutionPlanDtoBuilder;
 import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
 import com.xieziming.stap.core.model.execution.dao.ExecutionPlanDao;
-import com.xieziming.stap.core.model.execution.dto.ExecutionDto;
+import com.xieziming.stap.core.model.execution.dto.ExecutionBriefDto;
 import com.xieziming.stap.core.model.execution.dto.ExecutionPlanDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class ExecutionPlanService {
     @Autowired
     private ExecutionPlanDtoBuilder executionPlanDtoBuilder;
     @Autowired
-    private ExecutionDtoBuilder executionDtoBuilder;
+    private ExecutionBriefDtoBuilder executionBriefDtoBuilder;
     @Autowired
     private ExecutionDao executionDao;
 
@@ -50,7 +50,7 @@ public class ExecutionPlanService {
 
     @RequestMapping(value = "{execution_plan_id}/execution_list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public List<ExecutionDto> getExecutions(@PathVariable("execution_plan_id") int executionPlanId) {
-        return executionDtoBuilder.buildAll(executionDao.findAllByExecutionPlanId(executionPlanId));
+    public List<ExecutionBriefDto> getExecutions(@PathVariable("execution_plan_id") int executionPlanId) {
+        return executionBriefDtoBuilder.buildAll(executionDao.findAllByExecutionPlanId(executionPlanId));
     }
 }

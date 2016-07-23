@@ -45,7 +45,8 @@
         }
     },
     "execution_plan": {
-        "ExecutionPlan": "执行计划"
+        "ExecutionPlan": "执行计划",
+        "ExecutionPlanDetail": "执行计划细节"
     },
     "sidebar": {
         "heading": {
@@ -95,6 +96,7 @@
         "FIXEDFOOTER": "固定底部"
     },
     "dashboard": {
+        "HOME": "首页",
         "WELCOME": "欢迎来到 {{appName}}",
         "OVERVIEW": "概述",
         "project": {

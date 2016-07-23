@@ -1,6 +1,7 @@
 package com.xieziming.stap.core.model.execution.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.xieziming.stap.core.model.file.pojo.FileReference;
 import com.xieziming.stap.core.util.JsonDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +18,7 @@ import java.util.Date;
 public class ExecutionOutputFileDto {
     private Integer id;
     private String type;
-    private Integer fileId;
+    private FileReference fileReference;
     private String remark;
     @JsonSerialize(using = JsonDateSerializer.class)
     private Date lastUpdate;

@@ -57,8 +57,9 @@ public class ExecutionDtoBuilder {
         executionDto.setId(execution.getId());
         executionDto.setStartTime(execution.getStartTime());
         executionDto.setEndTime(execution.getEndTime());
+        executionDto.setStatus(execution.getStatus());
         executionDto.setResult(execution.getResult());
-        executionDto.setResult(execution.getRemark());
+        executionDto.setRemark(execution.getRemark());
         executionDto.setExecutionPlanDto(executionPlanDtoBuilder.build(executionPlanDao.findById(execution.getExecutionPlanId())));
         executionDto.setTestCaseDto(testCaseDtoBuilder.build(testCaseDao.findById(execution.getTestCaseId())));
         executionDto.setExecutionContext(executionContextDao.findById(execution.getExecutionContextId()));

@@ -45,7 +45,8 @@
         }
     },
     "execution_plan": {
-        "ExecutionPlan": "Execution Plan"
+        "ExecutionPlan": "Execution Plan",
+        "ExecutionPlanDetail": "Execution Plan Detail"
     },
     "sidebar": {
         "heading": {
@@ -95,6 +96,7 @@
         "FIXEDFOOTER": "Fixed footer"
     },
     "dashboard": {
+        "HOME": "Home",
         "WELCOME": "Welcome to {{appName}}",
         "OVERVIEW": "Overview",
         "project": {
