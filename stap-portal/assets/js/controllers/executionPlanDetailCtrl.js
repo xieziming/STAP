@@ -2,7 +2,7 @@
 /** 
   * controller for Execution Plan Detail
 */
-app.controller('executionPlanDetailCtrl', ["$scope", "$filter", "$http", "ngTableParams", "ENV_CONFIG", "$stateParams", function ($scope, $filter, $http, ngTableParams, ENV_CONFIG, $stateParams) {
+app.controller('executionPlanDetailCtrl', ["$scope", "$filter", "$http", "ngTableParams", "ENV_CONFIG", "$stateParams", "$timeout", function ($scope, $filter, $http, ngTableParams, ENV_CONFIG, $stateParams, $timeout) {
 
 
     $http.get(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id).then(function (res) {
@@ -82,4 +82,63 @@ app.controller('executionPlanDetailCtrl', ["$scope", "$filter", "$http", "ngTabl
             }
         });
     });
+
+    $scope.ldloading = {};
+    $scope.updateExecutionPlan = function () {
+        var style = 'expand-right';
+        $scope.ldloading[style.replace('-', '_') + "_progress"] = true;
+        $timeout(function () {
+            $scope.ldloading[style.replace('-', '_') + "_progress"] = 0.3;
+        }, 500);
+        $timeout(function () {
+            $scope.ldloading[style.replace('-', '_') + "_progress"] += 0.2;
+        }, 1000);
+
+        $http.post(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id, $scope.executionPlan).then(function (res) {
+            alert(res.data);
+        }, function (err) {
+            alert(err);
+        });
+    };
+
+    $scope.putMeta = {};
+
+    var removeMeta = function (id) {
+        var index = -1;
+        var comArr = eval($scope.metaDataList);
+        for (var i = 0; i < comArr.length; i++) {
+            if (comArr[i].id === id) {
+                index = i;
+                break;
+            }
+        }
+        if (index === -1) {
+            alert("Something gone wrong");
+        }
+        $scope.metaDataList.splice(index, 1);
+    };
+
+    $scope.putExecutionPlanMeta = function () {
+        $scope.putMeta.executionPlanId = $scope.executionPlan.id;
+        $http.post(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id+"/execution_plan_meta", $scope.putMeta).then(function (res) {
+            $scope.metaDataList.push(res.data);
+            $scope.putMeta = {};
+        }, function (err) {
+            alert(err);
+        });
+    };
+
+    $scope.editExecutionPlanMeta = function (meta) {
+        $scope.putMeta = meta;
+    };
+
+    $scope.deleteExecutionPlanMeta = function (meta) {
+        $http.delete(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id+"/execution_plan_meta/"+meta.id).then(function (res) {
+            removeMeta(meta.id);
+        }, function (err) {
+            alert(err);
+        });
+    };
+
+
 }]);

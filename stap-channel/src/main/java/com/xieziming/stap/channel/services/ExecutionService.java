@@ -3,8 +3,8 @@ package com.xieziming.stap.channel.services;
 import com.xieziming.stap.core.execution.ExecutionController;
 import com.xieziming.stap.core.execution.ExecutionRequest;
 import com.xieziming.stap.core.execution.ExecutionResponse;
-import com.xieziming.stap.core.model.execution.builder.ExecutionBriefDtoBuilder;
-import com.xieziming.stap.core.model.execution.builder.ExecutionDtoBuilder;
+import com.xieziming.stap.core.model.execution.converter.ExecutionBriefConverter;
+import com.xieziming.stap.core.model.execution.converter.ExecutionConverter;
 import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
 import com.xieziming.stap.core.model.execution.dto.ExecutionBriefDto;
 import com.xieziming.stap.core.model.execution.dto.ExecutionDto;
@@ -31,33 +31,33 @@ public class ExecutionService {
     private final String UTF8 = ";charset=UTF-8";
 
     @Autowired
-    private ExecutionDtoBuilder executionDtoBuilder;
+    private ExecutionConverter executionConverter;
     @Autowired
     private ExecutionDao executionDao;
     @Autowired
     private ExecutionController executionController;
     @Autowired
-    private ExecutionBriefDtoBuilder executionBriefDtoBuilder;
+    private ExecutionBriefConverter executionBriefConverter;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public List<ExecutionDto> getExecutions() {
         List<Execution> executionList = executionDao.findAll();
-        return executionDtoBuilder.buildAll(executionList);
+        return executionConverter.buildAll(executionList);
     }
 
     @RequestMapping(value = "{execution_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionDto getExecution(@PathVariable("execution_id") int executionId) {
         Execution execution = executionDao.findById(executionId);
-        return executionDtoBuilder.build(execution);
+        return executionConverter.build(execution);
     }
 
     @RequestMapping(value = "{execution_id}/brief", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionBriefDto getExecutionBrief(@PathVariable("execution_id") int executionId) {
         Execution execution = executionDao.findById(executionId);
-        return executionBriefDtoBuilder.build(execution);
+        return executionBriefConverter.build(execution);
     }
 
     @RequestMapping(value = "{execution_id}/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)

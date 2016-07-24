@@ -61,7 +61,7 @@ app.constant('JS_REQUIRES', {
         }, {
             name:  'executionPlanCtrl',
             files: ['assets/js/controllers/executionPlanCtrl.js'],
-            cache: true
+            cache: false
         }, {
             name:  'cropCtrl', 
             files: ['assets/js/controllers/cropCtrl.js']
@@ -92,7 +92,7 @@ app.constant('JS_REQUIRES', {
         }, {
             name:   'executionPlanDetailCtrl',
             files: ['assets/js/controllers/executionPlanDetailCtrl.js'],
-            cache: true
+            cache: false
         },, {
             name:   'executionDetailCtrl',
             files: ['assets/js/controllers/executionDetailCtrl.js'],
@@ -209,5 +209,6 @@ app.constant('JS_REQUIRES', {
 });
 
 app.constant('ENV_CONFIG', {
-    'gatewayUrl': 'http://stap.xieziming.com:8080/stap-gateway'
+    'gatewayUrl': 'http://127.0.0.1:9090'
+    //'gatewayUrl': 'http://stap.xieziming.com:8080/stap-gateway'
 });

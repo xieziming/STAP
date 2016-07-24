@@ -24,6 +24,7 @@ public class TestCaseMetaDtoBuilder {
     public TestCaseMetaDto build(TestCaseMeta testCaseMeta) {
         TestCaseMetaDto testCaseMetaDto = new TestCaseMetaDto();
         testCaseMetaDto.setId(testCaseMeta.getId());
+        testCaseMetaDto.setMetaType(testCaseMeta.getMetaType());
         testCaseMetaDto.setMetaKey(testCaseMeta.getMetaKey());
         testCaseMetaDto.setMetaValue(testCaseMeta.getMetaValue());
         testCaseMetaDto.setLastUpdate(testCaseMeta.getLastUpdate());

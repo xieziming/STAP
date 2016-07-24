@@ -19,14 +19,21 @@ public class ExecutionPlanMetaDao {
     @Autowired
     private ExecutionPlanDao executionPlanDao;
 
-    public void add(ExecutionPlanMeta executionPlanMeta) {
-        String sql = "INSERT INTO "+StapDbTables.EXECUTION_PLAN_META+" SET Execution_Plan_Id=?, Meta_Key=?, Meta_Value=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanMeta.getExecutionPlanId(), executionPlanMeta.getMetaKey(), executionPlanMeta.getMetaValue()});
+    public ExecutionPlanMeta add(ExecutionPlanMeta executionPlanMeta) {
+        String sql = "INSERT INTO "+StapDbTables.EXECUTION_PLAN_META+" SET Execution_Plan_Id=?, Meta_Type=?, Meta_Key=?, Meta_Value=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanMeta.getExecutionPlanId(), executionPlanMeta.getMetaType(), executionPlanMeta.getMetaKey(), executionPlanMeta.getMetaValue()});
+        return find(executionPlanMeta);
     }
 
-    public void update(ExecutionPlanMeta executionPlanMeta) {
-        String sql = "UPDATE "+StapDbTables.EXECUTION_PLAN_META+" SET Execution_Plan_Id=?, Meta_Key=?, Meta_Value=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanMeta.getExecutionPlanId(), executionPlanMeta.getMetaKey(), executionPlanMeta.getMetaValue(), executionPlanMeta.getId()});
+    private ExecutionPlanMeta find(ExecutionPlanMeta executionPlanMeta){
+        String sql = "SELECT * FROM " + StapDbTables.EXECUTION_PLAN_META + " WHERE Execution_Plan_Id=? AND Meta_Type=? AND Meta_Key=? AND Meta_Value=?";
+        return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{executionPlanMeta.getExecutionPlanId(), executionPlanMeta.getMetaType(), executionPlanMeta.getMetaKey(), executionPlanMeta.getMetaValue()}, executionPlanMetaRowMapper);
+    }
+
+    public ExecutionPlanMeta update(ExecutionPlanMeta executionPlanMeta) {
+        String sql = "UPDATE "+StapDbTables.EXECUTION_PLAN_META+" SET Execution_Plan_Id=?, Meta_Type=?, Meta_Key=?, Meta_Value=? WHERE Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanMeta.getExecutionPlanId(), executionPlanMeta.getMetaType(), executionPlanMeta.getMetaKey(), executionPlanMeta.getMetaValue(), executionPlanMeta.getId()});
+        return executionPlanMeta;
     }
 
     public void delete(ExecutionPlanMeta executionPlanMeta) {
@@ -58,6 +65,7 @@ public class ExecutionPlanMetaDao {
             ExecutionPlanMeta executionPlanMeta = new ExecutionPlanMeta();
             executionPlanMeta.setId(resultSet.getInt("Id"));
             executionPlanMeta.setExecutionPlanId(resultSet.getInt("Execution_Plan_Id"));
+            executionPlanMeta.setMetaType(resultSet.getString("Meta_Type"));
             executionPlanMeta.setMetaKey(resultSet.getString("Meta_Key"));
             executionPlanMeta.setMetaValue(resultSet.getString("Meta_Value"));
             executionPlanMeta.setLastUpdate(resultSet.getTimestamp("Last_Update"));

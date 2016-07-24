@@ -23,14 +23,21 @@ public class ExecutionPlanDao {
     @Autowired
     private ExecutionLogDao executionLogDao;
 
-    public void add(ExecutionPlan executionPlan) {
-        String sql = "INSERT INTO "+ StapDbTables.EXECUTION_PLAN.toString()+" SET Name=?, Remark=?, Status=?";
+    public ExecutionPlan add(ExecutionPlan executionPlan) {
+        String sql = "INSERT INTO "+ StapDbTables.EXECUTION_PLAN+" SET Name=?, Description=?, Status=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlan.getName(), executionPlan.getDescription(), executionPlan.getStatus()});
+        return find(executionPlan);
     }
 
-    public void update(ExecutionPlan executionPlan) {
-        String sql = "UPDATE "+StapDbTables.EXECUTION_PLAN.toString()+" SET Name=?, Remark=?, Status=? WHERE Id=?";
+    public ExecutionPlan update(ExecutionPlan executionPlan) {
+        String sql = "UPDATE "+StapDbTables.EXECUTION_PLAN+" SET Name=?, Description=?, Status=? WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlan.getName(), executionPlan.getDescription(), executionPlan.getStatus(), executionPlan.getId()});
+        return executionPlan;
+    }
+
+    private ExecutionPlan find(ExecutionPlan executionPlan){
+        String sql = "SELECT * FROM "+ StapDbTables.EXECUTION_PLAN+" WHERE Name=?, Description=?, Status=?";
+        return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{executionPlan.getName(), executionPlan.getDescription(), executionPlan.getStatus()}, executionPlanRowMapper);
     }
 
     public void delete(ExecutionPlan executionPlan) {
@@ -42,7 +49,7 @@ public class ExecutionPlanDao {
         executionLogDao.deleteAllByExecutionPlanId(executionPlanId);
         executionPlanMetaDao.deleteAllByExecutionPlanId(executionPlanId);
 
-        String sql = "DELETE FROM "+StapDbTables.EXECUTION_PLAN.toString()+" WHERE Id=?";
+        String sql = "DELETE FROM "+StapDbTables.EXECUTION_PLAN+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanId});
     }
 

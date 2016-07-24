@@ -12,14 +12,14 @@
     </appender>
 
     <appender name="GATEWAY_LOG" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="stap.log" />
+        <param name="File" value="stap-gateway.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss SSS\} %-5p] %m %n" />
         </layout>
         <filter class="org.apache.log4j.varia.LevelRangeFilter">
             <param name="LevelMax" value="INFO" />
-            <param name="LevelMin" value="INFO" />
+            <param name="LevelMin" value="DEBUG" />
         </filter>
     </appender>
 

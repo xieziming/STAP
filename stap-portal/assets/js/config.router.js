@@ -56,7 +56,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'execution_plan.ExecutionPlanDetail'
         },
-        resolve: loadSequence('flow','ngTable','xeditable', 'checklist-model', 'executionPlanDetailCtrl')
+        resolve: loadSequence('flow','ngTable', 'executionPlanDetailCtrl')
     }).state('app.execution', {
             url: '/execution/:id/detail',
             templateUrl: "assets/views/execution_detail.html",

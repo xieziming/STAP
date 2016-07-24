@@ -17,6 +17,7 @@ import java.util.Date;
 public class ExecutionPlanMeta {
     private Integer id;
     private Integer executionPlanId;
+    private String metaType;
     private String metaKey;
     private String metaValue;
     @JsonSerialize(using = JsonDateSerializer.class)

@@ -11,26 +11,27 @@
         </filter>
     </appender>
 
-    <appender name="ChannelLogAppender" class="org.apache.log4j.DailyRollingFileAppender">
+    <appender name="STAP_LOG" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="File" value="stap-channel.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss SSS\} %-5p] %m %n" />
         </layout>
         <filter class="org.apache.log4j.varia.LevelRangeFilter">
-            <param name="LevelMax" value="INFO" />
-            <param name="LevelMin" value="INFO" />
+            <param name="LevelMax" value="ERROR" />
+            <param name="LevelMin" value="DEBUG" />
         </filter>
     </appender>
 
     <root>
         <priority value="INFO" />
         <appender-ref ref="CONSOLE" />
+        <appender-ref ref="GATEWAY_LOG" />
     </root>
 
     <category name="com.xieziming.stap">
-        <priority value="INFO" />
-        <appender-ref ref="ChannelLogAppender" />
+        <priority value="DEBUG" />
+        <appender-ref ref="STAP_LOG" />
     </category>
 
 </log4j:configuration>

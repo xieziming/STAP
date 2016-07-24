@@ -1,20 +1,22 @@
 package com.xieziming.stap.channel.services;
 
-import com.xieziming.stap.core.model.execution.builder.ExecutionBriefDtoBuilder;
-import com.xieziming.stap.core.model.execution.builder.ExecutionPlanDtoBuilder;
+import com.xieziming.stap.core.model.execution.converter.ExecutionBriefConverter;
+import com.xieziming.stap.core.model.execution.converter.ExecutionPlanConverter;
+import com.xieziming.stap.core.model.execution.converter.ExecutionPlanMetaConverter;
 import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
 import com.xieziming.stap.core.model.execution.dao.ExecutionPlanDao;
+import com.xieziming.stap.core.model.execution.dao.ExecutionPlanMetaDao;
 import com.xieziming.stap.core.model.execution.dto.ExecutionBriefDto;
 import com.xieziming.stap.core.model.execution.dto.ExecutionPlanDto;
+import com.xieziming.stap.core.model.execution.pojo.ExecutionPlan;
+import com.xieziming.stap.core.model.execution.pojo.ExecutionPlanMeta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,27 +32,66 @@ public class ExecutionPlanService {
     @Autowired
     private ExecutionPlanDao executionPlanDao;
     @Autowired
-    private ExecutionPlanDtoBuilder executionPlanDtoBuilder;
+    private ExecutionPlanMetaDao executionPlanMetaDao;
     @Autowired
-    private ExecutionBriefDtoBuilder executionBriefDtoBuilder;
+    private ExecutionPlanConverter executionPlanConverter;
+    @Autowired
+    private ExecutionBriefConverter executionBriefConverter;
     @Autowired
     private ExecutionDao executionDao;
+    @Autowired
+    private ExecutionPlanMetaConverter executionPlanMetaConverter;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public List<ExecutionPlanDto> getAllExecutionPlans() {
-        return executionPlanDtoBuilder.buildAll(executionPlanDao.findAll());
+        return executionPlanConverter.convertAllToDto(executionPlanDao.findAll());
     }
 
     @RequestMapping(value = "{execution_plan_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionPlanDto getExecutionPlan(@PathVariable("execution_plan_id") int executionPlanId) {
-        return executionPlanDtoBuilder.build(executionPlanDao.findById(executionPlanId));
+        return executionPlanConverter.convertToDto(executionPlanDao.findById(executionPlanId));
+    }
+
+    @RequestMapping(value = "{execution_plan_id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE+UTF8, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public ExecutionPlan updateExecutionPlan(@RequestBody ExecutionPlan executionPlan) {
+        logger.info("A put request for execution plan: "+executionPlan.toString());
+        if(executionPlan.getId() != null){
+            return executionPlanDao.update(executionPlan);
+        }else{
+            return executionPlanDao.add(executionPlan);
+        }
+    }
+
+    @RequestMapping(value = "{execution_plan_id}/execution_plan_meta", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE+UTF8, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public ExecutionPlanMeta updateExecutionPlanMeta(@RequestBody ExecutionPlanMeta executionPlanMeta) {
+        logger.info("A put request for execution plan meta: "+executionPlanMeta.toString());
+        if(executionPlanMeta.getId() != null) {
+            return executionPlanMetaDao.update(executionPlanMeta);
+        }else{
+            return executionPlanMetaDao.add(executionPlanMeta);
+        }
+    }
+
+    @RequestMapping(value = "{execution_plan_id}/execution_plan_meta/{execution_plan_meta_id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteExecutionPlanMeta(@PathVariable("execution_plan_meta_id") int executionPlanMetaId) {
+        logger.info("A delete request for execution plan meta: "+executionPlanMetaId);
+        executionPlanMetaDao.delete(executionPlanMetaId);
+    }
+
+    @RequestMapping(value = "{execution_plan_id}/execution_plan_meta/{execution_plan_meta_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public ExecutionPlanMeta getExecutionPlanMeta(@PathVariable("execution_plan_meta_id") int executionPlanMetaId) {
+        return executionPlanMetaDao.findById(executionPlanMetaId);
     }
 
     @RequestMapping(value = "{execution_plan_id}/execution_list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public List<ExecutionBriefDto> getExecutions(@PathVariable("execution_plan_id") int executionPlanId) {
-        return executionBriefDtoBuilder.buildAll(executionDao.findAllByExecutionPlanId(executionPlanId));
+        return executionBriefConverter.buildAll(executionDao.findAllByExecutionPlanId(executionPlanId));
     }
 }

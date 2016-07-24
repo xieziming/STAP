@@ -23,7 +23,6 @@ import java.util.List;
 })
 
 public class StapChannelConfiguration extends WebMvcConfigurerAdapter{
-
     @Value("${stap.file.service.url}")
     private String stapFileServiceUrl;
 

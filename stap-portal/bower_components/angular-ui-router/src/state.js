@@ -262,10 +262,10 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    * to add custom functionality to ui-router, for example inferring templateUrl 
    * based on the state name.
    *
-   * When passing only a name, it returns the current (original or decorated) builder
+   * When passing only a name, it returns the current (original or decorated) converter
    * function that matches `name`.
    *
-   * The builder functions that can be decorated are listed below. Though not all
+   * The converter functions that can be decorated are listed below. Though not all
    * necessarily have a good use case for decoration, that is up to you to decide.
    *
    * In addition, users can attach custom decorators, which will generate new 
@@ -275,11 +275,11 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    * meta-programming features.
    *
    * **Warning**: Decorators should not be interdependent because the order of 
-   * channel of the builder functions in non-deterministic. Builder functions 
+   * channel of the converter functions in non-deterministic. Builder functions 
    * should only be dependent on the state definition object and super function.
    *
    *
-   * Existing builder functions and current return values:
+   * Existing converter functions and current return values:
    *
    * - **parent** `{object}` - returns the parent state object.
    * - **data** `{object}` - returns state data, including any inherited data that is not
@@ -294,7 +294,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    *   name (i.e. "viewName@stateName") and each value is the config object 
    *   (template, controller) for the view. Even when you don't use the views object 
    *   explicitly on a state config, one is still created for you internally.
-   *   So by decorating this builder function you have access to decorating template 
+   *   So by decorating this converter function you have access to decorating template 
    *   and controller properties.
    * - **ownParams** `{object}` - returns an array of params that belong to the state, 
    *   not including any params defined by ancestor states.
@@ -305,7 +305,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    *
    * @example
    * <pre>
-   * // Override the internal 'views' builder with a function that takes the state
+   * // Override the internal 'views' converter with a function that takes the state
    * // definition, and a reference to the internal function being overridden:
    * $stateProvider.decorator('views', function (state, parent) {
    *   var result = {},
@@ -333,12 +333,12 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    * // and /partials/home/contact/item.html, respectively.
    * </pre>
    *
-   * @param {string} name The name of the builder function to decorate. 
+   * @param {string} name The name of the converter function to decorate. 
    * @param {object} func A function that is responsible for decorating the original 
-   * builder function. The function receives two parameters:
+   * converter function. The function receives two parameters:
    *
    *   - `{object}` - state - The state config object.
-   *   - `{object}` - super - The original builder function.
+   *   - `{object}` - super - The original converter function.
    *
    * @return {object} $stateProvider - $stateProvider instance
    */

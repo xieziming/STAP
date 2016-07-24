@@ -165,167 +165,93 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">
-                                                Execution Plan Name
+                                                Name
                                             </label>
-                                            <a href="#" editable-text="executionPlan.name"> {{ executionPlan.name || 'empty' }} </a>
-                                        </div>
-                                        <div class="well">
-                                            <!-- /// controller:  'TextSimpleCtrl' -  localtion: assets/js/controllers/xeditableCtrl.js /// -->
-                                            <div class="ng-scope">
-                                                <a href="#" editable-text="executionPlan.name"> {{ executionPlan.name || 'empty' }} </a>
-                                            </div>
+                                            <input type="text" placeholder="Enter execution plan name" class="form-control" name="name" ng-model="executionPlan.name">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">
-                                                Last Name
+                                                Description
                                             </label>
-                                            <input type="text" placeholder="Enter your last name" class="form-control" name="lastname" ng-model="userInfo.lastName">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Email Address
-                                            </label>
-                                            <input type="email" placeholder="email address" class="form-control" name="email" ng-model="userInfo.email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Phone
-                                            </label>
-                                            <input type="text" placeholder="phone number" class="form-control" name="phone" ng-model="userInfo.phone">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Url
-                                            </label>
-                                            <input type="text" placeholder="Enter Url" class="form-control" name="url" ng-model="userInfo.url">
+                                            <textarea placeholder="Enter execution plan description" class="form-control" name="description" ng-model="executionPlan.description" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="block">
-                                                Gender
+                                                Status
                                             </label>
                                             <div class="clip-radio radio-primary">
-                                                <input type="radio" id="us-female" name="gender" value="female" ng-model="userInfo.gender">
-                                                <label for="us-female">
-                                                    Female
+                                                <input type="radio" id="opened" name="gender" value="Opened" ng-model="executionPlan.status">
+                                                <label for="opened">
+                                                    Opened
                                                 </label>
-                                                <input type="radio" id="us-male" name="gender" value="male" ng-model="userInfo.gender">
-                                                <label for="us-male">
-                                                    Male
+                                                <input type="radio" id="closed" name="gender" value="Closed" ng-model="executionPlan.status">
+                                                <label for="closed">
+                                                    Closed
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="control-label">
-                                                        Zip Code
-                                                    </label>
-                                                    <input class="form-control" placeholder="enter a zip code" type="text" name="zipcode" ng-model="userInfo.zipCode">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <label class="control-label">
-                                                        City
-                                                    </label>
-                                                    <input class="form-control" placeholder="enter your city" type="text" name="city" ng-model="userInfo.city">
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div class="form-group">
-                                            <label>
-                                                Image Upload
+                                            <label class="block">
+                                                Operation
                                             </label>
-                                            <div flow-init flow-object="obj.flow">
-                                                <div class="user-image">
-                                                    <div class="thumbnail margin-bottom-5">
-                                                        <img src="assets/images/default-user.png" alt="" ng-if="!obj.flow.files.length && noImage">
-                                                        <img ng-src="{{userInfo.avatar}}" alt="" ng-if="!obj.flow.files.length && !noImage">
-                                                        <img flow-img="obj.flow.files[0]" ng-if="obj.flow.files.length">
-                                                    </div>
-                                                </div>
-                                                <div class="user-image-buttons-edit" ng-if="obj.flow.files.length">
-                                                    <span class="btn btn-primary btn-file">
-					                                    <i class="fa fa-pencil"></i>
-					                                    <input type="file" flow-btn />
-					                                </span>
-                                                    <span class="btn btn-danger" ng-click="obj.flow.cancel()"> <i class="fa fa-times"></i></span>
-                                                </div>
-                                                <div class="user-image-buttons-edit" ng-if="!obj.flow.files.length">
-                                                    <span class="btn btn-primary btn-file">
-					                                    <i class="fa fa-pencil"></i>
-					                                    <input type="file" flow-btn />
-					                                </span>
-                                                    <span class="btn btn-danger" ng-if="!noImage" ng-click="removeImage()"><i class="fa fa-times"></i> </span>
-                                                </div>
-                                            </div>
+                                            <a ladda="ldloading.expand_right_progress" class="btn btn-grey" data-style="expand-right" ng-click="updateExecutionPlan()"> Update General Information </a>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
                             <fieldset>
                                 <legend>
-                                    Additional Info
+                                    Meta Data
                                 </legend>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label class="control-label">
-                                                Twitter
-                                            </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Twitter" name="twitter" ng-model="userInfo.twitter">
-                                                <i class="fa fa-twitter"></i>
-                                            </span>
+                                            <label class="block">Meta Type</label>
+                                            <input type="text" class="form-control" name="metaType" ng-model="putMeta.metaType" />
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">
-                                                Facebook
-                                            </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Facebook" name="facebook" ng-model="userInfo.facebook">
-                                                <i class="fa fa-facebook"></i>
-                                            </span>
+                                            <label class="block">Meta Key</label>
+                                            <input type="text" class="form-control" name="metaKey" ng-model="putMeta.metaKey" />
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label">
-                                                Google Plus
-                                            </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Google Plus" name="google" ng-model="userInfo.google">
-                                                <i class="fa fa-google-plus"></i>
-                                            </span>
+                                            <label class="block">Meta Value</label>
+                                            <input type="text" class="form-control" name="metaValue" ng-model="putMeta.metaValue" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="block">
+                                                <a class="btn btn-grey" ng-click="putExecutionPlanMeta()"> Add Meta </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Github
-                                            </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Github" name="github" ng-model="userInfo.github">
-                                                <i class="fa fa-github"></i>
-                                            </span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Linkedin
-                                            </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Linkedin" name="linkedin" ng-model="userInfo.linkedin">
-                                                <i class="fa fa-linkedin"></i>
-                                            </span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                Skype
-                                            </label>
-                                            <span class="input-icon">
-                                                <input class="form-control" type="text" placeholder="Skype" name="skype" ng-model="userInfo.skype">
-                                                <i class="fa fa-skype"></i>
-                                            </span>
+                                    <div class="col-md-8">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Type</th>
+                                                    <th>Key</th>
+                                                    <th>Value</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="metaData in metaDataList">
+                                                    <td>{{metaData.metaType}} </td>
+                                                    <td>{{metaData.metaKey}} </td>
+                                                    <td>{{metaData.metaValue}} </td>
+                                                    <td>
+                                                        <a class="btn btn-grey btn-sm" ng-click="editExecutionPlanMeta(metaData)">Edit</a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-grey btn-sm" ng-click="deleteExecutionPlanMeta(metaData)">Delete</a>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

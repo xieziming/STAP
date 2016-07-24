@@ -17,6 +17,7 @@ import java.util.Date;
 public class TestCaseMeta {
     private Integer id;
     private Integer testCaseId;
+    private String metaType;
     private String metaKey;
     private String metaValue;
     @JsonSerialize(using = JsonDateSerializer.class)

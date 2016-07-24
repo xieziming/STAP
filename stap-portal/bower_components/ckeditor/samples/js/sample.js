@@ -42,7 +42,7 @@ var initSample = ( function() {
 
 	function isWysiwygareaAvailable() {
 		// If in development mode, then the wysiwygarea must be available.
-		// Split REV into two strings so builder does not replace it :D.
+		// Split REV into two strings so converter does not replace it :D.
 		if ( CKEDITOR.revision == ( '%RE' + 'V%' ) ) {
 			return true;
 		}

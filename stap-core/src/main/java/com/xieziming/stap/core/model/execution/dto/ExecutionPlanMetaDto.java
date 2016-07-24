@@ -16,6 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class ExecutionPlanMetaDto {
     private Integer id;
+    private String metaType;
     private String metaKey;
     private String metaValue;
     @JsonSerialize(using = JsonDateSerializer.class)

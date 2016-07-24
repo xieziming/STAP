@@ -17,13 +17,13 @@ import java.util.List;
 public class TestCaseMetaDao {
 
     public void add(TestCaseMeta testCaseMeta) {
-        String sql = "INSERT INTO "+StapDbTables.TEST_CASE_META+" SET Test_Case_Id=?, Meta_Key=?, Meta_Value=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseMeta.getTestCaseId(), testCaseMeta.getMetaKey(), testCaseMeta.getMetaValue()});
+        String sql = "INSERT INTO "+StapDbTables.TEST_CASE_META+" SET Test_Case_Id=?, Meta_Type=?, Meta_Key=?, Meta_Value=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseMeta.getTestCaseId(), testCaseMeta.getMetaType(), testCaseMeta.getMetaKey(), testCaseMeta.getMetaValue()});
     }
 
     public void update(TestCaseMeta testCaseMeta) {
-        String sql = "UPDATE "+StapDbTables.TEST_CASE_META+" SET Test_Case_Id=?, Meta_Key=?, Meta_Value=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseMeta.getTestCaseId(), testCaseMeta.getMetaKey(), testCaseMeta.getMetaValue(), testCaseMeta.getId()});
+        String sql = "UPDATE "+StapDbTables.TEST_CASE_META+" SET Test_Case_Id=?, Meta_Type=?, Meta_Key=?, Meta_Value=? WHERE Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseMeta.getTestCaseId(), testCaseMeta.getMetaType(), testCaseMeta.getMetaKey(), testCaseMeta.getMetaValue(), testCaseMeta.getId()});
     }
 
     public void delete(int id) {
@@ -51,6 +51,7 @@ public class TestCaseMetaDao {
             TestCaseMeta testCaseMeta = new TestCaseMeta();
             testCaseMeta.setId(resultSet.getInt("Id"));
             testCaseMeta.setTestCaseId(resultSet.getInt("Test_Case_Id"));
+            testCaseMeta.setMetaType(resultSet.getString("Meta_Type"));
             testCaseMeta.setMetaKey(resultSet.getString("Meta_Key"));
             testCaseMeta.setMetaValue(resultSet.getString("Meta_Value"));
             testCaseMeta.setLastUpdate(resultSet.getTimestamp("Last_Update"));
