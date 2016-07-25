@@ -2,8 +2,8 @@
 /**
  * Clip-Two Main Controller
  */
-app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$swipe', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', 'Fullscreen', 'AuthService',
-function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, Fullscreen, AuthService) {
+app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$swipe', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', 'Fullscreen', 'AuthService', 'ngNotify',
+function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, Fullscreen, AuthService, ngNotify) {
 
     // Loading bar transition
     // -----------------------------------
@@ -226,4 +226,16 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
         AuthService.logout();
         $state.go('login.signin');
     };
+
+    //Notification
+    $rootScope.$on('newNotification', function (e, data) {
+        ngNotify.set(data.msg, {
+            theme: 'pure',
+            position: 'top',
+            type: data.type,
+            sticky: 'true',
+            button: 'true',
+            html: false
+        });
+    });
 }]);

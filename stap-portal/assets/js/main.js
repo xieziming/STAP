@@ -37,12 +37,6 @@ function ($rootScope, $state, $stateParams) {
         layout: ''
     };
     $rootScope.app.layout = angular.copy($rootScope.app.defaultLayout);
-    $rootScope.user = {
-        name: null,
-        group: null,
-		email: null,
-		avatar: 'app/img/user/02.jpg'
-    };
 }]);
 // translate config
 app.config(['$translateProvider',
@@ -77,10 +71,11 @@ function (cfpLoadingBarProvider) {
 // Angular-breadcrumb
 // configuration
 app.config(function ($breadcrumbProvider) {
-    $breadcrumbProvider.setOptions({
-        template: '<ul class="breadcrumb"><li><a ui-sref="app.dashboard"><i class="fa fa-home margin-right-5 text-large text-dark"></i><span translate="dashboard.HOME">HOME</span></a></li><li ng-repeat="step in steps"> <a href="{{step.ncyBreadcrumbLink}}"><span translate="{{step.ncyBreadcrumbLabel}}"</a></li></ul>'
-    });
+	$breadcrumbProvider.setOptions({
+		template: '<ul class="breadcrumb"><li><a ui-sref="app.dashboard"><i class="fa fa-home margin-right-5 text-large text-dark"></i><span translate="dashboard.HOME">HOME</span></a></li><li ng-repeat="step in steps"> <a href="{{step.ncyBreadcrumbLink}}"><span translate="{{step.ncyBreadcrumbLabel}}"</a></li></ul>'
+	});
 });
+
 // ng-storage
 //set a prefix to avoid overwriting any local storage variables
 app.config(['$localStorageProvider',

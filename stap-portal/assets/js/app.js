@@ -7,6 +7,7 @@ angular.module("stap", [
 	'ngCookies',
 	'ngStorage',
 	'ngSanitize',
+	'ngNotify',
 	'ngTouch',
 	'ui.router',
 	'ui.bootstrap',

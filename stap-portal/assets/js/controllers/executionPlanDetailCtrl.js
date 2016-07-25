@@ -2,7 +2,7 @@
 /** 
   * controller for Execution Plan Detail
 */
-app.controller('executionPlanDetailCtrl', ["$scope", "$filter", "$http", "ngTableParams", "ENV_CONFIG", "$stateParams", "$timeout", function ($scope, $filter, $http, ngTableParams, ENV_CONFIG, $stateParams, $timeout) {
+app.controller('executionPlanDetailCtrl', ["$rootScope", "$scope", "$filter", "$http", "ngTableParams", "ENV_CONFIG", "$stateParams", "$timeout", "NotificationService", function ($rootScope, $scope, $filter, $http, ngTableParams, ENV_CONFIG, $stateParams, $timeout, NotificationService) {
 
 
     $http.get(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id).then(function (res) {
@@ -85,6 +85,15 @@ app.controller('executionPlanDetailCtrl', ["$scope", "$filter", "$http", "ngTabl
 
     $scope.ldloading = {};
     $scope.updateExecutionPlan = function () {
+        $http.post(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id, $scope.executionPlan).then(function (res) {
+            NotificationService.error("sdasdsadsadsad");
+        }, function (err) {
+            alert(err);
+        });
+
+    };
+
+    $scope.deleteExecutionPlan = function () {
         var style = 'expand-right';
         $scope.ldloading[style.replace('-', '_') + "_progress"] = true;
         $timeout(function () {
@@ -95,7 +104,7 @@ app.controller('executionPlanDetailCtrl', ["$scope", "$filter", "$http", "ngTabl
         }, 1000);
 
         $http.post(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id, $scope.executionPlan).then(function (res) {
-            alert(res.data);
+            //alert(res.data);
         }, function (err) {
             alert(err);
         });
