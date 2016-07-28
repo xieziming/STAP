@@ -43,14 +43,22 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         }
     }).state('app.execution_plan', {
         url: '/execution_plan',
+        template: '<div ui-view class="fade-in-up"></div>',
+        title: 'Execution Plan',
+        ncyBreadcrumb: {
+            label: 'execution_plan.ExecutionPlan'
+        },
+        abstract: true
+    }).state('app.execution_plan.list', {
+        url: '/list',
         templateUrl: "assets/views/execution_plan.html",
         title: 'Execution Plan',
         ncyBreadcrumb: {
-            label: 'Execution Plan'
+            label: 'execution_plan.ExecutionPlanList'
         },
         resolve: loadSequence('ngTable', 'executionPlanCtrl')
-    }).state('app.execution_plan_detail', {
-        url: '/execution_plan/:id/detail',
+    }).state('app.execution_plan.detail', {
+        url: '/:id/detail',
         templateUrl: "assets/views/execution_plan_detail.html",
         title: 'Execution Plan Detail',
         ncyBreadcrumb: {
@@ -58,14 +66,30 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         },
         resolve: loadSequence('flow','ngTable', 'executionPlanDetailCtrl')
     }).state('app.execution', {
-            url: '/execution/:id/detail',
-            templateUrl: "assets/views/execution_detail.html",
-            title: 'Execution Detail',
-            ncyBreadcrumb: {
-                label: 'Execution Detail'
-            },
-            resolve: loadSequence('flow','ngTable', 'executionDetailCtrl')
-        })
+        url: '/execution/:id/detail',
+        templateUrl: "assets/views/execution_detail.html",
+        title: 'Execution Detail',
+        ncyBreadcrumb: {
+            label: 'Execution Detail'
+        },
+        resolve: loadSequence('flow','ngTable', 'executionDetailCtrl')
+    }).state('app.testcase', {
+        url: '/test_case',
+        template: '<div ui-view class="fade-in-up"></div>',
+        title: 'Test Case',
+        ncyBreadcrumb: {
+            label: 'testCase.TestCase'
+        },
+        abstract: true
+    }).state('app.testcase.detail', {
+        url: '/:id/detail',
+        templateUrl: "assets/views/test_case_detail.html",
+        title: 'Test Case Detail',
+        ncyBreadcrumb: {
+            label: 'testCase.TestCaseDetail'
+        },
+        resolve: loadSequence('flow','ngTable', 'testCaseDetailCtrl')
+    })
 	// Login routes
 	.state('login', {
 	    url: '/login',

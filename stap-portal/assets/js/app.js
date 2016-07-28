@@ -1,5 +1,5 @@
 /** 
-  * declare 'packet' module with dependencies
+  * declare 'stap' module with dependencies
 */
 'use strict';
 angular.module("stap", [

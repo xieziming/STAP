@@ -80,7 +80,7 @@ app.config(function ($breadcrumbProvider) {
 //set a prefix to avoid overwriting any local storage variables
 app.config(['$localStorageProvider',
     function ($localStorageProvider) {
-        $localStorageProvider.setKeyPrefix('PacketLtr3');
+        $localStorageProvider.setKeyPrefix('StapLocal');
     }]);
 //filter to convert html to plain text
 app.filter('htmlToPlaintext', function () {

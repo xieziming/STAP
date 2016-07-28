@@ -48,6 +48,10 @@
         "ExecutionPlan": "执行计划",
         "ExecutionPlanDetail": "执行计划细节"
     },
+    "testCase":{
+        "TestCase": "测试用例",
+        "TestCaseDetail": "测试用例细节"
+    },
     "sidebar": {
         "heading": {
             "NAVIGATION": "页面导航",

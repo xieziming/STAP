@@ -48,6 +48,10 @@
         "ExecutionPlan": "Execution Plan",
         "ExecutionPlanDetail": "Execution Plan Detail"
     },
+    "testCase":{
+        "TestCase": "Test Case",
+        "TestCaseDetail": "Test Case Detail"
+    },
     "sidebar": {
         "heading": {
             "NAVIGATION": "Main Navigation",

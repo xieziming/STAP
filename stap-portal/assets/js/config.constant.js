@@ -61,7 +61,7 @@ app.constant('JS_REQUIRES', {
         }, {
             name:  'executionPlanCtrl',
             files: ['assets/js/controllers/executionPlanCtrl.js'],
-            cache: false
+            cache: true
         }, {
             name:  'cropCtrl', 
             files: ['assets/js/controllers/cropCtrl.js']
@@ -92,7 +92,7 @@ app.constant('JS_REQUIRES', {
         }, {
             name:   'executionPlanDetailCtrl',
             files: ['assets/js/controllers/executionPlanDetailCtrl.js'],
-            cache: false
+            cache: true
         },, {
             name:   'executionDetailCtrl',
             files: ['assets/js/controllers/executionDetailCtrl.js'],
@@ -139,6 +139,9 @@ app.constant('JS_REQUIRES', {
         }, {
             name:  'loginCtrl', 
             files: ['assets/js/controllers/loginCtrl.js']
+        }, {
+            name:  'testCaseDetailCtrl',
+            files: ['assets/js/controllers/testCaseDetailCtrl.js']
         }
     ],
     //*** angularJS Modules
