@@ -3,6 +3,18 @@
     "search": {
         "PLACEHOLDER": "Enter search text here..."
     },
+    "common": {
+        "NAME": "名称",
+        "STATUS": "状态",
+        "DESCRIPTION": "描述",
+        "LAST_UPDATE": "最后更新",
+        "PROJECTS": "项目",
+        "COMMENTS": "评论",
+        "EXECUTIONS": "测试执行",
+        "NOTIFICATION": "通知",
+        "RECENT_CHANGE": "最近变更",
+        "RECENT_COMMENTS": "最近评论"
+    },
     "topbar": {
         "messages": {
             "MAIN": "Messages",
@@ -17,7 +29,7 @@
         },
         "user": {
             "PROFILE": "我的档案",
-            "CALENDAR": "My Calendar",
+            "CALENDAR": "我的日历",
             "MESSAGES": "我的消息",
             "LOCKSCREEN": "锁屏",
             "LOGOUT": "退出"
@@ -82,7 +94,7 @@
                 "MAIN": "用户管理"
             },
             "group_management": {
-                "MAIN": "用户组管理"
+                "MAIN": "角色管理"
             }
         }
     },

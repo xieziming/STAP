@@ -30,7 +30,7 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>Name:</td>
+                                            <td translate="common.NAME">Name:</td>
                                             <td>
                                                 {{testCase.name}}
                                             </td>
@@ -72,13 +72,13 @@
                                     <div class="col-sm-3">
                                         <button class="btn btn-icon margin-bottom-5 btn-block">
                                             <i class="ti-comments block text-primary text-extra-large margin-bottom-10"></i>
-                                            Messages <span class="badge badge-danger"> 23 </span>
+                                            Comments <span class="badge badge-danger"> 23 </span>
                                         </button>
                                     </div>
                                     <div class="col-sm-3">
                                         <button class="btn btn-icon margin-bottom-5 btn-block">
                                             <i class="ti-calendar block text-primary text-extra-large margin-bottom-10"></i>
-                                            Calendar
+                                            Executions
                                         </button>
                                     </div>
                                     <div class="col-sm-3">
@@ -118,16 +118,16 @@
                                 </div>
                                 <div class="panel panel-white space20">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">Recent Tweets</h4>
+                                        <h4 class="panel-title">Recent Comments</h4>
                                     </div>
                                     <div class="panel-body">
                                         <ul class="ltwt">
                                             <li class="ltwt_tweet">
                                                 <p class="ltwt_tweet_text">
                                                     <a href class="text-info">
-                                                        @Shakespeare
+                                                        @Suny
                                                     </a>
-                                                    Some are born great, some achieve greatness, and some have greatness thrust upon them.
+                                                    The description is not clear, need to be clarified.
                                                 </p>
                                                 <span class="block text-light"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</span>
                                             </li>
@@ -171,9 +171,10 @@
                         <table ng-table="testStepTableParams" show-filter="false" class="table table-striped">
                             <tr ng-repeat="testStep in $data">
                                 <td class="col-md-1" data-title="'Order'" sortable="'id'"> {{testStep.stepOrder}} </td>
-                                <td data-title="'Name'">{{testStep.testAction.name}}</td>
-                                <td data-title="'Remark'" sortable="'testDataDefinition.value'">{{testStep.testAction.remark}}</td>
-                                <td data-title="'Last Update'" sortable="'testDataDefinition.remark'">{{testStep.testAction.lastUpdate}}</td>
+                                <td data-title="'Name'"  sortable="'testAction.name'">{{testStep.testAction.name}}</td>
+                                <td data-title="'Parameter'" sortable="'testAction.remark'">{{testStep.parameter}}</td>
+                                <td data-title="'Remark'" sortable="'testAction.remark'">{{testStep.testAction.remark}}</td>
+                                <td data-title="'Last Update'" sortable="'testAction.lastUpdate'">{{testStep.testAction.lastUpdate}}</td>
                             </tr>
                         </table>
                     </uib-tab>
