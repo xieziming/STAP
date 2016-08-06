@@ -1,6 +1,7 @@
 package com.xieziming.stap.core.model.testcase.dto;
 
-import com.xieziming.stap.core.model.testcase.pojo.*;
+import com.xieziming.stap.core.model.execution.dto.ExecutionBriefDto;
+import com.xieziming.stap.core.model.testcase.pojo.TestCase;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,5 @@ public class TestCaseDto {
     private List<TestCaseRelationDto> testCaseRelationDtoList;
     private List<TestStepDto> testStepDtoList;
     private List<TestDataDto> testDataDtoList;
+    private List<ExecutionBriefDto> executionBriefDtoList;
 }

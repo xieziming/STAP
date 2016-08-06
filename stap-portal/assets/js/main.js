@@ -57,7 +57,7 @@ function ($translateProvider) {
     $translateProvider.useLocalStorage();
 
     // Enable sanitize
-    $translateProvider.useSanitizeValueStrategy('sanitize');
+    //$translateProvider.useSanitizeValueStrategy('sanitize');
 
 }]);
 // Angular-Loading-Bar
@@ -72,7 +72,7 @@ function (cfpLoadingBarProvider) {
 // configuration
 app.config(function ($breadcrumbProvider) {
 	$breadcrumbProvider.setOptions({
-		template: '<ul class="breadcrumb"><li><a ui-sref="app.dashboard"><i class="fa fa-home margin-right-5 text-large text-dark"></i><span translate="dashboard.HOME">HOME</span></a></li><li ng-repeat="step in steps"> <a href="{{step.ncyBreadcrumbLink}}"><span translate="{{step.ncyBreadcrumbLabel}}"</a></li></ul>'
+		template: '<ul class="breadcrumb"><li><a ui-sref="app.dashboard"><i class="fa fa-home margin-right-5 text-large text-dark"></i><span translate="navigation.home">HOME</span></a></li><li ng-repeat="step in steps"> <a href="{{step.ncyBreadcrumbLink}}"><span translate="{{step.ncyBreadcrumbLabel}}"</a></li></ul>'
 	});
 });
 

@@ -2,31 +2,31 @@
 <button ct-toggle="toggle" target="settings" parent-active-class="active" class="btn btn-default">
     <i class="fa fa-spin fa-gear"></i>
 </button>
-<div class="panel-heading ng-scope" translate="setting.MAIN">
+<div class="panel-heading ng-scope" translate="layout.selector">
     Style Selector
 </div>
 <div class="panel-body ng-scope">
     <!-- start: FIXED HEADER -->
     <div class="setting-box clearfix">
-        <span class="setting-title pull-left" translate="setting.FIXEDHEADER"> Fixed header</span>
+        <span class="setting-title pull-left" translate="layout.fixedHeader"> Fixed header</span>
         <span class="setting-switch pull-right"> <switch ng-model="app.layout.isNavbarFixed" class="green"></switch> </span>
     </div>
     <!-- end: FIXED HEADER -->
     <!-- start: FIXED SIDEBAR -->
     <div class="setting-box clearfix" ng-hide="app.layout.isBoxedPage">
-        <span class="setting-title pull-left" translate="setting.FIXEDSIDEBAR">Fixed sidebar</span>
+        <span class="setting-title pull-left" translate="layout.fixedSidebar">Fixed sidebar</span>
         <span class="setting-switch pull-right"> <switch ng-model="app.layout.isSidebarFixed" class="green"></switch> </span>
     </div>
     <!-- end: FIXED SIDEBAR -->
     <!-- start: CLOSED SIDEBAR -->
     <div class="setting-box clearfix">
-        <span class="setting-title pull-left" translate="setting.CLOSEDSIDEBAR">Closed sidebar</span>
+        <span class="setting-title pull-left" translate="layout.closeSidebar">Closed sidebar</span>
         <span class="setting-switch pull-right"> <switch ng-model="app.layout.isSidebarClosed" class="green"></switch> </span>
     </div>
     <!-- end: CLOSED SIDEBAR -->
     <!-- start: FIXED FOOTER -->
     <div class="setting-box clearfix">
-        <span class="setting-title pull-left" translate="setting.FIXEDFOOTER">Fixed footer</span>
+        <span class="setting-title pull-left" translate="layout.fixedFooter">Fixed footer</span>
         <span class="setting-switch pull-right"> <switch ng-model="app.layout.isFooterFixed" class="green"></switch> </span>
     </div>
     <!-- end: FIXED FOOTER -->
@@ -88,10 +88,10 @@
     <!-- end: THEME SWITCHER -->
 </div>
 <div class="panel-footer">
-    <button class="btn btn-primary ladda-button btn-squared btn-sm btn-o" ng-click="resetLayout()" ladda="loading_reset" data-style="slide-up" ng-init="!loading_reset" data-spinner-size="10" data-spinner-color="#999999">
+    <button translate="layout.reset" class="btn btn-primary ladda-button btn-squared btn-sm btn-o" ng-click="resetLayout()" ladda="loading_reset" data-style="slide-up" ng-init="!loading_reset" data-spinner-size="10" data-spinner-color="#999999">
         Reset
     </button>
-    <button class="btn btn-primary ladda-button pull-right btn-squared btn-sm btn-wide" ng-click="saveLayout()" ladda="loading_save" data-style="slide-up" ng-init="!loading_save" data-spinner-size="10">
+    <button translate="layout.save" class="btn btn-primary ladda-button pull-right btn-squared btn-sm btn-wide" ng-click="saveLayout()" ladda="loading_save" data-style="slide-up" ng-init="!loading_save" data-spinner-size="10">
         Save
     </button>
 </div>

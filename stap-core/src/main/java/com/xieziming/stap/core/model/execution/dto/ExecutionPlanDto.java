@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class ExecutionPlanDto {
     private String name;
     private String description;
     private String status;
+    private Date lastUpdate;
     private List<ExecutionPlanMetaDto> executionPlanMetaDtoList;
     private List<ExecutionLogDto> executionLogDtoList;
 }

@@ -1,6 +1,6 @@
 <!-- start: BREADCRUMB -->
 <div class="breadcrumb-wrapper">
-    <h4 class="mainTitle no-margin" translate="execution_plan.ExecutionPlanDetail">ExecutionPlanDetail</h4>
+    <h4 class="mainTitle no-margin" translate="executionPlan.executionPlanDetail">ExecutionPlanDetail</h4>
 
     <div ncy-breadcrumb class="pull-right"></div>
 </div>
@@ -14,7 +14,7 @@
                 <!-- start: USER TABSET -->
                 <uib-tabset class="tabbable">
                     <!-- start: TAB OVERVIEW -->
-                    <uib-tab heading="Overview">
+                    <uib-tab heading="{{'common.overview' | translate}}">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="user-left">
@@ -26,7 +26,7 @@
                                     <table class="table table-condensed">
                                         <thead>
                                             <tr>
-                                                <th colspan="3">General Information</th>
+                                                <th colspan="3">{{common.overview | translate}}General Information</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -141,7 +141,7 @@
                     </uib-tab>
                     <!-- end: TAB OVERVIEW -->
                     <!-- start: TAB PROJECTS -->
-                    <uib-tab heading="Executions">
+                    <uib-tab heading="{{'common.executions' | translate}}">
                         <table ng-table="tableParams" show-filter="true" class="table table-striped">
                             <tr ng-repeat="execution_brief in $data">
                                 <td class="col-md-1" data-title="'ID'" filter="{ 'id': 'text' }" sortable="'id'"> {{execution_brief.id}} </td>
@@ -155,7 +155,7 @@
                     </uib-tab>
                     <!-- end: TAB PROJECTS -->
                     <!-- start: TAB EDIT -->
-                    <uib-tab heading="Edit" active="editActive">
+                    <uib-tab heading="{{'common.edit' | translate}}" active="editActive">
                         <!--form action="#" role="form" id="form"-->
                             <fieldset>
                                 <legend>
@@ -182,11 +182,11 @@
                                                 Status
                                             </label>
                                             <div class="clip-radio radio-primary">
-                                                <input type="radio" id="opened" name="gender" value="Opened" ng-model="executionPlan.status">
+                                                <input type="radio" id="opened" name="status" value="Opened" ng-model="executionPlan.status">
                                                 <label for="opened">
                                                     Opened
                                                 </label>
-                                                <input type="radio" id="closed" name="gender" value="Closed" ng-model="executionPlan.status">
+                                                <input type="radio" id="closed" name="status" value="Closed" ng-model="executionPlan.status">
                                                 <label for="closed">
                                                     Closed
                                                 </label>

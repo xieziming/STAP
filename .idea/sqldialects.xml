@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution_context.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution_plan.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution_plan_meta.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_action.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_case.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_case_meta.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_case_relation.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_data.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_data_definition.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_step.sql" dialect="MySQL" />
+  </component>
+</project>

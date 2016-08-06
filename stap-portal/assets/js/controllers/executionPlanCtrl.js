@@ -1,7 +1,7 @@
 'use strict';
 /**
- * controllers for ng-table
- * Simple table with sorting and filtering on AngularJS
+ * controllers for execution plan page
+ * with simple table with sorting and filtering on AngularJS
  */
 app.controller('executionPlanCtrl', ["$scope", "$filter", "$http", "ngTableParams", "ENV_CONFIG", function ($scope, $filter, $http, ngTableParams, ENV_CONFIG) {
     $http.get(ENV_CONFIG.gatewayUrl + '/execution_plan').then(function (res) {

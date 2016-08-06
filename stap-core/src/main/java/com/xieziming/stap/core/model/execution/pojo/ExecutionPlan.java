@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * Created by Suny on 5/8/16.
  */
@@ -15,4 +17,5 @@ public class ExecutionPlan {
     private String name;
     private String description;
     private String status;
+    private Date lastUpdate;
 }

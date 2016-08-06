@@ -41,12 +41,9 @@ public class ExecutionPlanConverter {
         executionPlanDto.setName(executionPlan.getName());
         executionPlanDto.setDescription(executionPlan.getDescription());
         executionPlanDto.setStatus(executionPlan.getStatus());
+        executionPlanDto.setLastUpdate(executionPlan.getLastUpdate());
         executionPlanDto.setExecutionPlanMetaDtoList(executionPlanMetaConverter.convertAllToDto(executionPlanMetaDao.findAllByExecutionPlanId(executionPlan.getId())));
         executionPlanDto.setExecutionLogDtoList(executionLogConverter.buildAll(executionLogDao.findAllByExecutionPlanId(executionPlan.getId())));
         return executionPlanDto;
-    }
-
-    public ExecutionPlan convertToPojo(ExecutionPlanDto executionPlanDto) {
-        return executionPlanDao.findById(executionPlanDto.getId());
     }
 }

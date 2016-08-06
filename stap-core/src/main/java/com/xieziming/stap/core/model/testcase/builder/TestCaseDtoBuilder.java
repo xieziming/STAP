@@ -1,6 +1,11 @@
 package com.xieziming.stap.core.model.testcase.builder;
 
-import com.xieziming.stap.core.model.testcase.dao.*;
+import com.xieziming.stap.core.model.execution.converter.ExecutionBriefConverter;
+import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
+import com.xieziming.stap.core.model.testcase.dao.TestCaseMetaDao;
+import com.xieziming.stap.core.model.testcase.dao.TestCaseRelationDao;
+import com.xieziming.stap.core.model.testcase.dao.TestDataDao;
+import com.xieziming.stap.core.model.testcase.dao.TestStepDao;
 import com.xieziming.stap.core.model.testcase.dto.TestCaseDto;
 import com.xieziming.stap.core.model.testcase.pojo.TestCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +35,10 @@ public class TestCaseDtoBuilder {
     private TestStepDtoBuilder testStepDtoBuilder;
     @Autowired
     private TestDataDtoBuilder testDataDtoBuilder;
+    @Autowired
+    private ExecutionDao executionDao;
+    @Autowired
+    private ExecutionBriefConverter executionBriefConverter;
 
     public List<TestCaseDto> buildAll(List<TestCase> testCaseList) {
         List<TestCaseDto> testCaseDtoList = new ArrayList<TestCaseDto>();
@@ -46,6 +55,7 @@ public class TestCaseDtoBuilder {
         testCaseDto.setTestCaseRelationDtoList(testCaseRelationDtoBuilder.buildAll(testCaseRelationDao.findAllByTestCaseId(testCase.getId())));
         testCaseDto.setTestDataDtoList(testDataDtoBuilder.buildAll(testDataDao.findAllByTestCaseId(testCase.getId())));
         testCaseDto.setTestStepDtoList(testStepDtoBuilder.buildAll(testStepDao.findAllByTestCaseId(testCase.getId())));
+        testCaseDto.setExecutionBriefDtoList(executionBriefConverter.buildAll(executionDao.findAllByTestCaseId(testCase.getId())));
         return testCaseDto;
     }
 }

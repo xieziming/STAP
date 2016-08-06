@@ -13,7 +13,7 @@
                 <!-- start: USER TABSET -->
                 <uib-tabset class="tabbable">
                     <!-- start: TAB OVERVIEW -->
-                    <uib-tab heading="Overview">
+                    <uib-tab heading="{{'common.overview' | translate}}">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="user-left">
@@ -138,7 +138,7 @@
                     </uib-tab>
                     <!-- end: TAB OVERVIEW -->
                     <!-- start: TAB STEP -->
-                    <uib-tab heading="Steps">
+                    <uib-tab heading="{{'testCase.testSteps' | translate}}">
                         <div id="timeline">
                             <div class="timeline">
                                 <div class="spine"></div>
@@ -172,7 +172,7 @@
                     </uib-tab>
                     <!-- end: TAB STEP -->
                     <!-- start: TAB OUTPUT -->
-                    <uib-tab heading="Output">
+                    <uib-tab heading="{{'common.output' | translate}}">
                         <table ng-table="outputTextTableParams" class="table table-striped">
                             <tr ng-repeat="executionOutputText in $data">
                                 <td class="col-md-1" data-title="'ID'" sortable="'id'"><span class="badge">{{executionOutputText.id}}</span></td>
@@ -186,7 +186,7 @@
                     </uib-tab>
                     <!-- end: TAB OUTPUT -->
                     <!-- start: TAB FILE -->
-                    <uib-tab heading="Files">
+                    <uib-tab heading="{{'common.files' | translate}}">
                         <table ng-table="outputFileTableParams" class="table table-striped">
                             <tr ng-repeat="executionOutputFile in $data">
                                 <td class="col-md-1" data-title="'ID'" sortable="'id'"><span class="badge">{{executionOutputFile.id}}</span></td>
@@ -199,7 +199,7 @@
                     </uib-tab>
                     <!-- end: TAB FILE -->
                     <!-- start: TAB LOG -->
-                    <uib-tab heading="Logs">
+                    <uib-tab heading="{{'common.logs' | translate}}">
                         <table ng-table="executionLogTableParams" class="table table-striped">
                             <tr ng-repeat="executionLog in $data">
                                 <td class="col-md-1" data-title="'ID'" sortable="'id'"><span ng-class="{'badge badge-danger': executionLog.level == 'ERROR','badge badge-warning': executionLog.level == 'WARN', 'badge badge-info': executionLog.level == 'INFO'}">{{executionLog.id}}</span></td>

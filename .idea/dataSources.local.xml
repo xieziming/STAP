@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Stap DB" uuid="9c8aed48-928b-4c23-90ca-b6d4ac842e5e">
+      <secret-storage>master_key</secret-storage>
+      <user-name>stap</user-name>
+    </data-source>
+  </component>
+</project>

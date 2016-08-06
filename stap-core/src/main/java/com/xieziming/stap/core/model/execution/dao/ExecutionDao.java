@@ -39,6 +39,11 @@ public class ExecutionDao {
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlanId}, executionRowMapper);
     }
 
+    public List<Execution> findAllByTestCaseId(int testCaseId) {
+        String sql = "SELECT * FROM " + StapDbTables.EXECUTION + " WHERE Test_Case_Id=?";
+        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId}, executionRowMapper);
+    }
+
     public List<Execution> findAll() {
         String sql = "SELECT * FROM " + StapDbTables.EXECUTION;
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[0], executionRowMapper);

@@ -39,14 +39,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
         title: 'Dashboard',
         ncyBreadcrumb: {
-            label: 'Dashboard'
+            label: 'navigation.dashboard'
         }
     }).state('app.execution_plan', {
         url: '/execution_plan',
         template: '<div ui-view class="fade-in-up"></div>',
         title: 'Execution Plan',
         ncyBreadcrumb: {
-            label: 'execution_plan.ExecutionPlan'
+            label: 'executionPlan.ExecutionPlan'
         },
         abstract: true
     }).state('app.execution_plan.list', {
@@ -54,7 +54,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         templateUrl: "assets/views/execution_plan.html",
         title: 'Execution Plan',
         ncyBreadcrumb: {
-            label: 'execution_plan.ExecutionPlanList'
+            label: 'executionPlan.executionPlanList'
         },
         resolve: loadSequence('ngTable', 'executionPlanCtrl')
     }).state('app.execution_plan.detail', {
@@ -62,7 +62,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         templateUrl: "assets/views/execution_plan_detail.html",
         title: 'Execution Plan Detail',
         ncyBreadcrumb: {
-            label: 'execution_plan.ExecutionPlanDetail'
+            label: 'executionPlan.executionPlanDetail'
         },
         resolve: loadSequence('flow','ngTable', 'executionPlanDetailCtrl')
     }).state('app.execution', {
@@ -70,7 +70,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         templateUrl: "assets/views/execution_detail.html",
         title: 'Execution Detail',
         ncyBreadcrumb: {
-            label: 'Execution Detail'
+            label: 'execution.executionDetail'
         },
         resolve: loadSequence('flow','ngTable', 'executionDetailCtrl')
     }).state('app.testcase', {
@@ -78,7 +78,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         template: '<div ui-view class="fade-in-up"></div>',
         title: 'Test Case',
         ncyBreadcrumb: {
-            label: 'testCase.TestCase'
+            label: 'testCase.testCase'
         },
         abstract: true
     }).state('app.testcase.detail', {
@@ -86,7 +86,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         templateUrl: "assets/views/test_case_detail.html",
         title: 'Test Case Detail',
         ncyBreadcrumb: {
-            label: 'testCase.TestCaseDetail'
+            label: 'testCase.testCaseDetail'
         },
         resolve: loadSequence('flow','ngTable', 'testCaseDetailCtrl')
     })
