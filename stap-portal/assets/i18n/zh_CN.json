@@ -21,7 +21,8 @@
         "output": "输出",
         "logs": "日志",
         "metaData": "元数据",
-        "update": "更新"
+        "update": "更新",
+        "revisions": "修订"
     },
     "messages": {
         "message": "消息",

@@ -140,9 +140,9 @@
                         </div>
                     </uib-tab>
                     <!-- end: TAB OVERVIEW -->
-                    <!-- start: TAB PROJECTS -->
+                    <!-- start: TAB EXECUTIONS -->
                     <uib-tab heading="{{'common.executions' | translate}}">
-                        <table ng-table="tableParams" show-filter="true" class="table table-striped">
+                        <table ng-table="executionsTable" show-filter="true" class="table table-striped">
                             <tr ng-repeat="execution_brief in $data">
                                 <td class="col-md-1" data-title="'ID'" filter="{ 'id': 'text' }" sortable="'id'"> {{execution_brief.id}} </td>
                                 <td data-title="'Test Case'" filter="{ 'testCaseName': 'text' }" sortable="'name'"> <a ui-sref="app.execution({id : execution_brief.id})">{{execution_brief.testCaseName}}</a></td>
@@ -153,7 +153,19 @@
                             </tr>
                         </table>
                     </uib-tab>
-                    <!-- end: TAB PROJECTS -->
+                    <!-- end: TAB EXECUTIONS -->
+                    <!-- start: TAB REVISION -->
+                    <uib-tab heading="{{'common.revisions' | translate}}">
+                        <table ng-table="revisionTable" class="table table-striped">
+                            <tr ng-repeat="revision in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{revision.id}} </td>
+                                <td data-title="'Type'" sortable="'type'"> {{revision.type}}</td>
+                                <td data-title="'Context'" sortable="'content'"> {{revision.content}}</td>
+                                <td data-title="'Time'" sortable="'time'">{{revision.time}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB REVISION -->
                     <!-- start: TAB EDIT -->
                     <uib-tab heading="{{'common.edit' | translate}}" active="editActive">
                         <!--form action="#" role="form" id="form"-->

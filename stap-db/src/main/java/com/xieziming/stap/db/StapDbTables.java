@@ -23,7 +23,8 @@ public class StapDbTables {
     public static final String EXECUTION_OUTPUT_TEXT = "Execution_Output_Text";
     public static final String EXECUTION_OUTPUT_FILE = "Execution_Output_File";
 
-    public static final String REVISION = "Revision";
+    public static final String EXECUTION_REVISION = "Execution_Revision";
+    public static final String TEST_CASE_REVISION = "Test_Case_Revision";
 
     public static final String FILE_REPO = "File_Repo";
 

@@ -2,12 +2,13 @@ package com.xieziming.stap.channel.services;
 
 import com.xieziming.stap.core.model.execution.converter.ExecutionBriefConverter;
 import com.xieziming.stap.core.model.execution.converter.ExecutionPlanConverter;
-import com.xieziming.stap.core.model.execution.converter.ExecutionPlanMetaConverter;
+import com.xieziming.stap.core.model.execution.converter.ExecutionRevisionDtoBuilder;
 import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
 import com.xieziming.stap.core.model.execution.dao.ExecutionPlanDao;
 import com.xieziming.stap.core.model.execution.dao.ExecutionPlanMetaDao;
 import com.xieziming.stap.core.model.execution.dto.ExecutionBriefDto;
 import com.xieziming.stap.core.model.execution.dto.ExecutionPlanDto;
+import com.xieziming.stap.core.model.execution.dto.ExecutionRevisionDto;
 import com.xieziming.stap.core.model.execution.pojo.ExecutionPlan;
 import com.xieziming.stap.core.model.execution.pojo.ExecutionPlanMeta;
 import org.slf4j.Logger;
@@ -40,7 +41,7 @@ public class ExecutionPlanService {
     @Autowired
     private ExecutionDao executionDao;
     @Autowired
-    private ExecutionPlanMetaConverter executionPlanMetaConverter;
+    private ExecutionRevisionDtoBuilder executionRevisionDtoBuilder;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
@@ -74,6 +75,12 @@ public class ExecutionPlanService {
         }else{
             return executionPlanMetaDao.add(executionPlanMeta);
         }
+    }
+
+    @RequestMapping(value = "{execution_plan_id}/revision", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public ExecutionRevisionDto getExecutionPlanRevision(@PathVariable("execution_plan_id") int executionPlanId) {
+        return executionRevisionDtoBuilder.build(executionPlanId);
     }
 
     @RequestMapping(value = "{execution_plan_id}/execution_plan_meta/{execution_plan_meta_id}", method = RequestMethod.DELETE)

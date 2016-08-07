@@ -70,7 +70,7 @@ public class ExecutionPlanDao {
             executionPlan.setName(resultSet.getString("Name"));
             executionPlan.setDescription(resultSet.getString("Description"));
             executionPlan.setStatus(resultSet.getString("Status"));
-            executionPlan.setLastUpdate(resultSet.getTimestamp("lastUpdate"));
+            executionPlan.setLastUpdate(resultSet.getTimestamp("Last_Update"));
             return executionPlan;
         }
     };

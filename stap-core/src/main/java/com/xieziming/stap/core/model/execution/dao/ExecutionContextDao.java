@@ -32,15 +32,17 @@ public class ExecutionContextDao {
 
     public ExecutionContext findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.EXECUTION_CONTEXT + " WHERE Id=?";
-        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<ExecutionContext>() {
-            public ExecutionContext mapRow(ResultSet resultSet, int i) throws SQLException {
-                ExecutionContext executionContext = new ExecutionContext();
-                executionContext.setId(resultSet.getInt("Id"));
-                executionContext.setName(resultSet.getString("Name"));
-                executionContext.setContent(resultSet.getString("Content"));
-                executionContext.setLastUpdate(resultSet.getTimestamp("Last_Update"));
-                return executionContext;
-            }
-        });
+        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, executionContextRowMapper);
     }
+
+    private RowMapper<ExecutionContext> executionContextRowMapper = new RowMapper<ExecutionContext>() {
+        public ExecutionContext mapRow(ResultSet resultSet, int i) throws SQLException {
+            ExecutionContext executionContext = new ExecutionContext();
+            executionContext.setId(resultSet.getInt("Id"));
+            executionContext.setName(resultSet.getString("Name"));
+            executionContext.setContent(resultSet.getString("Content"));
+            executionContext.setLastUpdate(resultSet.getTimestamp("Last_Update"));
+            return executionContext;
+        }
+    };
 }

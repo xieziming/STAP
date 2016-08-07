@@ -1,8 +1,10 @@
 package com.xieziming.stap.channel.services;
 
 import com.xieziming.stap.core.model.testcase.builder.TestCaseDtoBuilder;
+import com.xieziming.stap.core.model.testcase.builder.TestCaseRevisionDtoBuilder;
 import com.xieziming.stap.core.model.testcase.dao.TestCaseDao;
 import com.xieziming.stap.core.model.testcase.dto.TestCaseDto;
+import com.xieziming.stap.core.model.testcase.dto.TestCaseRevisionDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class TestCaseService {
     private TestCaseDtoBuilder testCaseDtoBuilder;
     @Autowired
     private TestCaseDao testCaseDao;
+    @Autowired
+    private TestCaseRevisionDtoBuilder testCaseRevisionDtoBuilder;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
@@ -40,4 +44,10 @@ public class TestCaseService {
     public TestCaseDto getTestCase(@PathVariable("test_case_id") int testCaseId) {
         return testCaseDtoBuilder.build(testCaseDao.findById(testCaseId));
     }
+    @RequestMapping(value = "{test_case_id}/revision", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public TestCaseRevisionDto getExecutionPlanRevision(@PathVariable("test_case_id") int testCaseId) {
+        return testCaseRevisionDtoBuilder.build(testCaseId);
+    }
+
 }

@@ -62,27 +62,23 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <div class="panel panel-white" id="activities">
+                                <div class="panel panel-white">
                                     <div class="panel-heading border-light">
                                         <h4 class="panel-title text-primary" translate="common.recentChanges">Recent Changes</h4>
-                                        <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
                                     </div>
-                                    <div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
+                                    <div class="panel-scroll height-200" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true">
                                         <div class="panel-body">
                                             <ul class="timeline-xs">
-                                                <li ng-class="{ 'timeline-item info': executionPlanLog.level == 'INFO',
-                                                    'timeline-item warning': executionPlanLog.level == 'WARN',
-                                                    'timeline-item danger': executionPlanLog.level == 'ERROR'}"
-                                                    ng-repeat="executionPlanLog in executionPlanLoglist">
+                                                <li ng-class="{ 'timeline-item info': testCaseRevision.type == 'Insert',
+                                                    'timeline-item warning': testCaseRevision.type == 'Update',
+                                                    'timeline-item danger': testCaseRevision.type == 'Delete'}"
+                                                    ng-repeat="testCaseRevision in testCaseRevisionList;">
                                                     <div class="margin-left-15">
                                                         <div class="text-muted text-small">
-                                                            {{executionPlanLog.time}}
+                                                            {{testCaseRevision.time}}
                                                         </div>
                                                         <p>
-                                                            <a class="text-info" href>
-                                                                {{executionPlanLog.level}}
-                                                            </a>
-                                                            {{executionPlanLog.content}}
+                                                            {{testCaseRevision.content}}
                                                         </p>
                                                     </div>
                                                 </li>
@@ -97,10 +93,8 @@
                                     <div class="panel-body">
                                         <ul class="ltwt">
                                             <li class="ltwt_tweet">
-                                                <p class="ltwt_tweet_text">
-                                                    <a href class="text-info">
-                                                        @Suny
-                                                    </a>
+                                                <p>
+                                                    <a href class="text-info">@Suny</a>
                                                     The description is not clear, need to be clarified.
                                                 </p>
                                                 <span class="block text-light"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</span>
@@ -153,6 +147,18 @@
                         </table>
                     </uib-tab>
                     <!-- end: TAB TEST STEP -->
+                    <!-- start: TAB REVISION -->
+                    <uib-tab heading="{{'common.revisions' | translate}}">
+                        <table ng-table="revisionTable" class="table table-striped">
+                            <tr ng-repeat="revision in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{revision.id}} </td>
+                                <td data-title="'Type'" sortable="'type'"> {{revision.type}}</td>
+                                <td data-title="'Context'" sortable="'content'"> {{revision.content}}</td>
+                                <td data-title="'Time'" sortable="'time'">{{revision.time}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB REVISION -->
                     <!-- start: TAB EXECUTIONS -->
                     <uib-tab heading="{{'common.executions' | translate}}">
                         <table ng-table="executionTable" class="table table-striped">
@@ -176,7 +182,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="block" translate="common.status">
+                                        <label class="block">{{"common.status" | translate}}:
                                         </label>
                                         <div class="clip-radio radio-primary">
                                             <input type="radio" id="available" name="status" value="Available" ng-model="testCase.status">
@@ -191,17 +197,17 @@
                                     </div>
                                     <hr>
                                     <div class="form-group">
-                                        <label class="control-label" translate="common.name">
+                                        <label class="control-label">{{"common.name" | translate}}:
                                         </label>
-                                        <input type="text" class="form-control" name="name" ng-model="testCase.name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label" translate="common.description">
-                                        </label>
-                                        <textarea class="form-control" name="description" ng-model="testCase.description" />
+                                        <input type="text" class="form-control underline" name="name" ng-model="testCase.name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">{{"common.description" | translate}}:
+                                        </label>
+                                        <textarea class="form-control autosize" name="description" ng-model="testCase.description" />
+                                    </div>
                                     <div class="form-group">
                                         <a class="btn btn-grey" ng-click="updateExecutionPlan()" translate="common.update"></a>
                                     </div>

@@ -18,4 +18,12 @@ app.controller('testCaseDetailCtrl', function ($scope, StapTableService, $http, 
         $scope.testCaseMetaTable = StapTableService.createStapTable(testCaseMetaList);
         $scope.executionTable = StapTableService.createStapTable(executionBriefList);
     });
+
+    $http.get(ENV_CONFIG.gatewayUrl + '/test_case/' + $stateParams.id+"/revision").then(function (res) {
+        $scope.testCaseRevisionList = res.data.testCaseRevisionList;
+        var testCaseRevisionList = res.data.testCaseRevisionList;
+        var testDataDefinitionRevisionList = res.data.testDataDefinitionRevisionList;
+        var testActionRevisionList = res.data.testActionRevisionList;
+        $scope.revisionTable = StapTableService.createStapTable(testCaseRevisionList.concat(testDataDefinitionRevisionList.concat(testActionRevisionList)), 10,'desc');
+    });
 });

@@ -16,23 +16,23 @@ CREATE TRIGGER `test_data_definition_update_trigger` AFTER UPDATE ON `test_data_
 FOR EACH ROW
     BEGIN
         IF OLD.Field != NEW.Field THEN
-            INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Update', Content = CONCAT('Update field to: ', NEW.Field , ', from: ', OLD.Field);
+            INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Update', Content = CONCAT('Update field(', OLD.Field,') set field to: ', NEW.Field);
         END IF ;
 
         IF OLD.Value != New.Value Then
-            INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Update', Content = CONCAT('Update value to: ', NEW.Value , ', from: ', OLD.Value);
+            INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Update', Content = CONCAT('Update field(', NEW.Field, ') set value to: ', NEW.Value , ', from: ', OLD.Value);
         END IF ;
 
         IF OLD.File_Id != NEW.File_Id THEN
-            INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Update', Content = CONCAT('Update fileId to: ', NEW.File_Id , ', from: ', OLD.File_Id);
+            INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Update', Content = CONCAT('Update field(', NEW.Field, ') set  fileId to: ', NEW.File_Id , ', from: ', OLD.File_Id);
         END IF ;
 
         IF OLD.Remark != NEW.Remark THEN
-            INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Update', Content = CONCAT('Update remark to: ', NEW.Remark , ', from: ', OLD.Remark);
+            INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Update', Content = CONCAT('Update field(', NEW.Field, ') set  remark to: ', NEW.Remark , ', from: ', OLD.Remark);
         END IF ;
 
         IF OLD.Type != NEW.Type THEN
-            INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Update', Content = CONCAT('Update type to: ', NEW.Type , ', from: ', OLD.Type);
+            INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Update', Content = CONCAT('Update field(', NEW.Field, ') set  type to: ', NEW.Type , ', from: ', OLD.Type);
         END IF ;
     END
 $$
