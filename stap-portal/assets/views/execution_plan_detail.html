@@ -20,7 +20,7 @@
                                 <div class="user-left">
                                     <div class="center">
                                         <hr>
-                                            <h2>#NO.{{executionPlan.id}}</h2>
+                                            <h4>{{executionPlan.name}}</h4>
                                         <hr>
                                     </div>
                                     <table class="table table-condensed">
@@ -31,9 +31,9 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Name:</td>
+                                                <td>No:</td>
                                                 <td>
-                                                    {{executionPlan.name}}
+                                                    {{executionPlan.id}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -64,53 +64,24 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <div class="row space20">
-                                    <div class="col-sm-3">
-                                        <button class="btn btn-icon margin-bottom-5 margin-bottom-5 btn-block">
-                                            <i class="ti-layers-alt block text-primary text-extra-large margin-bottom-10"></i>
-                                            Projects
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <button class="btn btn-icon margin-bottom-5 btn-block">
-                                            <i class="ti-comments block text-primary text-extra-large margin-bottom-10"></i>
-                                            Messages <span class="badge badge-danger"> 23 </span>
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <button class="btn btn-icon margin-bottom-5 btn-block">
-                                            <i class="ti-calendar block text-primary text-extra-large margin-bottom-10"></i>
-                                            Calendar
-                                        </button>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <button class="btn btn-icon margin-bottom-5 btn-block">
-                                            <i class="ti-flag block text-primary text-extra-large margin-bottom-10"></i>
-                                            Notifications
-                                        </button>
-                                    </div>
-                                </div>
                                 <div class="panel panel-white" id="activities">
                                     <div class="panel-heading border-light">
-                                        <h4 class="panel-title text-primary">Recent Changes</h4>
+                                        <h4 class="panel-title text-primary" translate="common.recentChanges"></h4>
                                         <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
                                     </div>
-                                    <div uib-collapse="activities" ng-init="activities=false" class="panel-wrapper">
+                                    <div class="panel-scroll height-200" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true">
                                         <div class="panel-body">
                                             <ul class="timeline-xs">
-                                                <li ng-class="{ 'timeline-item info': executionPlanLog.level == 'INFO',
-                                                                'timeline-item warning': executionPlanLog.level == 'WARN',
-                                                                'timeline-item danger': executionPlanLog.level == 'ERROR'}"
-                                                    ng-repeat="executionPlanLog in executionPlanLoglist">
+                                                <li ng-class="{ 'timeline-item info': executionPlanRevision.type == 'Insert',
+                                                    'timeline-item warning': executionPlanRevision.type == 'Update',
+                                                    'timeline-item danger': executionPlanRevision.type == 'Delete'}"
+                                                    ng-repeat="executionPlanRevision in executionPlanRevisionList.slice().reverse();">
                                                     <div class="margin-left-15">
                                                         <div class="text-muted text-small">
-                                                            {{executionPlanLog.time}}
+                                                            {{executionPlanRevision.time}}
                                                         </div>
                                                         <p>
-                                                            <a class="text-info" href>
-                                                                {{executionPlanLog.level}}
-                                                            </a>
-                                                            {{executionPlanLog.content}}
+                                                            {{executionPlanRevision.content}}
                                                         </p>
                                                     </div>
                                                 </li>
@@ -120,7 +91,7 @@
                                 </div>
                                 <div class="panel panel-white space20">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">Recent Tweets</h4>
+                                        <h4 class="panel-title" translate="common.recentComments"></h4>
                                     </div>
                                     <div class="panel-body">
                                         <ul class="ltwt">

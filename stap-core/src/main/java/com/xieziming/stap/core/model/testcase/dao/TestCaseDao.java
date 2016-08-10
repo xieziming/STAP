@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Suny on 5/10/16.
@@ -37,7 +38,7 @@ public class TestCaseDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCase.getName(), testCase.getStatus(), testCase.getDescription(), testCase.getId()});
     }
 
-    public void deleteById(int id) {
+    public void delete(int id) {
         testStepDao.deleteAllByTestCaseId(id);
         testCaseMetaDao.deleteByTestCaseId(id);
         testDataDao.deleteAllByTestCaseId(id);
@@ -47,22 +48,25 @@ public class TestCaseDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
     }
 
-    public TestCase findById(int id) {
-        if(id == 0) {
-            return null;
-        }
-
-        String sql = "SELECT * FROM " + StapDbTables.TEST_CASE + " WHERE Id=?";
-        return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<TestCase>() {
-            public TestCase mapRow(ResultSet resultSet, int i) throws SQLException {
-                TestCase testCase = new TestCase();
-                testCase.setId(resultSet.getInt("Id"));
-                testCase.setName(resultSet.getString("Name"));
-                testCase.setDescription(resultSet.getString("Description"));
-                testCase.setStatus(resultSet.getString("Status"));
-                testCase.setLastUpdate(resultSet.getTimestamp("Last_Update"));
-                return testCase;
-            }
-        });
+    public List<TestCase> findAll() {
+        String sql = "SELECT * FROM " + StapDbTables.TEST_CASE;
+        return StapDbUtil.getJdbcTemplate().query(sql, new Object[0], testCaseRowMapper);
     }
+
+    public TestCase findById(int id) {
+        String sql = "SELECT * FROM " + StapDbTables.TEST_CASE + " WHERE Id=?";
+        return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, testCaseRowMapper);
+    }
+
+    RowMapper<TestCase> testCaseRowMapper = new RowMapper<TestCase>() {
+        public TestCase mapRow(ResultSet resultSet, int i) throws SQLException {
+            TestCase testCase = new TestCase();
+            testCase.setId(resultSet.getInt("Id"));
+            testCase.setName(resultSet.getString("Name"));
+            testCase.setDescription(resultSet.getString("Description"));
+            testCase.setStatus(resultSet.getString("Status"));
+            testCase.setLastUpdate(resultSet.getTimestamp("Last_Update"));
+            return testCase;
+        }
+    };
 }

@@ -72,7 +72,7 @@
                                                 <li ng-class="{ 'timeline-item info': testCaseRevision.type == 'Insert',
                                                     'timeline-item warning': testCaseRevision.type == 'Update',
                                                     'timeline-item danger': testCaseRevision.type == 'Delete'}"
-                                                    ng-repeat="testCaseRevision in testCaseRevisionList;">
+                                                    ng-repeat="testCaseRevision in testCaseRevisionList.slice().reverse();">
                                                     <div class="margin-left-15">
                                                         <div class="text-muted text-small">
                                                             {{testCaseRevision.time}}

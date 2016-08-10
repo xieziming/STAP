@@ -5,6 +5,7 @@ import com.xieziming.stap.core.model.testcase.builder.TestCaseRevisionDtoBuilder
 import com.xieziming.stap.core.model.testcase.dao.TestCaseDao;
 import com.xieziming.stap.core.model.testcase.dto.TestCaseDto;
 import com.xieziming.stap.core.model.testcase.dto.TestCaseRevisionDto;
+import com.xieziming.stap.core.model.testcase.pojo.TestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,8 @@ public class TestCaseService {
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public List<TestCaseDto> getTestCaseList() {
-        return null;
+    public List<TestCase> getTestCaseList() {
+        return testCaseDao.findAll();
     }
 
     @RequestMapping(value = "{test_case_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)

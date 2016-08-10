@@ -13,32 +13,6 @@ app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter,
             status: res.data.status
         };
         $scope.metaDataList = res.data.executionPlanMetaDtoList;
-        $scope.executionPlanLoglist = res.data.executionLogDtoList;
-        $scope.removeImage = function () {
-            $scope.noImage = true;
-        };
-        $scope.obj = new Flow();
-
-        $scope.userInfo = {
-            firstName: 'Peter',
-            lastName: 'Clark',
-            url: 'www.example.com',
-            email: 'peter@example.com',
-            phone: '(641)-734-4763',
-            gender: 'male',
-            zipCode: '12345',
-            city: 'London (UK)',
-            avatar: 'assets/images/avatar-1-xl.jpg',
-            twitter: '',
-            github: '',
-            facebook: '',
-            linkedin: '',
-            google: '',
-            skype: 'peterclark82'
-        };
-        if ($scope.userInfo.avatar == '') {
-            $scope.noImage = true;
-        }
     });
 
     $http.get(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id+"/execution_list").then(function (res) {
@@ -50,15 +24,15 @@ app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter,
         var executionPlanRevisionList = res.data.executionPlanRevisionList;
         var executionContextRevisionList = res.data.executionContextRevisionList;
         $scope.revisionTable = StapTableService.createStapTable(executionPlanRevisionList.concat(executionContextRevisionList));
+        $scope.executionPlanRevisionList = executionPlanRevisionList;
     });
 
 
     $scope.ldloading = {};
     $scope.updateExecutionPlan = function () {
         $http.post(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id, $scope.executionPlan).then(function (res) {
-            NotificationService.error("sdasdsadsadsad");
         }, function (err) {
-            alert(err);
+            NotificationService.error(err);
         });
 
     };

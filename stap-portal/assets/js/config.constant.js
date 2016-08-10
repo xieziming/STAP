@@ -142,6 +142,9 @@ app.constant('JS_REQUIRES', {
         }, {
             name:  'testCaseDetailCtrl',
             files: ['assets/js/controllers/testCaseDetailCtrl.js']
+        }, {
+            name:  'testCaseCtrl',
+            files: ['assets/js/controllers/testCaseCtrl.js']
         }
     ],
     //*** angularJS Modules

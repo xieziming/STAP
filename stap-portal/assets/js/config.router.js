@@ -73,7 +73,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'execution.executionDetail'
         },
         resolve: loadSequence('flow','ngTable', 'executionDetailCtrl')
-    }).state('app.testcase', {
+    }).state('app.test_case', {
         url: '/test_case',
         template: '<div ui-view class="fade-in-up"></div>',
         title: 'Test Case',
@@ -81,7 +81,15 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'testCase.testCase'
         },
         abstract: true
-    }).state('app.testcase.detail', {
+    }).state('app.test_case.list', {
+        url: '/list',
+        templateUrl: "assets/views/test_case.html",
+        title: 'Test Case',
+        ncyBreadcrumb: {
+            label: 'testCase.testCase'
+        },
+        resolve: loadSequence('ngTable', 'testCaseCtrl')
+    }).state('app.test_case.detail', {
         url: '/:id/detail',
         templateUrl: "assets/views/test_case_detail.html",
         title: 'Test Case Detail',

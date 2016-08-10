@@ -12,12 +12,12 @@
             <div class="panel panel-white">
                 <div class="panel-body">
                     <div ng-controller="executionPlanCtrl">
-                        <table ng-table="tableParams" show-filter="true" class="table table-striped">
-                            <tr ng-repeat="execution_plan in $data">
-                                <td class="col-md-1" data-title="'ID'" filter="{ 'id': 'text' }" sortable="'id'"> {{execution_plan.id}} </td>
-                                <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'"> <a ui-sref="app.execution_plan.detail({id : execution_plan.id})">{{execution_plan.name}}</a></td>
-                                <td class="col-md-1" data-title="'Status'" filter="{ 'status': 'text' }" sortable="'status'">{{execution_plan.status}}</td>
-                                <td data-title="'Remark'" filter="{ 'description': 'text' }">{{execution_plan.description}}</td>
+                        <table ng-table="executionPlanTable" show-filter="true" class="table table-striped">
+                            <tr ng-repeat="executionPlan in $data">
+                                <td class="col-md-1" data-title="'ID'" filter="{ 'id': 'text' }" sortable="'id'"> {{executionPlan.id}} </td>
+                                <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'"> <a ui-sref="app.execution_plan.detail({id : executionPlan.id})">{{executionPlan.name}}</a></td>
+                                <td class="col-md-1" data-title="'Status'" filter="{ 'status': 'text' }" sortable="'status'">{{executionPlan.status}}</td>
+                                <td data-title="'Remark'" filter="{ 'description': 'text' }">{{executionPlan.description}}</td>
                             </tr>
                         </table>
                     </div>
