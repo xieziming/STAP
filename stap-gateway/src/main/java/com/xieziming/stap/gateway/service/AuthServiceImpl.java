@@ -31,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
 
         AuthResult result = new AuthResult();
 
-        String sql = "SELECT COUNT(*) FROM " + StapDbTables.STAP_USER.toString() + " WHERE ( Name=? OR Email=? ) AND Password=?";
+        String sql = "SELECT COUNT(*) FROM " + StapDbTables.USER.toString() + " WHERE ( Name=? OR Email=? ) AND Password=?";
 
         int records = StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{principal, principal, password}, Integer.class);
         if(records > 0) {

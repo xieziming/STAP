@@ -16,22 +16,22 @@ import java.sql.SQLException;
 public class FileReferenceDao {
 
     public void add(FileReference fileReference) {
-        String sql = "INSERT INTO "+StapDbTables.FILE_REPO+" SET Name=?, URI=?";
+        String sql = "INSERT INTO "+StapDbTables.FILE +" SET Name=?, URI=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{fileReference.getName(), fileReference.getUri()});
     }
 
     public void update(FileReference fileReference) {
-        String sql = "UPDATE "+StapDbTables.FILE_REPO+" SET Name=?, URI=? WHERE Id=?";
+        String sql = "UPDATE "+StapDbTables.FILE +" SET Name=?, URI=? WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{fileReference.getName(), fileReference.getUri(), fileReference.getId()});
     }
 
     public void delete(FileReference fileReference) {
-        String sql = "DELETE FROM "+StapDbTables.FILE_REPO+" WHERE Id=?";
+        String sql = "DELETE FROM "+StapDbTables.FILE +" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{fileReference.getId()});
     }
 
     public FileReference findById(int id) {
-        String sql = "SELECT * FROM " + StapDbTables.FILE_REPO + " WHERE Id=?";
+        String sql = "SELECT * FROM " + StapDbTables.FILE + " WHERE Id=?";
         return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<FileReference>() {
             public FileReference mapRow(ResultSet resultSet, int i) throws SQLException {
                 FileReference fileReference = new FileReference();
