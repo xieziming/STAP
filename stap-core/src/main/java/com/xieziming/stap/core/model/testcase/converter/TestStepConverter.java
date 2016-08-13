@@ -1,4 +1,4 @@
-package com.xieziming.stap.core.model.testcase.builder;
+package com.xieziming.stap.core.model.testcase.converter;
 
 import com.xieziming.stap.core.model.testcase.dao.TestActionDao;
 import com.xieziming.stap.core.model.testcase.dto.TestStepDto;
@@ -13,19 +13,19 @@ import java.util.List;
  * Created by Suny on 7/21/16.
  */
 @Component
-public class TestStepDtoBuilder {
+public class TestStepConverter {
     @Autowired
     private TestActionDao testActionDao;
 
-    public List<TestStepDto> buildAll(List<TestStep> testStepList) {
+    public List<TestStepDto> convertAll(List<TestStep> testStepList) {
         List<TestStepDto> testStepDtoList = new ArrayList<TestStepDto>();
         for (TestStep testStep : testStepList){
-            testStepDtoList.add(build(testStep));
+            testStepDtoList.add(convert(testStep));
         }
         return testStepDtoList;
     }
 
-    public TestStepDto build(TestStep testStep) {
+    public TestStepDto convert(TestStep testStep) {
         TestStepDto testStepDto = new TestStepDto();
         testStepDto.setId(testStep.getId());
         testStepDto.setStepOrder(testStep.getStepOrder());

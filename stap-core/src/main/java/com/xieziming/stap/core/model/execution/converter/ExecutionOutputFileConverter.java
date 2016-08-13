@@ -16,15 +16,15 @@ import java.util.List;
 public class ExecutionOutputFileConverter {
     @Autowired
     private FileReferenceDao fileReferenceDao;
-    public List<ExecutionOutputFileDto> buildAll(List<ExecutionOutputFile> executionOutputFileList) {
+    public List<ExecutionOutputFileDto> convertAll(List<ExecutionOutputFile> executionOutputFileList) {
         List<ExecutionOutputFileDto> executionOutputFileDtoList = new ArrayList<ExecutionOutputFileDto>();
         for (ExecutionOutputFile executionOutputFile : executionOutputFileList){
-            executionOutputFileDtoList.add(build(executionOutputFile));
+            executionOutputFileDtoList.add(convert(executionOutputFile));
         }
         return executionOutputFileDtoList;
     }
 
-    public ExecutionOutputFileDto build(ExecutionOutputFile executionOutputFile) {
+    public ExecutionOutputFileDto convert(ExecutionOutputFile executionOutputFile) {
         ExecutionOutputFileDto executionOutputFileDto = new ExecutionOutputFileDto();
         executionOutputFileDto.setId(executionOutputFile.getId());
         executionOutputFileDto.setType(executionOutputFile.getType());

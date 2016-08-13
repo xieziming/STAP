@@ -24,15 +24,15 @@ public class ExecutionBriefConverter {
     private ExecutionContextDao executionContextDao;
 
 
-    public List<ExecutionBriefDto> buildAll(List<Execution> executionList) {
+    public List<ExecutionBriefDto> convertAll(List<Execution> executionList) {
         List<ExecutionBriefDto> executionBriefDtoList = new ArrayList<ExecutionBriefDto>();
         for (Execution execution : executionList){
-            executionBriefDtoList.add(build(execution));
+            executionBriefDtoList.add(convert(execution));
         }
         return executionBriefDtoList;
     }
 
-    public ExecutionBriefDto build(Execution execution) {
+    public ExecutionBriefDto convert(Execution execution) {
         ExecutionBriefDto executionBriefDto = new ExecutionBriefDto();
         executionBriefDto.setId(execution.getId());
         executionBriefDto.setStartTime(execution.getStartTime());

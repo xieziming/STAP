@@ -1989,7 +1989,7 @@ angular.module('ui.bootstrap.position', [])
       /**
        * Provides a raw DOM element from a jQuery/jQLite element.
        *
-       * @param {element} elem - The element to convert.
+       * @param {element} elem - The element to converter.
        *
        * @returns {element} A HTML element.
        */

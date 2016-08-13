@@ -3,6 +3,9 @@ package com.xieziming.stap.channel.services;
 import com.xieziming.stap.core.execution.ExecutionController;
 import com.xieziming.stap.core.execution.ExecutionRequest;
 import com.xieziming.stap.core.execution.ExecutionResponse;
+import com.xieziming.stap.core.model.comment.converter.CommentConverter;
+import com.xieziming.stap.core.model.comment.dao.CommentDao;
+import com.xieziming.stap.core.model.comment.dto.CommentDto;
 import com.xieziming.stap.core.model.execution.converter.ExecutionBriefConverter;
 import com.xieziming.stap.core.model.execution.converter.ExecutionConverter;
 import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
@@ -38,31 +41,41 @@ public class ExecutionService {
     private ExecutionController executionController;
     @Autowired
     private ExecutionBriefConverter executionBriefConverter;
+    @Autowired
+    private CommentConverter commentConverter;
+    @Autowired
+    private CommentDao commentDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public List<ExecutionDto> getExecutions() {
         List<Execution> executionList = executionDao.findAll();
-        return executionConverter.buildAll(executionList);
+        return executionConverter.convertAll(executionList);
     }
 
     @RequestMapping(value = "{execution_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionDto getExecution(@PathVariable("execution_id") int executionId) {
         Execution execution = executionDao.findById(executionId);
-        return executionConverter.build(execution);
+        return executionConverter.convert(execution);
     }
 
     @RequestMapping(value = "{execution_id}/brief", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionBriefDto getExecutionBrief(@PathVariable("execution_id") int executionId) {
         Execution execution = executionDao.findById(executionId);
-        return executionBriefConverter.build(execution);
+        return executionBriefConverter.convert(execution);
     }
 
     @RequestMapping(value = "{execution_id}/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionResponse requestExecution(@PathVariable("execution_id") int executionId) {
         return executionController.request(new ExecutionRequest(executionId, "suny", "124"));
+    }
+
+    @RequestMapping(value = "{execution_id}/comment", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public List<CommentDto> getComments(@PathVariable("execution_id") int executionId) {
+        return commentConverter.convertAll(commentDao.findAllByExecutionId(executionId));
     }
 }

@@ -1,5 +1,7 @@
 package com.xieziming.stap.core.model.notification.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.xieziming.stap.core.util.JsonDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +16,9 @@ import java.util.Date;
 @AllArgsConstructor
 public class NotificationDto {
     private Integer id;
+    private WatchListDto watchListDto;
     private String content;
     private String status;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date time;
 }

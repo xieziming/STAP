@@ -2,8 +2,8 @@
 /**
  * Clip-Two Main Controller
  */
-app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$swipe', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', 'Fullscreen', 'AuthService', 'ngNotify',
-function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, Fullscreen, AuthService, ngNotify) {
+app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$swipe', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', 'Fullscreen', 'AuthService', 'toaster',
+function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, Fullscreen, AuthService, toaster) {
 
     // Loading bar transition
     // -----------------------------------
@@ -216,10 +216,10 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
         }
     });
 
-    $scope.currentUser = AuthService.userProfile();
+    $rootScope.currentUser = AuthService.userProfile();
 
-    $scope.setCurrentUser = function (userProfile) {
-        $scope.currentUser = userProfile;
+    $rootScope.setCurrentUser = function (userProfile) {
+        $rootScope.currentUser = userProfile;
     };
 
     $scope.logout = function() {
@@ -227,15 +227,8 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
         $state.go('login.signin');
     };
 
-    //Notification
-    $rootScope.$on('newNotification', function (e, data) {
-        ngNotify.set(data.msg, {
-            theme: 'pure',
-            position: 'top',
-            type: data.type,
-            sticky: 'true',
-            button: 'true',
-            html: false
-        });
+    //Message
+    $rootScope.$on('newMessage', function (e, data) {
+        toaster.pop(data.type, data.title, data.msg);
     });
 }]);

@@ -66,7 +66,6 @@ app.config(['cfpLoadingBarProvider',
 function (cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeBar = true;
     cfpLoadingBarProvider.includeSpinner = false;
-
 }]);
 // Angular-breadcrumb
 // configuration
@@ -79,16 +78,46 @@ app.config(function ($breadcrumbProvider) {
 // ng-storage
 //set a prefix to avoid overwriting any local storage variables
 app.config(['$localStorageProvider',
-    function ($localStorageProvider) {
-        $localStorageProvider.setKeyPrefix('StapLocal');
-    }]);
-//filter to convert html to plain text
+	function ($localStorageProvider) {
+		$localStorageProvider.setKeyPrefix('StapLocal');
+	}]);
+
+//http auth catch
+app.factory('AuthInterceptor', [
+	'$rootScope',
+	'$q',
+	'AUTH_EVENTS',
+	'MessageService',
+	function($rootScope, $q, AUTH_EVENTS, MessageService){
+		return {
+			responseError: function(response){
+				if(response.status == -1){
+					MessageService.error("fail to connect to server!");
+				}
+				$rootScope.$broadcast({401:AUTH_EVENTS.notAuthenticated, 403:AUTH_EVENTS.notAuthorized}[response.status], response);
+				return $q.reject(response);
+			}
+		};
+	}
+]);
+
+app.config(['$httpProvider', function($httpProvider){
+	$httpProvider.interceptors.push([
+		'$injector',
+		function($injector){
+			return $injector.get('AuthInterceptor');
+		}
+	]);
+}]);
+
+//filter to converter html to plain text
 app.filter('htmlToPlaintext', function () {
       return function (text) {
           return String(text).replace(/<[^>]+>/gm, '');
       };
   }
 );
+
 //Custom UI Bootstrap Calendar Popup Template
 app.run(["$templateCache", function ($templateCache) {
     $templateCache.put("uib/template/datepickerPopup/popup.html",

@@ -1,5 +1,7 @@
 package com.xieziming.stap.core.model.comment.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.xieziming.stap.core.util.JsonDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,11 +16,11 @@ import java.util.Date;
 @AllArgsConstructor
 public class Comment {
     private Integer id;
-    private Integer parentCommentId;
     private Integer testCaseId;
     private Integer executionPlanId;
     private Integer executionId;
     private String content;
     private Integer userId;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date time;
 }

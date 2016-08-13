@@ -1381,7 +1381,7 @@ var prettyPrint;
     var opt_langExtension = job.langExtension;
 
     try {
-      // Extract tags, and convert the source code to plain text.
+      // Extract tags, and converter the source code to plain text.
       var sourceAndSpans = extractSourceSpans(job.sourceNode, job.pre);
       /** Plain text. @type {string} */
       var source = sourceAndSpans.sourceCode;

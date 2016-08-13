@@ -1,4 +1,4 @@
-package com.xieziming.stap.core.model.testcase.builder;
+package com.xieziming.stap.core.model.testcase.converter;
 
 import com.xieziming.stap.core.model.execution.converter.ExecutionBriefConverter;
 import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Suny on 5/9/16.
  */
 @Component
-public class TestCaseDtoBuilder {
+public class TestCaseConverter {
     @Autowired
     private TestCaseMetaDao testCaseMetaDao;
     @Autowired
@@ -28,34 +28,34 @@ public class TestCaseDtoBuilder {
     @Autowired
     private TestStepDao testStepDao;
     @Autowired
-    private TestCaseMetaDtoBuilder testCaseMetaDtoBuilder;
+    private TestCaseMetaConverter testCaseMetaConverter;
     @Autowired
-    private TestCaseRelationDtoBuilder testCaseRelationDtoBuilder;
+    private TestCaseRelationConverter testCaseRelationConverter;
     @Autowired
-    private TestStepDtoBuilder testStepDtoBuilder;
+    private TestStepConverter testStepConverter;
     @Autowired
-    private TestDataDtoBuilder testDataDtoBuilder;
+    private TestDataConverter testDataConverter;
     @Autowired
     private ExecutionDao executionDao;
     @Autowired
     private ExecutionBriefConverter executionBriefConverter;
 
-    public List<TestCaseDto> buildAll(List<TestCase> testCaseList) {
+    public List<TestCaseDto> convertAll(List<TestCase> testCaseList) {
         List<TestCaseDto> testCaseDtoList = new ArrayList<TestCaseDto>();
         for (TestCase testCase : testCaseList){
-            testCaseDtoList.add(build(testCase));
+            testCaseDtoList.add(convert(testCase));
         }
         return testCaseDtoList;
     }
 
-    public TestCaseDto build(TestCase testCase) {
+    public TestCaseDto convert(TestCase testCase) {
         TestCaseDto testCaseDto = new TestCaseDto();
         testCaseDto.setTestCase(testCase);
-        testCaseDto.setTestCaseMetaDtoList(testCaseMetaDtoBuilder.buildAll(testCaseMetaDao.findAllByTestCaseId(testCase.getId())));
-        testCaseDto.setTestCaseRelationDtoList(testCaseRelationDtoBuilder.buildAll(testCaseRelationDao.findAllByTestCaseId(testCase.getId())));
-        testCaseDto.setTestDataDtoList(testDataDtoBuilder.buildAll(testDataDao.findAllByTestCaseId(testCase.getId())));
-        testCaseDto.setTestStepDtoList(testStepDtoBuilder.buildAll(testStepDao.findAllByTestCaseId(testCase.getId())));
-        testCaseDto.setExecutionBriefDtoList(executionBriefConverter.buildAll(executionDao.findAllByTestCaseId(testCase.getId())));
+        testCaseDto.setTestCaseMetaDtoList(testCaseMetaConverter.convertAll(testCaseMetaDao.findAllByTestCaseId(testCase.getId())));
+        testCaseDto.setTestCaseRelationDtoList(testCaseRelationConverter.convertAll(testCaseRelationDao.findAllByTestCaseId(testCase.getId())));
+        testCaseDto.setTestDataDtoList(testDataConverter.convertAll(testDataDao.findAllByTestCaseId(testCase.getId())));
+        testCaseDto.setTestStepDtoList(testStepConverter.convertAll(testStepDao.findAllByTestCaseId(testCase.getId())));
+        testCaseDto.setExecutionBriefDtoList(executionBriefConverter.convertAll(executionDao.findAllByTestCaseId(testCase.getId())));
         return testCaseDto;
     }
 }

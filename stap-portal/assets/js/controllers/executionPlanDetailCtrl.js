@@ -2,7 +2,7 @@
 /** 
   * controller for Execution Plan Detail
 */
-app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter, $http, ngTableParams, ENV_CONFIG, $stateParams, $timeout, NotificationService, StapTableService) {
+app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter, $http, ngTableParams, ENV_CONFIG, $stateParams, $timeout, MessageService, StapTableService) {
 
 
     $http.get(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id).then(function (res) {
@@ -31,10 +31,10 @@ app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter,
     $scope.ldloading = {};
     $scope.updateExecutionPlan = function () {
         $http.post(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id, $scope.executionPlan).then(function (res) {
+            MessageService.success("execution plan updated!");
         }, function (err) {
-            NotificationService.error(err);
+            MessageService.error(err);
         });
-
     };
 
     $scope.deleteExecutionPlan = function () {

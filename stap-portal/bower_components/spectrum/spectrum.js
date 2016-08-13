@@ -1473,7 +1473,7 @@
         return tinycolor(color, opts);
     };
 
-    // Given a string or object, convert that input to RGB
+    // Given a string or object, converter that input to RGB
     // Possible string inputs:
     //
     //     "red"
@@ -2150,7 +2150,7 @@
         var processPercent = isPercentage(n);
         n = mathMin(max, mathMax(0, parseFloat(n)));
 
-        // Automatically convert percentage into number
+        // Automatically converter percentage into number
         if (processPercent) {
             n = parseInt(n * max, 10) / 100;
         }

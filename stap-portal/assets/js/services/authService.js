@@ -2,7 +2,7 @@
  * Created by Suny on 7/6/16.
  */
 
-app.service('AuthService', function ($http, ENV_CONFIG) {
+app.service('AuthService', function ($http, ENV_CONFIG, MessageService) {
     var authService = {};
     var STAP_AUTH_CACHE_KEY = 'stap_local_user_profile_key';
     var authResult = {};
@@ -22,30 +22,24 @@ app.service('AuthService', function ($http, ENV_CONFIG) {
 
     function useAuthCache(authResultCache) {
         authResult = JSON.parse(authResultCache);
-        //$http.defaults.headers.common['X-Auth-Token'] = authResult.token;
+        $http.defaults.headers.common['Stap-User'] = authResult.userDto.name;
+        $http.defaults.headers.common['Stap-Token'] = authResult.token;
     }
 
     function destroyAuthCache() {
         authResult = {};
         window.localStorage.removeItem(STAP_AUTH_CACHE_KEY);
-        //$http.defaults.headers.common['X-Auth-Token'] = undefined;
+        $http.defaults.headers.common['Stap-User'] = undefined;
+        $http.defaults.headers.common['Stap-Token'] = undefined;
     }
 
     authService.login = function (credentials) {
-        return $http
-            ({ method: 'POST',
-                url: ENV_CONFIG.gatewayUrl + '/authorize',
-                data: credentials,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                transformRequest: function(obj) {
-                    var str = [];
-                    for(var p in obj)
-                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    return str.join("&");
-                }})
+        return $http.post(ENV_CONFIG.gatewayUrl + '/authorize', credentials)
             .then(function (res) {
                 writeAuthCache(res.data);
                 return res.data;
+            }, function () {
+                
             });
     };
 
@@ -65,7 +59,7 @@ app.service('AuthService', function ($http, ENV_CONFIG) {
     };
 
     authService.userProfile = function () {
-        return authResult.userProfile;
+        return authResult.userDto;
     }
 
     loadAuthCache();
@@ -89,5 +83,13 @@ app.run(function ($rootScope, $state, AUTH_EVENTS, AuthService) {
                 $state.go('login.signin');
             }
         }
+    });
+    $rootScope.$on(AUTH_EVENTS.notAuthorized, function (event) {
+        event.preventDefault();
+        $state.go('login.signin');
+    });
+    $rootScope.$on(AUTH_EVENTS.notAuthenticated, function (event) {
+        event.preventDefault();
+        $state.go('login.signin');
     });
 });

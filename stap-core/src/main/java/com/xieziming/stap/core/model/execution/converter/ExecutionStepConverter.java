@@ -5,7 +5,7 @@ import com.xieziming.stap.core.model.execution.dao.ExecutionOutputFileDao;
 import com.xieziming.stap.core.model.execution.dao.ExecutionOutputTextDao;
 import com.xieziming.stap.core.model.execution.dto.ExecutionStepDto;
 import com.xieziming.stap.core.model.execution.pojo.ExecutionStep;
-import com.xieziming.stap.core.model.testcase.builder.TestStepDtoBuilder;
+import com.xieziming.stap.core.model.testcase.converter.TestStepConverter;
 import com.xieziming.stap.core.model.testcase.dao.TestStepDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,19 +31,19 @@ public class ExecutionStepConverter {
     @Autowired
     private ExecutionOutputTextDao executionOutputTextDao;
     @Autowired
-    private TestStepDtoBuilder testStepDtoBuilder;
+    private TestStepConverter testStepConverter;
     @Autowired
     private TestStepDao testStepDao;
 
-    public List<ExecutionStepDto> buildAll(List<ExecutionStep> executionLogList) {
+    public List<ExecutionStepDto> convertAll(List<ExecutionStep> executionLogList) {
         List<ExecutionStepDto> executionStepDtoList = new ArrayList<ExecutionStepDto>();
         for (ExecutionStep executionStep : executionLogList){
-            executionStepDtoList.add(build(executionStep));
+            executionStepDtoList.add(convert(executionStep));
         }
         return executionStepDtoList;
     }
 
-    public ExecutionStepDto build(ExecutionStep executionStep) {
+    public ExecutionStepDto convert(ExecutionStep executionStep) {
         ExecutionStepDto executionStepDto = new ExecutionStepDto();
         executionStepDto.setId(executionStep.getId());
         executionStepDto.setRemark(executionStep.getRemark());
@@ -51,10 +51,10 @@ public class ExecutionStepConverter {
         executionStepDto.setStartTime(executionStep.getStartTime());
         executionStepDto.setEndTime(executionStep.getEndTime());
         executionStepDto.setResult(executionStep.getResult());
-        executionStepDto.setExecutionLogDtoList(executionLogConverter.buildAll(executionLogDao.findAllByExecutionStepId(executionStep.getId())));
-        executionStepDto.setExecutionOutputFileDtoList(executionOutputFileConverter.buildAll(executionOutputFileDao.findAllByExecutionStepId(executionStep.getId())));
-        executionStepDto.setExecutionOutputTextDtoList(executionOutputTextConverter.buildAll(executionOutputTextDao.findByExecutionStepId(executionStep.getId())));
-        executionStepDto.setTestStepDto(testStepDtoBuilder.build(testStepDao.findById(executionStep.getTestStepId())));
+        executionStepDto.setExecutionLogDtoList(executionLogConverter.convertAll(executionLogDao.findAllByExecutionStepId(executionStep.getId())));
+        executionStepDto.setExecutionOutputFileDtoList(executionOutputFileConverter.convertAll(executionOutputFileDao.findAllByExecutionStepId(executionStep.getId())));
+        executionStepDto.setExecutionOutputTextDtoList(executionOutputTextConverter.convertAll(executionOutputTextDao.findByExecutionStepId(executionStep.getId())));
+        executionStepDto.setTestStepDto(testStepConverter.convert(testStepDao.findById(executionStep.getTestStepId())));
         return executionStepDto;
     }
 }

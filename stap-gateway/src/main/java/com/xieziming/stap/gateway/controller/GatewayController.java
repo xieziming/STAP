@@ -1,7 +1,7 @@
 package com.xieziming.stap.gateway.controller;
 
-import com.google.common.cache.Cache;
-import com.xieziming.stap.gateway.mode.AuthResult;
+import com.xieziming.stap.core.security.auth.AuthService;
+import com.xieziming.stap.core.security.auth.CredentialCache;
 import com.xieziming.stap.gateway.service.GatewayService;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 /**
  * Created by Suny on 7/5/16.
@@ -32,19 +33,18 @@ import java.io.IOException;
 )
 public class GatewayController {
     private static final Logger log = LoggerFactory.getLogger(GatewayController.class);
+    @Autowired
     private GatewayService gatewayService;
-    private Cache<String, AuthResult> userCache;
+    @Autowired
+    private AuthService authService;
+
     private final String UTF8 = ";charset=UTF-8";
 
-    @Autowired
-    public GatewayController(GatewayService gatewayService, Cache<String, AuthResult> userCache) {
-        this.gatewayService = gatewayService;
-        this.userCache = userCache;
-    }
 
     @RequestMapping("/**")
     public ResponseEntity<?> getResponse(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         log.info("got request for " + req.getRequestURI());
+        if(!isAuthorized(req)) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
         CloseableHttpResponse httpResponse = (CloseableHttpResponse) gatewayService.getResponse(req, resp);
         IOUtils.closeQuietly(req.getInputStream());
@@ -62,5 +62,23 @@ public class GatewayController {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    private boolean isAuthorized(HttpServletRequest req){
+        Enumeration<String> headerNameEnum = req.getHeaderNames();
+        String name = null, token = null;
+        while(headerNameEnum.hasMoreElements()){
+            String headerName = headerNameEnum.nextElement();
+            if(headerName.matches("Stap-User")){
+                name = req.getHeader(headerName);
+            }
+
+            if(headerName.matches("Stap-Token")){
+                token = req.getHeader(headerName);
+            }
+        }
+
+        if(name != null && token != null && authService.hasAuth(new CredentialCache(name, token)).isAuthSuccess()) return true;
+        return false;
     }
 }

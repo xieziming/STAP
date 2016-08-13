@@ -1,5 +1,8 @@
 package com.xieziming.stap.core.model.comment.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.xieziming.stap.core.model.user.dto.UserDto;
+import com.xieziming.stap.core.util.JsonDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +18,7 @@ import java.util.Date;
 public class CommentDto {
     private Integer id;
     private String content;
-    private Integer userId;
+    private UserDto userDto;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date time;
 }

@@ -387,7 +387,7 @@ describe('module angularMoment', function () {
 			amFromUnix = $filter('amFromUnix');
 		});
 
-		it('should convert a unix-timestamp into a moment object with the correct time value', function () {
+		it('should converter a unix-timestamp into a moment object with the correct time value', function () {
 			var result = amFromUnix(1422095523);
 			expect(moment.isMoment(result)).toBe(true);
 			expect(result.valueOf()).toBe(1422095523000);
@@ -413,7 +413,7 @@ describe('module angularMoment', function () {
 			amLocal = $filter('amLocal');
 		});
 
-		it('should convert the given moment object into local object', function () {
+		it('should converter the given moment object into local object', function () {
 			var localOffset = moment().utcOffset();
 			var utcDate = moment.utc();
 			var result = amLocal(utcDate);
@@ -516,13 +516,13 @@ describe('module angularMoment', function () {
 			amCalendar = $filter('amCalendar');
 		});
 
-		it('should convert today date to calendar form', function () {
+		it('should converter today date to calendar form', function () {
 			var today = new Date();
 			var testDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 13, 33, 33);
 			expect(amCalendar(testDate)).toBe('Today at 1:33 PM');
 		});
 
-		it('should convert date in long past to calendar form', function () {
+		it('should converter date in long past to calendar form', function () {
 			expect(amCalendar(new Date(2012, 2, 25, 13, 14, 15))).toBe('03/25/2012');
 		});
 
@@ -734,7 +734,7 @@ describe('module angularMoment', function () {
 
 	describe('amMoment service', function () {
 		describe('#changeLocale', function () {
-			it('should convert today\'s date to custom calendar format', function () {
+			it('should converter today\'s date to custom calendar format', function () {
 				var today = new Date();
 				amMoment.changeLocale('en', {calendar: {sameDay: '[This Day]'}});
 				var amCalendar = $filter('amCalendar');

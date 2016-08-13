@@ -164,7 +164,7 @@
                         <table ng-table="executionTable" class="table table-striped">
                             <tr ng-repeat="executionBrief in $data">
                                 <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{executionBrief.id}} </td>
-                                <td data-title="'Execution Plan'" sortable="'executionPlanName'"> <a ui-sref="app.execution({id : executionBrief.id})">{{executionBrief.executionPlanName}}</a></td>
+                                <td data-title="'Execution Plan'" sortable="'executionPlanName'"> <a ui-sref="app.execution.detail({id : executionBrief.id})">{{executionBrief.executionPlanName}}</a></td>
                                 <td data-title="'Context'" sortable="'executionContextName'"> <a ui-sref="app.execution_context_detail({id : executionBrief.executionContextId})">{{executionBrief.executionContextName}}</a></td>
                                 <td data-title="'Result'" sortable="'result'"> <a ui-sref="app.execution({id : executionBrief.id})"><span class="label label-success" ng-if="executionBrief.result == 'Pass'">{{executionBrief.result}}</span><span class="label label-danger" ng-if="executionBrief.result == 'Fail'">{{executionBrief.result}}</span></a></td>
                                 <td class="col-md-1" data-title="'Status'" sortable="'status'">{{executionBrief.status}}</td>

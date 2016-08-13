@@ -1,5 +1,7 @@
 package com.xieziming.stap.core.model.notification.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.xieziming.stap.core.util.JsonDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +19,6 @@ public class Notification {
     private Integer watchListId;
     private String content;
     private String status;
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date time;
 }

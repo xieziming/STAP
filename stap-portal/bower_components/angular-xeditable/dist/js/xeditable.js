@@ -586,7 +586,7 @@ angular.module('xeditable').factory('editableController',
           continue;
         }
 
-        // convert back to lowercase style
+        // converter back to lowercase style
         transferAttr = transferAttr.substring(0, 1).toLowerCase() + editableUtils.camelToDash(transferAttr.substring(1));  
 
         // workaround for attributes without value (e.g. `multiple = "multiple"`)
@@ -1960,7 +1960,7 @@ angular.module('xeditable').factory('editableCombodate', [function() {
        return '';
      }
 
-      //convert hours 12h --> 24h 
+      //converter hours 12h --> 24h 
       if(this.$ampm) {
         //12:00 pm --> 12:00 (24-h format, midday), 12:00 am --> 00:00 (24-h format, midnight, start of day)
         if(values.hour === 12) {

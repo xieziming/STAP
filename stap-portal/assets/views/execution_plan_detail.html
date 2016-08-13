@@ -116,7 +116,7 @@
                         <table ng-table="executionsTable" show-filter="true" class="table table-striped">
                             <tr ng-repeat="execution_brief in $data">
                                 <td class="col-md-1" data-title="'ID'" filter="{ 'id': 'text' }" sortable="'id'"> {{execution_brief.id}} </td>
-                                <td data-title="'Test Case'" filter="{ 'testCaseName': 'text' }" sortable="'name'"> <a ui-sref="app.execution({id : execution_brief.id})">{{execution_brief.testCaseName}}</a></td>
+                                <td data-title="'Test Case'" filter="{ 'testCaseName': 'text' }" sortable="'name'"> <a ui-sref="app.execution.detail({id : execution_brief.id})">{{execution_brief.testCaseName}}</a></td>
                                 <td data-title="'Context'" filter="{ 'executionContextName': 'text' }" sortable="'name'"> <a ui-sref="app.execution_context_detail({id : execution_brief.executionContextId})">{{execution_brief.executionContextName}}</a></td>
                                 <td data-title="'Result'" filter="{ 'result': 'text' }" sortable="'name'"> <a ui-sref="app.execution_plan_detail({id : execution_brief.id})"><span class="label label-success" ng-if="execution_brief.result == 'Pass'">{{execution_brief.result}}</span><span class="label label-danger" ng-if="execution_brief.result == 'Fail'">{{execution_brief.result}}</span></a></td>
                                 <td class="col-md-1" data-title="'Status'" filter="{ 'status': 'text' }" sortable="'status'">{{execution_brief.status}}</td>

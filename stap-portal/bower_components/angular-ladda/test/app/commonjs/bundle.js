@@ -14164,7 +14164,7 @@
 
 	      if (typeof newValue === 'object') {
 
-	        // attempt to convert the value to a primitive type
+	        // attempt to converter the value to a primitive type
 	        // TODO(docs): add a note to docs that by implementing valueOf even objects and arrays can
 	        //             be cheaply dirty-checked
 	        newValue = getValueOf(newValue);
@@ -21869,7 +21869,7 @@
 	  };
 
 	  // Override the standard `$isEmpty` because the $viewValue of an empty checkbox is always set to `false`
-	  // This is because of the parser below, which compares the `$modelValue` with `trueValue` to convert
+	  // This is because of the parser below, which compares the `$modelValue` with `trueValue` to converter
 	  // it to a boolean.
 	  ctrl.$isEmpty = function(value) {
 	    return value === false;

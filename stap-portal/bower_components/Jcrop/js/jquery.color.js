@@ -259,7 +259,7 @@
 						each( space.props, function( key, prop ) {
 							var cache = space.cache;
 
-							// if the cache doesn't exist, and we know how to convert
+							// if the cache doesn't exist, and we know how to converter
 							if ( !inst[ cache ] && space.to ) {
 
 								// if the value was null, we don't need to copy it

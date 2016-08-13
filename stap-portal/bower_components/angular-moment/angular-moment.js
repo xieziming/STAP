@@ -387,7 +387,7 @@
 				 * @methodOf angularMoment.service.amMoment
 				 *
 				 * @description
-				 * Preprocess a given value and convert it into a Moment instance appropriate for use in the
+				 * Preprocess a given value and converter it into a Moment instance appropriate for use in the
 				 * am-time-ago directive and the filters. The behavior of this function can be overriden by
 				 * setting `angularMomentConfig.preprocess`.
 				 *

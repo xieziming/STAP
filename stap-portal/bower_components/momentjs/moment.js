@@ -1171,7 +1171,7 @@
         return parts[0] === '+' ? -minutes : minutes;
     }
 
-    // function to convert string input to date
+    // function to converter string input to date
     function addTimeToArrayFromToken(token, input, config) {
         var a, datePartArray = config._a;
 
@@ -1355,7 +1355,7 @@
         config._dayOfYear = temp.dayOfYear;
     }
 
-    // convert an array to a date.
+    // converter an array to a date.
     // the array should mirror the parameters below
     // note: all values past the year are optional and will default to the lowest possible value.
     // [year, month, day , hour, minute, second, millisecond]
@@ -2687,7 +2687,7 @@
 
             days += absRound(hours / 24);
 
-            // Accurately convert days to years, assume start from year 0.
+            // Accurately converter days to years, assume start from year 0.
             years = absRound(daysToYears(days));
             days -= absRound(yearsToDays(years));
 

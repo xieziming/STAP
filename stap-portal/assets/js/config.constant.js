@@ -140,11 +140,14 @@ app.constant('JS_REQUIRES', {
             name:  'loginCtrl', 
             files: ['assets/js/controllers/loginCtrl.js']
         }, {
+            name:  'testCaseCtrl',
+            files: ['assets/js/controllers/testCaseCtrl.js']
+        }, {
             name:  'testCaseDetailCtrl',
             files: ['assets/js/controllers/testCaseDetailCtrl.js']
         }, {
-            name:  'testCaseCtrl',
-            files: ['assets/js/controllers/testCaseCtrl.js']
+            name:  'notificationCtrl',
+            files: ['assets/js/controllers/notificationCtrl.js']
         }
     ],
     //*** angularJS Modules

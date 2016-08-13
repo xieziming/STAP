@@ -90,5 +90,9 @@
         "fixedFooter": "固定底部",
         "save": "保存",
         "reset": "重置"
+    },
+    "notification" : {
+        "newNotification" : "新通知",
+        "seeAll" : "查看所有"
     }
 }

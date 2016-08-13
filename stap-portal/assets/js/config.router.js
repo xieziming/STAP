@@ -31,7 +31,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
     $stateProvider.state('app', {
         url: "/app",
         templateUrl: "assets/views/app.html",
-        resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl'),
+        resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl', 'notificationCtrl'),
         abstract: true
     }).state('app.dashboard', {
         url: "/dashboard",
@@ -66,7 +66,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         },
         resolve: loadSequence('flow','ngTable', 'executionPlanDetailCtrl')
     }).state('app.execution', {
-        url: '/execution/:id/detail',
+        url: '/execution',
+        template: '<div ui-view class="fade-in-up"></div>',
+        title: 'Execution',
+        ncyBreadcrumb: {
+            label: 'execution.execution'
+        }
+    }).state('app.execution.detail', {
+        url: '/:id/detail',
         templateUrl: "assets/views/execution_detail.html",
         title: 'Execution Detail',
         ncyBreadcrumb: {

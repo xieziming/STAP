@@ -12,15 +12,15 @@ import java.util.List;
  */
 @Component
 public class ExecutionLogConverter {
-    public List<ExecutionLogDto> buildAll(List<ExecutionLog> executionLogList) {
+    public List<ExecutionLogDto> convertAll(List<ExecutionLog> executionLogList) {
         List<ExecutionLogDto> executionLogDtoList = new ArrayList<ExecutionLogDto>();
         for (ExecutionLog executionLog : executionLogList){
-            executionLogDtoList.add(build(executionLog));
+            executionLogDtoList.add(convert(executionLog));
         }
         return executionLogDtoList;
     }
 
-    public ExecutionLogDto build(ExecutionLog executionLog) {
+    public ExecutionLogDto convert(ExecutionLog executionLog) {
         ExecutionLogDto executionLogDto = new ExecutionLogDto();
         executionLogDto.setId(executionLog.getId());
         executionLogDto.setLevel(executionLog.getLevel());

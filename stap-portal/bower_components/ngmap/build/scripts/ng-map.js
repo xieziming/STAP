@@ -2327,7 +2327,7 @@ angular.module('ngMap', []);
           }
           // JSON is an object (not array or null)
           else if (output === Object(output)) {
-            // check for nested hashes and convert to Google API options
+            // check for nested hashes and converter to Google API options
             var newOptions = options;
             newOptions.doNotConverStringToNumber = true;
             output = getOptions(output, newOptions);
@@ -2384,7 +2384,7 @@ angular.module('ngMap', []);
         } // catch(err2)
       } // catch(err)
 
-      // convert output more for center and position
+      // converter output more for center and position
       if (
         (options.key == 'center' || options.key == 'center') &&
         output instanceof Array
@@ -2392,12 +2392,12 @@ angular.module('ngMap', []);
         output = new google.maps.LatLng(output[0], output[1]);
       }
 
-      // convert output more for shape bounds
+      // converter output more for shape bounds
       if (options.key == 'bounds' && output instanceof Array) {
         output = new google.maps.LatLngBounds(output[0], output[1]);
       }
 
-      // convert output more for shape icons
+      // converter output more for shape icons
       if (options.key == 'icons' && output instanceof Array) {
 
         for (var i=0; i<output.length; i++) {
@@ -2408,7 +2408,7 @@ angular.module('ngMap', []);
         }
       }
 
-      // convert output more for marker icon
+      // converter output more for marker icon
       if (options.key == 'icon' && output instanceof Object) {
         if ((""+output.path).match(/^[A-Z_]+$/)) {
           output.path = google.maps.SymbolPath[output.path];

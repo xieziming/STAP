@@ -12,15 +12,15 @@ import java.util.List;
  */
 @Component
 public class ExecutionOutputTextConverter {
-    public List<ExecutionOutputTextDto> buildAll(List<ExecutionOutputText> executionOutputTextList) {
+    public List<ExecutionOutputTextDto> convertAll(List<ExecutionOutputText> executionOutputTextList) {
         List<ExecutionOutputTextDto> executionOutputTextDtoList = new ArrayList<ExecutionOutputTextDto>();
         for (ExecutionOutputText executionOutputText : executionOutputTextList){
-            executionOutputTextDtoList.add(build(executionOutputText));
+            executionOutputTextDtoList.add(convert(executionOutputText));
         }
         return executionOutputTextDtoList;
     }
 
-    public ExecutionOutputTextDto build(ExecutionOutputText executionOutputText) {
+    public ExecutionOutputTextDto convert(ExecutionOutputText executionOutputText) {
         ExecutionOutputTextDto executionOutputTextDto = new ExecutionOutputTextDto();
         executionOutputTextDto.setId(executionOutputText.getId());
         executionOutputTextDto.setType(executionOutputText.getType());

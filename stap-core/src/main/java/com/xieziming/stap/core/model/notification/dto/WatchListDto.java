@@ -12,5 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WatchListDto {
     private Integer id;
+    private String source;
+    private Integer sourceId;
+    private String sourceName;
     private Integer userId;
 }

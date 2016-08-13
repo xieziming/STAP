@@ -27,6 +27,7 @@
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:18.0" />
           <element id="archive" name="stap-db-1.0-SNAPSHOT.jar">
             <element id="module-output" name="stap-db" />
           </element>

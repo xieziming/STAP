@@ -27,23 +27,23 @@ public class ExecutionPlanConverter {
     @Autowired
     private ExecutionPlanDao executionPlanDao;
 
-    public List<ExecutionPlanDto> convertAllToDto(List<ExecutionPlan> executionPlanList) {
+    public List<ExecutionPlanDto> convertAll(List<ExecutionPlan> executionPlanList) {
         List<ExecutionPlanDto> executionPlanDtoList = new ArrayList<ExecutionPlanDto>();
         for (ExecutionPlan executionPlan : executionPlanList){
-            executionPlanDtoList.add(convertToDto(executionPlan));
+            executionPlanDtoList.add(convert(executionPlan));
         }
         return executionPlanDtoList;
     }
 
-    public ExecutionPlanDto convertToDto(ExecutionPlan executionPlan) {
+    public ExecutionPlanDto convert(ExecutionPlan executionPlan) {
         ExecutionPlanDto executionPlanDto = new ExecutionPlanDto();
         executionPlanDto.setId(executionPlan.getId());
         executionPlanDto.setName(executionPlan.getName());
         executionPlanDto.setDescription(executionPlan.getDescription());
         executionPlanDto.setStatus(executionPlan.getStatus());
         executionPlanDto.setLastUpdate(executionPlan.getLastUpdate());
-        executionPlanDto.setExecutionPlanMetaDtoList(executionPlanMetaConverter.convertAllToDto(executionPlanMetaDao.findAllByExecutionPlanId(executionPlan.getId())));
-        executionPlanDto.setExecutionLogDtoList(executionLogConverter.buildAll(executionLogDao.findAllByExecutionPlanId(executionPlan.getId())));
+        executionPlanDto.setExecutionPlanMetaDtoList(executionPlanMetaConverter.convertAll(executionPlanMetaDao.findAllByExecutionPlanId(executionPlan.getId())));
+        executionPlanDto.setExecutionLogDtoList(executionLogConverter.convertAll(executionLogDao.findAllByExecutionPlanId(executionPlan.getId())));
         return executionPlanDto;
     }
 }

@@ -1,4 +1,4 @@
-package com.xieziming.stap.core.model.testcase.builder;
+package com.xieziming.stap.core.model.testcase.converter;
 
 import com.xieziming.stap.core.model.testcase.dao.TestCaseDao;
 import com.xieziming.stap.core.model.testcase.dto.TestCaseRelationDto;
@@ -13,19 +13,19 @@ import java.util.List;
  * Created by Suny on 7/21/16.
  */
 @Component
-public class TestCaseRelationDtoBuilder {
+public class TestCaseRelationConverter {
     @Autowired
     private TestCaseDao testCaseDao;
 
-    public List<TestCaseRelationDto> buildAll(List<TestCaseRelation> testCaseRelationList) {
+    public List<TestCaseRelationDto> convertAll(List<TestCaseRelation> testCaseRelationList) {
         List<TestCaseRelationDto> testCaseRelationDtoList = new ArrayList<TestCaseRelationDto>();
         for (TestCaseRelation testCaseRelation : testCaseRelationList){
-            testCaseRelationDtoList.add(build(testCaseRelation));
+            testCaseRelationDtoList.add(convert(testCaseRelation));
         }
         return testCaseRelationDtoList;
     }
 
-    public TestCaseRelationDto build(TestCaseRelation testCaseRelation) {
+    public TestCaseRelationDto convert(TestCaseRelation testCaseRelation) {
         TestCaseRelationDto testCaseRelationDto = new TestCaseRelationDto();
         testCaseRelationDto.setId(testCaseRelation.getId());
         testCaseRelationDto.setRelatedTestCase(testCaseDao.findById(testCaseRelation.getTestCaseId()));

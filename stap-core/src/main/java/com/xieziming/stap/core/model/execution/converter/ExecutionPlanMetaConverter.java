@@ -17,15 +17,15 @@ public class ExecutionPlanMetaConverter {
     @Autowired
     private ExecutionPlanMetaDao executionPlanMetaDao;
 
-    public List<ExecutionPlanMetaDto> convertAllToDto(List<ExecutionPlanMeta> executionPlanMetaList) {
+    public List<ExecutionPlanMetaDto> convertAll(List<ExecutionPlanMeta> executionPlanMetaList) {
         List<ExecutionPlanMetaDto> executionPlanMetaDtoList = new ArrayList<ExecutionPlanMetaDto>();
         for (ExecutionPlanMeta executionPlanMeta : executionPlanMetaList){
-            executionPlanMetaDtoList.add(convertToDto(executionPlanMeta));
+            executionPlanMetaDtoList.add(convert(executionPlanMeta));
         }
         return executionPlanMetaDtoList;
     }
 
-    public ExecutionPlanMetaDto convertToDto(ExecutionPlanMeta executionPlanMeta) {
+    public ExecutionPlanMetaDto convert(ExecutionPlanMeta executionPlanMeta) {
         ExecutionPlanMetaDto executionPlanMetaDto = new ExecutionPlanMetaDto();
         executionPlanMetaDto.setId(executionPlanMeta.getId());
         executionPlanMetaDto.setMetaType(executionPlanMeta.getMetaType());
@@ -35,7 +35,7 @@ public class ExecutionPlanMetaConverter {
         return executionPlanMetaDto;
     }
 
-    public ExecutionPlanMeta convertToPojo(ExecutionPlanMetaDto executionPlanMetaDto) {
+    public ExecutionPlanMeta convert(ExecutionPlanMetaDto executionPlanMetaDto) {
         return executionPlanMetaDao.findById(executionPlanMetaDto.getId());
     }
 }

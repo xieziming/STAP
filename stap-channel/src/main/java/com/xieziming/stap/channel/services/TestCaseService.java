@@ -1,7 +1,10 @@
 package com.xieziming.stap.channel.services;
 
-import com.xieziming.stap.core.model.testcase.builder.TestCaseDtoBuilder;
-import com.xieziming.stap.core.model.testcase.builder.TestCaseRevisionDtoBuilder;
+import com.xieziming.stap.core.model.comment.converter.CommentConverter;
+import com.xieziming.stap.core.model.comment.dao.CommentDao;
+import com.xieziming.stap.core.model.comment.dto.CommentDto;
+import com.xieziming.stap.core.model.testcase.converter.TestCaseConverter;
+import com.xieziming.stap.core.model.testcase.converter.TestCaseRevisionConverter;
 import com.xieziming.stap.core.model.testcase.dao.TestCaseDao;
 import com.xieziming.stap.core.model.testcase.dto.TestCaseDto;
 import com.xieziming.stap.core.model.testcase.dto.TestCaseRevisionDto;
@@ -28,11 +31,15 @@ public class TestCaseService {
     private final String UTF8 = ";charset=UTF-8";
 
     @Autowired
-    private TestCaseDtoBuilder testCaseDtoBuilder;
+    private TestCaseConverter testCaseConverter;
     @Autowired
     private TestCaseDao testCaseDao;
     @Autowired
-    private TestCaseRevisionDtoBuilder testCaseRevisionDtoBuilder;
+    private TestCaseRevisionConverter testCaseRevisionConverter;
+    @Autowired
+    private CommentConverter commentConverter;
+    @Autowired
+    private CommentDao commentDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
@@ -43,12 +50,17 @@ public class TestCaseService {
     @RequestMapping(value = "{test_case_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public TestCaseDto getTestCase(@PathVariable("test_case_id") int testCaseId) {
-        return testCaseDtoBuilder.build(testCaseDao.findById(testCaseId));
-    }
-    @RequestMapping(value = "{test_case_id}/revision", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
-    @ResponseBody
-    public TestCaseRevisionDto getExecutionPlanRevision(@PathVariable("test_case_id") int testCaseId) {
-        return testCaseRevisionDtoBuilder.build(testCaseId);
+        return testCaseConverter.convert(testCaseDao.findById(testCaseId));
     }
 
+    @RequestMapping(value = "{test_case_id}/revision", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public TestCaseRevisionDto getTestCaseRevisions(@PathVariable("test_case_id") int testCaseId) {
+        return testCaseRevisionConverter.convert(testCaseId);
+    }
+    @RequestMapping(value = "{test_case_id}/comment", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public List<CommentDto> getComments(@PathVariable("test_case_id") int testCaseId) {
+        return commentConverter.convertAll(commentDao.findAllByTestCaseId(testCaseId));
+    }
 }

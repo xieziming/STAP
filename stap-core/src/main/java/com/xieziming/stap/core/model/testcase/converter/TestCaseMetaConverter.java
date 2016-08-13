@@ -1,4 +1,4 @@
-package com.xieziming.stap.core.model.testcase.builder;
+package com.xieziming.stap.core.model.testcase.converter;
 
 import com.xieziming.stap.core.model.testcase.dto.TestCaseMetaDto;
 import com.xieziming.stap.core.model.testcase.pojo.TestCaseMeta;
@@ -11,17 +11,17 @@ import java.util.List;
  * Created by Suny on 5/9/16.
  */
 @Component
-public class TestCaseMetaDtoBuilder {
+public class TestCaseMetaConverter {
 
-    public List<TestCaseMetaDto> buildAll(List<TestCaseMeta> testCaseMetaList) {
+    public List<TestCaseMetaDto> convertAll(List<TestCaseMeta> testCaseMetaList) {
         List<TestCaseMetaDto> testCaseMetaDtoList = new ArrayList<TestCaseMetaDto>();
         for (TestCaseMeta testCaseMeta : testCaseMetaList){
-            testCaseMetaDtoList.add(build(testCaseMeta));
+            testCaseMetaDtoList.add(convert(testCaseMeta));
         }
         return testCaseMetaDtoList;
     }
 
-    public TestCaseMetaDto build(TestCaseMeta testCaseMeta) {
+    public TestCaseMetaDto convert(TestCaseMeta testCaseMeta) {
         TestCaseMetaDto testCaseMetaDto = new TestCaseMetaDto();
         testCaseMetaDto.setId(testCaseMeta.getId());
         testCaseMetaDto.setMetaType(testCaseMeta.getMetaType());

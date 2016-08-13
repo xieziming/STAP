@@ -46,7 +46,7 @@ jQuery.fn.extend({
 				val = value;
 			}
 
-			// Treat null/undefined as ""; convert numbers to string
+			// Treat null/undefined as ""; converter numbers to string
 			if ( val == null ) {
 				val = "";
 

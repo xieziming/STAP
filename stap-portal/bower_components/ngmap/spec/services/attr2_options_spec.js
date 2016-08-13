@@ -47,47 +47,47 @@ describe('Attr2MapOptions', function() {
       expect(parser.getOptions(attrs).onClick).toEqual(undefined);
     });
     
-    it('should convert string to number', function() {
+    it('should converter string to number', function() {
       var attrs ={a:'100.99'};
       expect(parser.getOptions(attrs).a).toEqual(100.99);
     });
     
-    it('should convert JSON to an object', function() {
+    it('should converter JSON to an object', function() {
       var attrs = {a:'{"foo":123}'};
       expect(parser.getOptions(attrs).a.foo).toEqual(123);
     });
 
-    it('should convert object-like JSON string to an object', function() {
+    it('should converter object-like JSON string to an object', function() {
       var attrs = {a:"{ hello: 'world',foo:1,  bar  : '2', foo1: 1, _bar : 2, $2: 3,"+
         " 'xxx': 5, \"fuz\": 4, places: ['Africa', 'America', 'Asia', 'Australia'] }"
       };
       expect(parser.getOptions(attrs).a.hello).toEqual("world");
     });
 
-    it('should convert Class name to google object', function() {
+    it('should converter Class name to google object', function() {
       var attrs = {a:'Marker()'};
       expect(typeof parser.getOptions(attrs, scope).a).toEqual('object');
     });
 
-    it('should convert constant to google constant', function() {
+    it('should converter constant to google constant', function() {
       var attrs = {a:'MapTypeId.HYBRID'};
       expect(parser.getOptions(attrs, scope).a).toEqual('hybrid');
       attrs = {MapTypeId:'HYBRID'};
       expect(parser.getOptions(attrs, scope).MapTypeId).toEqual('hybrid');
     });
 
-    it('should convert ISO date strings to Date objects', function() {
+    it('should converter ISO date strings to Date objects', function() {
       var attrs = {a:'2015-08-13T04:11:23.005Z'};
       expect(parser.getOptions(attrs, scope).a instanceof Date).toBe(true);
     });
 
-    it('should convert nested date to Date object', function() {
+    it('should converter nested date to Date object', function() {
       var attrs = {a: '{"departureTime":"2015-08-13T18:00:21.846Z"}'};
       expect(typeof parser.getOptions(attrs, scope).a).toEqual('object');
       expect(parser.getOptions(attrs, scope).a.departureTime instanceof Date).toEqual(true);
     });
 
-    it('should convert nested value to google object', function() {
+    it('should converter nested value to google object', function() {
       var attrs = {circleOptions: '{"center": "LatLng(80,-49)"}'};
       expect(parser.getOptions(attrs, scope).circleOptions.center.lat()).toEqual(80);
       expect(parser.getOptions(attrs, scope).circleOptions.center.lng()).toEqual(-49);
@@ -116,19 +116,19 @@ describe('Attr2MapOptions', function() {
       var attrs ={aControlOptions: '{foo:1}'};
       expect(parser.getControlOptions(attrs).aControlOptions.foo).toEqual(1);
     });
-    it('should convert string to uppercase. i.e {"a":"foo"}', function() {
+    it('should converter string to uppercase. i.e {"a":"foo"}', function() {
       var attrs ={aControlOptions: '{"foo":"bar"}'};
       expect(parser.getControlOptions(attrs).aControlOptions.foo).toEqual("BAR");
     });
-    it('should convert mapTypeIds to google MapTypeIds', function() {
+    it('should converter mapTypeIds to google MapTypeIds', function() {
       var attrs ={aControlOptions: '{"mapTypeIds":["HYBRID"]}'};
       expect(parser.getControlOptions(attrs).aControlOptions.mapTypeIds).toEqual(["hybrid"]);
     });
-    it('should convert style to matching google ones, i.e. ZoomControlStyle', function() {
+    it('should converter style to matching google ones, i.e. ZoomControlStyle', function() {
       var attrs ={zoomControlOptions: '{"style":"SMALL"}'};
       expect(parser.getControlOptions(attrs).zoomControlOptions.style).toEqual(1);
     });
-    it('should convert position to matching google ones, i.e. google.maps.ControlPosition', function() {
+    it('should converter position to matching google ones, i.e. google.maps.ControlPosition', function() {
       var attrs ={zoomControlOptions: '{"position":"TOP_LEFT"}'};
       expect(parser.getControlOptions(attrs).zoomControlOptions.position).toEqual(1);
     });

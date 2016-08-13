@@ -2408,7 +2408,7 @@ jQuery.fn.extend({
 				val = value;
 			}
 
-			// Treat null/undefined as ""; convert numbers to string
+			// Treat null/undefined as ""; converter numbers to string
 			if ( val == null ) {
 				val = "";
 			} else if ( typeof val === "number" ) {
@@ -6633,7 +6633,7 @@ jQuery.extend({
 		if ( value !== undefined ) {
 			type = typeof value;
 
-			// convert relative number strings (+= or -=) to relative numbers. #7345
+			// converter relative number strings (+= or -=) to relative numbers. #7345
 			if ( type === "string" && (ret = rrelNum.exec( value )) ) {
 				value = ( +( ret[1] + 1) * +ret[2] ) + parseFloat( jQuery.css( elem, name ) );
 				// Fixes bug #9237
@@ -6764,7 +6764,7 @@ if ( document.documentElement.currentStyle ) {
 		// http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291
 
 		// If we're not dealing with a regular pixel number
-		// but a number that has a weird ending, we need to convert it to pixels
+		// but a number that has a weird ending, we need to converter it to pixels
 		if ( rnumnonpx.test( ret ) ) {
 
 			// Remember the original values
@@ -12319,7 +12319,7 @@ function $AnchorScrollProvider() {
 
     // helper function to get first anchor from a NodeList
     // can't use filter.filter, as it accepts only instances of Array
-    // and IE can't convert NodeList to an array using [].slice
+    // and IE can't converter NodeList to an array using [].slice
     // TODO(vojta): use filter if we change it to accept lists as well
     function getFirstAnchor(list) {
       var result = null;
@@ -14456,7 +14456,7 @@ function convertToHtml5Url(url, basePath, hashPrefix) {
   if (decodeURIComponent(match.path) != basePath || isUndefined(match.hash) ||
       match.hash.indexOf(hashPrefix) !== 0) {
     return url;
-  // convert hashbang url -> html5 url
+  // converter hashbang url -> html5 url
   } else {
     return composeProtocolHostPort(match.protocol, match.host, match.port) +
            pathPrefixFromBase(basePath) + match.hash.substr(hashPrefix.length);
@@ -14471,7 +14471,7 @@ function convertToHashbangUrl(url, basePath, hashPrefix) {
   if (decodeURIComponent(match.path) == basePath && !isUndefined(match.hash) &&
       match.hash.indexOf(hashPrefix) === 0) {
     return url;
-  // convert html5 url -> hashbang url
+  // converter html5 url -> hashbang url
   } else {
     var search = match.search && '?' + match.search || '',
         hash = match.hash && '#' + match.hash || '',
@@ -24866,7 +24866,7 @@ angular.scenario.Future.prototype.execute = function(doneFn) {
 };
 
 /**
- * Configures the future to convert it's final with a function fn(value)
+ * Configures the future to converter it's final with a function fn(value)
  *
  * @param {function()} fn function(value) that returns the parsed value
  */
@@ -24884,7 +24884,7 @@ angular.scenario.Future.prototype.fromJson = function() {
 };
 
 /**
- * Configures the future to convert it's final value from objects
+ * Configures the future to converter it's final value from objects
  * into JSON.
  */
 angular.scenario.Future.prototype.toJson = function() {

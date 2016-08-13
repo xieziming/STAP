@@ -1257,7 +1257,7 @@ var $AnimateCssProvider = ['$animateProvider', function($animateProvider) {
 
         forEach(temporaryStyles, function(entry) {
           // There is only one way to remove inline style properties entirely from elements.
-          // By using `removeProperty` this works, but we need to convert camel-cased CSS
+          // By using `removeProperty` this works, but we need to converter camel-cased CSS
           // styles down to hyphenated values.
           node.style[entry[0]] = '';
         });

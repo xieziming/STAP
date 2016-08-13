@@ -701,7 +701,7 @@ jQuery.extend({
 				} else if ( status === 304 ) {
 					statusText = "notmodified";
 
-				// If we have data, let's convert it
+				// If we have data, let's converter it
 				} else {
 					statusText = response.state;
 					success = response.data;

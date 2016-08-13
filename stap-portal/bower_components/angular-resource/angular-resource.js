@@ -766,7 +766,7 @@ angular.module('ngResource', ['ng']).
               var data = response.data;
 
               if (data) {
-                // Need to convert action.isArray to boolean in case it is undefined
+                // Need to converter action.isArray to boolean in case it is undefined
                 // jshint -W018
                 if (angular.isArray(data) !== (!!action.isArray)) {
                   throw $resourceMinErr('badcfg',

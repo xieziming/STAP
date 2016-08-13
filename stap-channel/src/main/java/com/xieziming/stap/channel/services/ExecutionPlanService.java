@@ -1,5 +1,8 @@
 package com.xieziming.stap.channel.services;
 
+import com.xieziming.stap.core.model.comment.converter.CommentConverter;
+import com.xieziming.stap.core.model.comment.dao.CommentDao;
+import com.xieziming.stap.core.model.comment.dto.CommentDto;
 import com.xieziming.stap.core.model.execution.converter.ExecutionBriefConverter;
 import com.xieziming.stap.core.model.execution.converter.ExecutionPlanConverter;
 import com.xieziming.stap.core.model.execution.converter.ExecutionRevisionDtoBuilder;
@@ -42,17 +45,21 @@ public class ExecutionPlanService {
     private ExecutionDao executionDao;
     @Autowired
     private ExecutionRevisionDtoBuilder executionRevisionDtoBuilder;
+    @Autowired
+    private CommentConverter commentConverter;
+    @Autowired
+    private CommentDao commentDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public List<ExecutionPlanDto> getAllExecutionPlans() {
-        return executionPlanConverter.convertAllToDto(executionPlanDao.findAll());
+        return executionPlanConverter.convertAll(executionPlanDao.findAll());
     }
 
     @RequestMapping(value = "{execution_plan_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionPlanDto getExecutionPlan(@PathVariable("execution_plan_id") int executionPlanId) {
-        return executionPlanConverter.convertToDto(executionPlanDao.findById(executionPlanId));
+        return executionPlanConverter.convert(executionPlanDao.findById(executionPlanId));
     }
 
     @RequestMapping(value = "{execution_plan_id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE+UTF8, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
@@ -80,7 +87,7 @@ public class ExecutionPlanService {
     @RequestMapping(value = "{execution_plan_id}/revision", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionRevisionDto getExecutionPlanRevision(@PathVariable("execution_plan_id") int executionPlanId) {
-        return executionRevisionDtoBuilder.build(executionPlanId);
+        return executionRevisionDtoBuilder.convert(executionPlanId);
     }
 
     @RequestMapping(value = "{execution_plan_id}/execution_plan_meta/{execution_plan_meta_id}", method = RequestMethod.DELETE)
@@ -99,6 +106,12 @@ public class ExecutionPlanService {
     @RequestMapping(value = "{execution_plan_id}/execution_list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public List<ExecutionBriefDto> getExecutions(@PathVariable("execution_plan_id") int executionPlanId) {
-        return executionBriefConverter.buildAll(executionDao.findAllByExecutionPlanId(executionPlanId));
+        return executionBriefConverter.convertAll(executionDao.findAllByExecutionPlanId(executionPlanId));
+    }
+
+    @RequestMapping(value = "{execution_plan_id}/comment", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public List<CommentDto> getComments(@PathVariable("execution_plan_id") int executionPlanId) {
+        return commentConverter.convertAll(commentDao.findAllByExecutionPlanId(executionPlanId));
     }
 }

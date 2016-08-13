@@ -16,7 +16,7 @@ public class ExecutionRevisionDtoBuilder {
     @Autowired
     private ExecutionContextRevisionDao executionContextRevisionDao;
 
-    public ExecutionRevisionDto build(int executionPlanId) {
+    public ExecutionRevisionDto convert(int executionPlanId) {
         ExecutionRevisionDto executionRevisionDto = new ExecutionRevisionDto();
         executionRevisionDto.setExecutionPlanRevisionList(executionPlanRevisionDao.findAll(executionPlanId));
         executionRevisionDto.setExecutionContextRevisionList(executionContextRevisionDao.findAll(executionPlanId));

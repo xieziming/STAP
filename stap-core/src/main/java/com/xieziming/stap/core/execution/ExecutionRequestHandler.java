@@ -26,7 +26,7 @@ public class ExecutionRequestHandler {
             log.info("execution {} has assigned to ", executionRequest.getExecutionId(), executionRequest.getRequester()+"("+executionRequest.getFromIp()+")");
             execution.setStatus(ExecutionStatusType.INPROGRESS);
             executionDao.update(execution);
-            return new ExecutionResponse("yes", executionConverter.build(execution));
+            return new ExecutionResponse("yes", executionConverter.convert(execution));
         }else {
             log.info("{} 's request to run execution {} has been rejected!", executionRequest.getRequester()+"("+executionRequest.getFromIp()+")", executionRequest.getExecutionId());
             return new ExecutionResponse("not", null);

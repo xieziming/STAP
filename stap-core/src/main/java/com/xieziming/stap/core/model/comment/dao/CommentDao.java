@@ -1,12 +1,12 @@
 package com.xieziming.stap.core.model.comment.dao;
 
-import com.xieziming.stap.core.model.comment.dto.CommentDto;
 import com.xieziming.stap.core.model.comment.pojo.Comment;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,36 +15,37 @@ import java.util.List;
 /**
  * Created by Suny on 8/12/16.
  */
+@Component
 public class CommentDao {
     private static Logger logger = LoggerFactory.getLogger(CommentDao.class);
 
-    public CommentDto findById(int id) {
+    public Comment findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.COMMENT+ " WHERE Id=?";
-        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, commentDtoRowMapper);
+        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, commentRowMapper);
     }
 
-    public List<CommentDto> findAllByExecutionPlanId(int executionPlanId) {
+    public List<Comment> findAllByExecutionPlanId(int executionPlanId) {
         String sql = "SELECT * FROM " + StapDbTables.COMMENT + " WHERE Execution_Plan_Id=?";
-        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlanId}, commentDtoRowMapper);
+        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlanId}, commentRowMapper);
     }
-    public List<CommentDto> findAllByExecutionId(int executionId) {
+    public List<Comment> findAllByExecutionId(int executionId) {
         String sql = "SELECT * FROM " + StapDbTables.COMMENT + " WHERE Execution_Id=?";
-        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionId}, commentDtoRowMapper);
+        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionId}, commentRowMapper);
     }
 
-    public List<CommentDto> findAllByTestCaseId(int testCaseId) {
+    public List<Comment> findAllByTestCaseId(int testCaseId) {
         String sql = "SELECT * FROM " + StapDbTables.COMMENT + " WHERE Test_Case_Id=?";
-        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId}, commentDtoRowMapper);
+        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId}, commentRowMapper);
     }
 
     public void add(Comment comment) {
-        String sql = "INSERT INTO "+ StapDbTables.COMMENT+" SET Parent_Comment_Id=?, Test_Case_Id=?, Execution_Plan_Id=?, Execution_Id=?, Content=?, User_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{comment.getParentCommentId(), comment.getTestCaseId(), comment.getExecutionPlanId(), comment.getExecutionId(), comment.getContent(), comment.getUserId()});
+        String sql = "INSERT INTO "+ StapDbTables.COMMENT+" SET Test_Case_Id=?, Execution_Plan_Id=?, Execution_Id=?, Content=?, User_Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{ comment.getTestCaseId(), comment.getExecutionPlanId(), comment.getExecutionId(), comment.getContent(), comment.getUserId()});
     }
 
     public void update(Comment comment) {
-        String sql = "UPDATE "+StapDbTables.COMMENT+" SET Parent_Comment_Id=?, Test_Case_Id=?, Execution_Plan_Id=?, Test_Case_Id=?, Content=?, User_Id=? WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{comment.getParentCommentId(), comment.getTestCaseId(), comment.getExecutionPlanId(), comment.getExecutionId(), comment.getContent(), comment.getUserId(), comment.getId()});
+        String sql = "UPDATE "+StapDbTables.COMMENT+" SET Test_Case_Id=?, Execution_Plan_Id=?, Test_Case_Id=?, Content=?, User_Id=? WHERE Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{ comment.getTestCaseId(), comment.getExecutionPlanId(), comment.getExecutionId(), comment.getContent(), comment.getUserId(), comment.getId()});
     }
 
     public void delete(int id) {
@@ -67,14 +68,17 @@ public class CommentDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseId});
     }
 
-    private RowMapper<CommentDto> commentDtoRowMapper = new RowMapper<CommentDto>() {
-        public CommentDto mapRow(ResultSet resultSet, int i) throws SQLException {
-            CommentDto commentDto = new CommentDto();
-            commentDto.setId(resultSet.getInt("Id"));
-            commentDto.setContent(resultSet.getString("Content"));
-            commentDto.setUserId(resultSet.getInt("User_Id"));
-            commentDto.setTime(resultSet.getTimestamp("Time"));
-            return commentDto;
+    private RowMapper<Comment> commentRowMapper = new RowMapper<Comment>() {
+        public Comment mapRow(ResultSet resultSet, int i) throws SQLException {
+            Comment comment = new Comment();
+            comment.setId(resultSet.getInt("Id"));
+            comment.setTestCaseId(resultSet.getInt("Test_Case_Id"));
+            comment.setExecutionPlanId(resultSet.getInt("Execution_Plan_Id"));
+            comment.setExecutionId(resultSet.getInt("Execution_Id"));
+            comment.setContent(resultSet.getString("Content"));
+            comment.setUserId(resultSet.getInt("User_Id"));
+            comment.setTime(resultSet.getTimestamp("Time"));
+            return comment;
         }
     };
 }

@@ -1,12 +1,12 @@
 package com.xieziming.stap.core.model.notification.dao;
 
-import com.xieziming.stap.core.model.notification.dto.WatchListDto;
 import com.xieziming.stap.core.model.notification.pojo.WatchList;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,31 +15,32 @@ import java.util.List;
 /**
  * Created by Suny on 8/12/16.
  */
+@Component
 public class WatchListDao {
     private static Logger logger = LoggerFactory.getLogger(WatchListDao.class);
 
-    public WatchListDto findById(int id) {
+    public WatchList findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.WATCH_LIST+ " WHERE Id=?";
-        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, watchListDtoRowMapper);
+        return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, watchListDtoRowMapper);
     }
 
-    public List<WatchListDto> findAllByUserAndExecutionPlanId(int executionPlanId, String userId) {
-        String sql = "SELECT * FROM " + StapDbTables.WATCH_LIST + " WHERE Execution_Plan_Id=? AND User_Id=?";
-        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlanId, userId}, watchListDtoRowMapper);
+    public List<WatchList> findAllByExecutionPlanId(int executionPlanId) {
+        String sql = "SELECT * FROM " + StapDbTables.WATCH_LIST + " WHERE Execution_Plan_Id=? ";
+        return StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlanId}, watchListDtoRowMapper);
     }
-    public List<WatchListDto> findAllByUserAndExecutionId(int executionId, String userId) {
-        String sql = "SELECT * FROM " + StapDbTables.WATCH_LIST + " WHERE Execution_Id=? AND User_Id=?";
-        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionId, userId}, watchListDtoRowMapper);
-    }
-
-    public List<WatchListDto> findAllUserAndByTestCaseId(int testCaseId, String userId) {
-        String sql = "SELECT * FROM " + StapDbTables.WATCH_LIST + " WHERE Test_Case_Id=? AND User_Id=?";
-        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId, userId}, watchListDtoRowMapper);
+    public List<WatchList> findAllByExecutionId(int executionId) {
+        String sql = "SELECT * FROM " + StapDbTables.WATCH_LIST + " WHERE Execution_Id=? ";
+        return StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionId}, watchListDtoRowMapper);
     }
 
-    public List<WatchListDto> findAllByUser(String userId) {
+    public List<WatchList> findAllByTestCaseId(int testCaseId) {
+        String sql = "SELECT * FROM " + StapDbTables.WATCH_LIST + " WHERE Test_Case_Id=? ";
+        return StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId}, watchListDtoRowMapper);
+    }
+
+    public List<WatchList> findAllByUser(int userId) {
         String sql = "SELECT * FROM " + StapDbTables.WATCH_LIST + " WHERE User_Id=?";
-        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{userId}, watchListDtoRowMapper);
+        return StapDbUtil.getJdbcTemplate().query(sql, new Object[]{userId}, watchListDtoRowMapper);
     }
 
     public void add(WatchList watchList) {
@@ -72,12 +73,15 @@ public class WatchListDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseId});
     }
 
-    private RowMapper<WatchListDto> watchListDtoRowMapper = new RowMapper<WatchListDto>() {
-        public WatchListDto mapRow(ResultSet resultSet, int i) throws SQLException {
-            WatchListDto watchListDto = new WatchListDto();
-            watchListDto.setId(resultSet.getInt("Id"));
-            watchListDto.setUserId(resultSet.getInt("User_Id"));
-            return watchListDto;
+    private RowMapper<WatchList> watchListDtoRowMapper = new RowMapper<WatchList>() {
+        public WatchList mapRow(ResultSet resultSet, int i) throws SQLException {
+            WatchList watchList = new WatchList();
+            watchList.setId(resultSet.getInt("Id"));
+            watchList.setTestCaseId(resultSet.getInt("Test_Case_Id"));
+            watchList.setExecutionPlanId(resultSet.getInt("Execution_Plan_Id"));
+            watchList.setExecutionId(resultSet.getInt("Execution_Id"));
+            watchList.setUserId(resultSet.getInt("User_Id"));
+            return watchList;
         }
     };
 }

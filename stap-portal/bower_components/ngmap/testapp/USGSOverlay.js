@@ -50,7 +50,7 @@ USGSOverlay.prototype.draw = function() {
   var overlayProjection = this.getProjection();
 
   // Retrieve the south-west and north-east coordinates of this overlay
-  // in LatLngs and convert them to pixel coordinates.
+  // in LatLngs and converter them to pixel coordinates.
   // We'll use these coordinates to resize the div.
   var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
   var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
