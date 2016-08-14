@@ -76,6 +76,12 @@ public class StapFileService {
 
     }
 
+    @RequestMapping(value = "{path}", method = RequestMethod.GET)
+    @ResponseBody
+    public byte[] getFileContent(@PathVariable("path") String path) {
+        return stapFileDao.findByPath(path);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public byte[] getFileContent(@RequestBody final StapFileGetRequest stapFileGetRequest) {
