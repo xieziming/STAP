@@ -122,14 +122,14 @@
                     <!-- start: TAB TEST DATA -->
                     <uib-tab heading="{{'testCase.testData' | translate}}">
                         <table ng-table="testDataTable" show-filter="false" class="table table-striped">
-                            <tr ng-repeat="test_data in $data">
-                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{test_data.testDataDefinition.id}} </td>
-                                <td data-title="'Type'">{{test_data.testDataDefinition.type}}</td>
-                                <td data-title="'Field'" sortable="'testDataDefinition.field'"> {{test_data.testDataDefinition.field}}</td>
-                                <td data-title="'Value'" sortable="'testDataDefinition.value'">{{test_data.testDataDefinition.value}}</td>
-                                <td data-title="'File'" sortable="'testDataDefinition.fileId'"><a ui-sref="app.file.detail({id : test_data.testDataDefinition.fileId})">{{test_data.testDataDefinition.fileId}}</td>
-                                <td data-title="'Remark'" sortable="'testDataDefinition.remark'">{{test_data.testDataDefinition.remark}}</td>
-                                <td data-title="'Last Update'" sortable="'testDataDefinition.lastUpdate'">{{test_data.testDataDefinition.lastUpdate}}</td>
+                            <tr ng-repeat="testData in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{testData.testDataDefinitionDto.id}} </td>
+                                <td data-title="'Type'">{{testData.testDataDefinitionDto.type}}</td>
+                                <td data-title="'Field'" sortable="'testDataDefinitionDto.field'"> {{testData.testDataDefinitionDto.field}}</td>
+                                <td data-title="'Value'" sortable="'testDataDefinitionDto.value'">{{testData.testDataDefinitionDto.value}}</td>
+                                <td data-title="'File'" sortable="'testDataDefinitionDto.fileDto.id'"><a ui-sref="app.file.detail({id : testData.testDataDefinitionDto.fileDto.id})">{{testData.testDataDefinitionDto.fileDto.name}}</a></td>
+                                <td data-title="'Remark'" sortable="'testDataDefinitionDto.remark'">{{testData.testDataDefinitionDto.remark}}</td>
+                                <td data-title="'Last Update'" sortable="'testDataDefinitionDto.lastUpdate'">{{testData.testDataDefinitionDto.lastUpdate}}</td>
                             </tr>
                         </table>
                     </uib-tab>
@@ -173,6 +173,18 @@
                         </table>
                     </uib-tab>
                     <!-- end: TAB EXECUTIONS -->
+                    <!-- start: TAB COMMENTS -->
+                    <uib-tab heading="{{'common.comments' | translate}}">
+                        <table ng-table="commentTable" class="table table-striped">
+                            <tr ng-repeat="comment in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{comment.id}} </td>
+                                <td data-title="'Name'" sortable="'userDto.nickName'"><img class="profile-photo" ng-src="data:image/jpeg;base64,{{comment.userDto.avatar}}"> {{comment.userDto.nickName}}</td>
+                                <td data-title="'Content'" sortable="'content'">{{comment.content}}</span></a></td>
+                                <td data-title="'Time'" sortable="'time'">{{comment.time}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB COMMENTS -->
                     <!-- start: TAB EDIT -->
                     <uib-tab heading="{{'common.edit' | translate}}" active="editActive">
                         <!--form action="#" role="form" id="form"-->

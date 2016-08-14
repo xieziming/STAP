@@ -27,6 +27,7 @@ public class StapDbTables {
     public static final String TEST_CASE_REVISION = "test_case_revision";
 
     public static final String FILE = "file";
+    public static final String FILE_META = "file_meta";
 
     public static final String USER = "user";
     public static final String USER_ROLE = "user_role";

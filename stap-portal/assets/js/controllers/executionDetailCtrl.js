@@ -20,9 +20,12 @@ app.controller('executionDetailCtrl', function ($scope, $filter, $http, StapTabl
         var executionLogDtoList = res.data.executionLogDtoList;
 
         $scope.outputTextTable = StapTableService.createStapTable(executionOutputTextDtoList);
-
         $scope.outputFileTable = StapTableService.createStapTable(executionOutputFileDtoList);
-
         $scope.executionLogTable = StapTableService.createStapTable(executionLogDtoList);
+    });
+
+    $http.get(ENV_CONFIG.gatewayUrl + '/execution/' + $stateParams.id+"/comment").then(function (res) {
+        var commentList = res.data;
+        $scope.commentTable = StapTableService.createStapTable(commentList);
     });
 });

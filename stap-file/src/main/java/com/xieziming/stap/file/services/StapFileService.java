@@ -2,7 +2,7 @@ package com.xieziming.stap.file.services;
 
 import com.xieziming.stap.core.exceptions.StapException;
 import com.xieziming.stap.core.model.file.dto.StapFileDto;
-import com.xieziming.stap.core.model.file.pojo.StapFile;
+import com.xieziming.stap.core.model.file.pojo.StapFile2;
 import com.xieziming.stap.file.dao.StapFileDtoDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +39,8 @@ public class StapFileService {
     @RequestMapping(value = "file/{path}/content", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE+UTF8)
     @ResponseBody
     public byte[] getFileContent(@PathVariable("path") String path) {
-        StapFile stapFile = stapFileDtoDao.findByPath(path).getStapFile();
-        return stapFile.getContent();
+        StapFile2 stapFile2 = stapFileDtoDao.findByPath(path).getStapFile2();
+        return stapFile2.getContent();
     }
 
     @RequestMapping(value = "file/{path}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)

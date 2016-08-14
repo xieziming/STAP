@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Suny on 5/10/16.
@@ -36,20 +37,27 @@ public class TestDataDefinitionDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{TestDataType.GLOBAL, id});
     }
 
+    public List<TestDataDefinition> findAll(){
+        String sql = "SELECT * FROM " + StapDbTables.TEST_DATA_DEFINITION;
+        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[0], testDataDefinitionRowMapper);
+    }
+
     public TestDataDefinition findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.TEST_DATA_DEFINITION + " WHERE Id=?";
-        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<TestDataDefinition>() {
-            public TestDataDefinition mapRow(ResultSet resultSet, int i) throws SQLException {
-                TestDataDefinition testDataDefinition = new TestDataDefinition();
-                testDataDefinition.setId(resultSet.getInt("Id"));
-                testDataDefinition.setField(resultSet.getString("Field"));
-                testDataDefinition.setValue(resultSet.getString("Value"));
-                testDataDefinition.setRemark(resultSet.getString("Remark"));
-                testDataDefinition.setType(resultSet.getString("Type"));
-                testDataDefinition.setFileId(resultSet.getInt("File_Id"));
-                testDataDefinition.setLastUpdate(resultSet.getTimestamp("Last_Update"));
-                return testDataDefinition;
-            }
-        });
+        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, testDataDefinitionRowMapper);
     }
+
+    RowMapper<TestDataDefinition> testDataDefinitionRowMapper = new RowMapper<TestDataDefinition>() {
+        public TestDataDefinition mapRow(ResultSet resultSet, int i) throws SQLException {
+            TestDataDefinition testDataDefinition = new TestDataDefinition();
+            testDataDefinition.setId(resultSet.getInt("Id"));
+            testDataDefinition.setField(resultSet.getString("Field"));
+            testDataDefinition.setValue(resultSet.getString("Value"));
+            testDataDefinition.setRemark(resultSet.getString("Remark"));
+            testDataDefinition.setType(resultSet.getString("Type"));
+            testDataDefinition.setFileId(resultSet.getInt("File_Id"));
+            testDataDefinition.setLastUpdate(resultSet.getTimestamp("Last_Update"));
+            return testDataDefinition;
+        }
+    };
 }

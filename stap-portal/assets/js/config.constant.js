@@ -146,6 +146,12 @@ app.constant('JS_REQUIRES', {
             name:  'testCaseDetailCtrl',
             files: ['assets/js/controllers/testCaseDetailCtrl.js']
         }, {
+            name:  'testDataDefinitionCtrl',
+            files: ['assets/js/controllers/testDataDefinitionCtrl.js']
+        }, {
+            name:  'testActionDefinitionCtrl',
+            files: ['assets/js/controllers/testActionDefinitionCtrl.js']
+        }, {
             name:  'notificationCtrl',
             files: ['assets/js/controllers/notificationCtrl.js']
         }

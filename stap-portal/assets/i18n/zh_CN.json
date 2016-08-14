@@ -58,6 +58,16 @@
         "testSteps": "测试步骤",
         "testData": "测试数据"
     },
+    "testData":{
+        "Definition" : "数据定义",
+        "Definitions": "数据定义",
+        "DefinitionList": "数据定义列表"
+    },
+    "testAction":{
+        "Definition" : "关键词定义",
+        "Definitions" : "关键词定义",
+        "DefinitionList": "关键词列表"
+    },
     "navigation": {
         "home": "首页",
         "navigation": "页面导航",
@@ -66,8 +76,6 @@
         "dashboard": "控制面板",
         "executionPlan":  "执行计划",
         "dataConfig": "数据配置",
-        "globalTestData": "全局测试数据",
-        "globalProperty": "全局属性",
         "testCase": "测试用例",
         "importExport": "导入/导出",
         "testCaseImport": "测试用例导入",
