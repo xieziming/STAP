@@ -26,4 +26,9 @@ app.controller('testCaseDetailCtrl', function ($scope, StapTableService, $http, 
         var testActionRevisionList = res.data.testActionRevisionList;
         $scope.revisionTable = StapTableService.createStapTable(testCaseRevisionList.concat(testDataDefinitionRevisionList.concat(testActionRevisionList)), 10,'desc');
     });
+
+    $http.get(ENV_CONFIG.gatewayUrl + '/test_case/' + $stateParams.id+"/comment").then(function (res) {
+        var commentList = res.data;
+        $scope.commentTable = StapTableService.createStapTable(commentList);
+    });
 });

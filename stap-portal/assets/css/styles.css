@@ -15380,3 +15380,11 @@ figure.effect-goliath:hover p {
   background-repeat: no-repeat;
   margin-top: 60px;
 }
+
+.profile-photo {
+  background-color: #fff;
+  border-radius: 4px;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+}

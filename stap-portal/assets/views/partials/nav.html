@@ -39,23 +39,23 @@
             </div>
         </a>
     </li>
-    <li ng-class="{'active open':$state.includes('app.pagelayouts')}">
+    <li ng-class="{'active open':$state.includes('app.test_data_definition')}">
         <a href="javascript:void(0)">
             <div class="item-content">
                 <div class="item-media">
                     <letter-icon data="{{ 'DC' }}" char-count="2" size="sm"></letter-icon>
                 </div>
                 <div class="item-inner">
-                    <span class="title" translate="navigation.dataConfig"> Data Configuration </span><i class="icon-arrow"></i>
+                    <span class="title" translate="navigation.dataConfig"></span><i class="icon-arrow"></i>
                 </div>
             </div>
         </a>
         <ul class="sub-menu">
             <li ui-sref-active="active">
-                <a ui-sref="app.pagelayouts.fixedheader"> <span class="title" translate="navigation.globalTestData"> Global Test Data </span> </a>
+                <a ui-sref="app.test_data.config.test_data_definition"> <span class="title" translate="testData.Definitions"></span> </a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="app.pagelayouts.fixedsidebar"> <span class="title" translate="navigation.globalProperty"> Global Property </span> </a>
+                <a ui-sref="app.test_data.config.test_action_definition"> <span class="title" translate="testAction.Definitions"> Global Property </span> </a>
             </li>
         </ul>
     </li>

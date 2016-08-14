@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Suny on 5/10/16.
@@ -30,18 +31,25 @@ public class TestActionDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
     }
 
+    public List<TestAction> findAll(){
+        String sql = "SELECT * FROM " + StapDbTables.TEST_ACTION;
+        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[0], testActionRowMapper);
+    }
+
     public TestAction findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.TEST_ACTION + " WHERE Id=?";
-        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<TestAction>() {
-            public TestAction mapRow(ResultSet resultSet, int i) throws SQLException {
-                TestAction testAction = new TestAction();
-                testAction.setId(resultSet.getInt("Id"));
-                testAction.setName(resultSet.getString("Name"));
-                testAction.setHandler(resultSet.getString("Handler"));
-                testAction.setRemark(resultSet.getString("Remark"));
-                testAction.setLastUpdate(resultSet.getTimestamp("Last_Update"));
-                return testAction;
-            }
-        });
+        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, testActionRowMapper);
     }
+
+    RowMapper<TestAction> testActionRowMapper = new RowMapper<TestAction>() {
+        public TestAction mapRow(ResultSet resultSet, int i) throws SQLException {
+            TestAction testAction = new TestAction();
+            testAction.setId(resultSet.getInt("Id"));
+            testAction.setName(resultSet.getString("Name"));
+            testAction.setHandler(resultSet.getString("Handler"));
+            testAction.setRemark(resultSet.getString("Remark"));
+            testAction.setLastUpdate(resultSet.getTimestamp("Last_Update"));
+            return testAction;
+        }
+    };
 }

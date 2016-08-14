@@ -75,7 +75,7 @@
                                                 <li ng-class="{ 'timeline-item info': executionPlanRevision.type == 'Insert',
                                                     'timeline-item warning': executionPlanRevision.type == 'Update',
                                                     'timeline-item danger': executionPlanRevision.type == 'Delete'}"
-                                                    ng-repeat="executionPlanRevision in executionPlanRevisionList.slice().reverse();">
+                                                    ng-repeat="executionPlanRevision in executionPlanRevisionList.slice().reverse() | limitTo:10 ">
                                                     <div class="margin-left-15">
                                                         <div class="text-muted text-small">
                                                             {{executionPlanRevision.time}}
@@ -137,6 +137,18 @@
                         </table>
                     </uib-tab>
                     <!-- end: TAB REVISION -->
+                    <!-- start: TAB COMMENTS -->
+                    <uib-tab heading="{{'common.comments' | translate}}">
+                        <table ng-table="commentTable" class="table table-striped">
+                            <tr ng-repeat="comment in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{comment.id}} </td>
+                                <td data-title="'Name'" sortable="'userDto.nickName'"><img class="profile-photo" ng-src="data:image/jpeg;base64,{{comment.userDto.avatar}}"> {{comment.userDto.nickName}}</td>
+                                <td data-title="'Content'" sortable="'content'">{{comment.content}}</span></a></td>
+                                <td data-title="'Time'" sortable="'time'">{{comment.time}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB COMMENTS -->
                     <!-- start: TAB EDIT -->
                     <uib-tab heading="{{'common.edit' | translate}}" active="editActive">
                         <!--form action="#" role="form" id="form"-->

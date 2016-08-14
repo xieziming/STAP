@@ -2,7 +2,8 @@ package com.xieziming.stap.core.model.execution.converter;
 
 import com.xieziming.stap.core.model.execution.dto.ExecutionOutputFileDto;
 import com.xieziming.stap.core.model.execution.pojo.ExecutionOutputFile;
-import com.xieziming.stap.core.model.file.dao.FileReferenceDao;
+import com.xieziming.stap.core.model.file.converter.FileConverter;
+import com.xieziming.stap.core.model.file.dao.FileDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,9 @@ import java.util.List;
 @Component
 public class ExecutionOutputFileConverter {
     @Autowired
-    private FileReferenceDao fileReferenceDao;
+    private FileDao fileDao;
+    @Autowired
+    private FileConverter fileConverter;
     public List<ExecutionOutputFileDto> convertAll(List<ExecutionOutputFile> executionOutputFileList) {
         List<ExecutionOutputFileDto> executionOutputFileDtoList = new ArrayList<ExecutionOutputFileDto>();
         for (ExecutionOutputFile executionOutputFile : executionOutputFileList){
@@ -29,7 +32,7 @@ public class ExecutionOutputFileConverter {
         executionOutputFileDto.setId(executionOutputFile.getId());
         executionOutputFileDto.setType(executionOutputFile.getType());
         executionOutputFileDto.setRemark(executionOutputFile.getRemark());
-        executionOutputFileDto.setFileReference(fileReferenceDao.findById(executionOutputFile.getFileId()));
+        executionOutputFileDto.setFileDto(fileConverter.convert(fileDao.findById(executionOutputFile.getFileId())));
         executionOutputFileDto.setLastUpdate(executionOutputFile.getLastUpdate());
         return executionOutputFileDto;
     }

@@ -27,13 +27,18 @@ app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter,
         $scope.executionPlanRevisionList = executionPlanRevisionList;
     });
 
+    $http.get(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id+"/comment").then(function (res) {
+        var commentList = res.data;
+        $scope.commentTable = StapTableService.createStapTable(commentList);
+    });
+
 
     $scope.ldloading = {};
     $scope.updateExecutionPlan = function () {
         $http.post(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id, $scope.executionPlan).then(function (res) {
             MessageService.success("execution plan updated!");
         }, function (err) {
-            MessageService.error(err);
+            MessageService.error(err.msg);
         });
     };
 

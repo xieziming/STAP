@@ -1,5 +1,5 @@
 <!-- toaster directive -->
-<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'time-out':{ 'toast-warning': 10, 'toast-error': 0 }, 'close-button':true}"></toaster-container>
 <!-- / toaster directive -->
 <!-- sidebar -->
 <div class="sidebar app-aside hidden-print" id="sidebar" toggleable parent-active-class="app-slide-off" ct-sticky ct-sticky-disabled="!app.layout.isSidebarFixed || (app.layout.isSidebarFixed && app.layout.isNavbarFixed) || isSmallDevice">

@@ -191,7 +191,7 @@
                             <tr ng-repeat="executionOutputFile in $data">
                                 <td class="col-md-1" data-title="'ID'" sortable="'id'"><span class="badge">{{executionOutputFile.id}}</span></td>
                                 <td data-title="'Type'" sortable="'type'">{{executionOutputFile.type}}</td>
-                                <td data-title="'Name'" sortable="'fileReference.name'">{{executionOutputFile.fileReference.name}}</td>
+                                <td data-title="'Name'" sortable="'fileDto.name'"><a ui-sref="app.file.detail({id : executionOutputFile.fileDto.id})">{{executionOutputFile.fileDto.name}}</a></td>
                                 <td data-title="'Remark'" sortable="'remark'">{{executionOutputFile.remark}}</td>
                                 <td data-title="'Time'" sortable="'lastUpdate'">{{executionOutputFile.lastUpdate}}</td>
                             </tr>
@@ -210,6 +210,18 @@
                         </table>
                     </uib-tab>
                     <!-- end: TAB LOG -->
+                    <!-- start: TAB COMMENTS -->
+                    <uib-tab heading="{{'common.comments' | translate}}">
+                        <table ng-table="commentTable" class="table table-striped">
+                            <tr ng-repeat="comment in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{comment.id}} </td>
+                                <td data-title="'Name'" sortable="'userDto.nickName'"><img class="profile-photo" ng-src="data:image/jpeg;base64,{{comment.userDto.avatar}}"> {{comment.userDto.nickName}}</td>
+                                <td data-title="'Content'" sortable="'content'">{{comment.content}}</span></a></td>
+                                <td data-title="'Time'" sortable="'time'">{{comment.time}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB COMMENTS -->
                 </uib-tabset>
                 <!-- end: USER TABSET -->
             </div>

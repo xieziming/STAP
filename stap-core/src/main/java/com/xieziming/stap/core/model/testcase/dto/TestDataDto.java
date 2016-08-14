@@ -1,6 +1,5 @@
 package com.xieziming.stap.core.model.testcase.dto;
 
-import com.xieziming.stap.core.model.testcase.pojo.TestDataDefinition;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +12,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TestDataDto {
     private Integer id;
-    private TestDataDefinition testDataDefinition;
+    private TestDataDefinitionDto testDataDefinitionDto;
 }

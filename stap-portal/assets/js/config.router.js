@@ -104,7 +104,40 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'testCase.testCaseDetail'
         },
         resolve: loadSequence('flow','ngTable', 'testCaseDetailCtrl')
-    })
+    }).state('app.test_data', {
+        url: '/test_data',
+        template: '<div ui-view class="fade-in-up"></div>',
+        title: 'Test Data',
+        ncyBreadcrumb: {
+            label: 'common.testData'
+        },
+        abstract: true
+    }).state('app.test_data.config', {
+        url: '/config',
+        template: '<div ui-view class="fade-in-up"></div>',
+        title: 'Test Case',
+        ncyBreadcrumb: {
+            label: 'navigation.dataConfig'
+        },
+        abstract: true
+    }).state('app.test_data.config.test_data_definition', {
+            url: '/test_data_definition',
+            templateUrl: "assets/views/test_data_definition.html",
+            title: 'Test Data Definitions',
+            ncyBreadcrumb: {
+                label: 'testData.Definitions'
+            },
+            resolve: loadSequence('ngTable', 'testDataDefinitionCtrl')
+        })
+        .state('app.test_data.config.test_action_definition', {
+            url: '/test_action_definition',
+            templateUrl: "assets/views/test_action_definition.html",
+            title: 'Test Action Definitions',
+            ncyBreadcrumb: {
+                label: 'testAction.Definitions'
+            },
+            resolve: loadSequence('ngTable', 'testActionDefinitionCtrl')
+        })
 	// Login routes
 	.state('login', {
 	    url: '/login',

@@ -16,6 +16,8 @@ import java.util.List;
 public class TestDataConverter {
     @Autowired
     private TestDataDefinitionDao testDataDefinitionDao;
+    @Autowired
+    private TestDataDefinitionConverter testDataDefinitionConverter;
 
     public List<TestDataDto> convertAll(List<TestData> testDataList) {
         List<TestDataDto> testDataDtoList = new ArrayList<TestDataDto>();
@@ -28,7 +30,7 @@ public class TestDataConverter {
     public TestDataDto convert(TestData testData) {
         TestDataDto testDataDto = new TestDataDto();
         testDataDto.setId(testData.getId());
-        testDataDto.setTestDataDefinition(testDataDefinitionDao.findById(testData.getTestDataDefinitionId()));
+        testDataDto.setTestDataDefinitionDto(testDataDefinitionConverter.convert(testDataDefinitionDao.findById(testData.getTestDataDefinitionId())));
         return testDataDto;
     }
 }

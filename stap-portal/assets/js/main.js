@@ -92,8 +92,13 @@ app.factory('AuthInterceptor', [
 		return {
 			responseError: function(response){
 				if(response.status == -1){
-					MessageService.error("fail to connect to server!");
+					MessageService.error("cannot connect to server!");
 				}
+
+				if(response.status == 500){
+					MessageService.error("server error!");
+				}
+
 				$rootScope.$broadcast({401:AUTH_EVENTS.notAuthenticated, 403:AUTH_EVENTS.notAuthorized}[response.status], response);
 				return $q.reject(response);
 			}
