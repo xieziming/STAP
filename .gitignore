@@ -1,6 +1,18 @@
-out
-*/target
-*.log
+*.class
+ 
+# Package Files #
+*.jar
+*.war
+*.ear
+ 
+# ignore Maven generated target folders
+target
+ 
+# ignore eclipse files
+.project
+.classpath
+.settings
+.metadata
+
 .DS_Store
-target/*
-stap-execution/*
+*.log

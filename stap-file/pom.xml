@@ -22,7 +22,7 @@
                         </webApp>
                         <connectors>
                             <connector implementation="org.eclipse.jetty.server.bio.SocketConnector">
-                                <port>9090</port>
+                                <port>7070</port>
                             </connector>
                         </connectors>
                     </configuration>
@@ -88,14 +88,34 @@
             <version>1.1.2</version>
         </dependency>
         <dependency>
-            <groupId>com.xieziming</groupId>
-            <artifactId>stap-core</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>4.2.4.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>com.xieziming</groupId>
-            <artifactId>stap-db</artifactId>
-            <version>${project.version}</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>4.2.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>7.0.42</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.36</version>
         </dependency>
     </dependencies>
 </project>
