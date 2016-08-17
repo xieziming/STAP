@@ -2,6 +2,8 @@ package com.xieziming.stap.core.model.execution.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.xieziming.stap.core.model.execution.pojo.ExecutionContext;
+import com.xieziming.stap.core.model.testcase.dto.TestCaseCandidateDto;
 import com.xieziming.stap.core.util.JsonDateDeserializer;
 import com.xieziming.stap.core.util.JsonDateSerializer;
 import lombok.Data;
@@ -14,14 +16,11 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class ExecutionBriefDto {
+public class ExecutionCandidateDto {
     private Integer id;
-    private Integer executionPlanId;
-    private String executionPlanName;
-    private Integer executionContextId;
-    private String executionContextName;
-    private Integer testCaseId;
-    private String testCaseName;
+    private ExecutionPlanDto executionPlanDto;
+    private ExecutionContext executionContext;
+    private TestCaseCandidateDto testCaseCandidateDto;
     @JsonSerialize(using = JsonDateSerializer.class)
     @JsonDeserialize(using = JsonDateDeserializer.class)
     private Date startTime;

@@ -9,13 +9,12 @@ import org.springframework.stereotype.Component;
  * Created by Suny on 7/21/16.
  */
 @Component
-public class ExecutionController {
-    private static Logger log = LoggerFactory.getLogger(ExecutionController.class);
+public class ExecutionRequestController {
+    private static Logger logger = LoggerFactory.getLogger(ExecutionRequestController.class);
     @Autowired
     private ExecutionRequestHandler executionRequestHandler;
 
-    public ExecutionResponse request(ExecutionRequest executionRequest){
-        log.info("{} request to run execution {}", executionRequest.getRequester()+"("+executionRequest.getFromIp()+")", executionRequest.getExecutionId());
+    public ExecutionRequestResult handleRequest(ExecutionRequest executionRequest){
         return executionRequestHandler.handle(executionRequest);
     }
 }

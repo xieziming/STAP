@@ -56,7 +56,7 @@ public class GatewayServiceImpl implements GatewayService{
         }
 
         addHeaders(httpRequest, req);
-        log.info("sending request "+ httpRequest);
+        log.info("sending distribute "+ httpRequest);
 
         try(CloseableHttpClient httpClient = buildClient()){
             CloseableHttpResponse httpResponse = httpClient.execute(httpRequest);

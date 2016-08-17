@@ -1,4 +1,4 @@
-package com.xieziming.stap.channel.services;
+package com.xieziming.stap.channel.services.execution;
 
 import com.xieziming.stap.core.model.comment.converter.CommentConverter;
 import com.xieziming.stap.core.model.comment.dao.CommentDao;
@@ -65,7 +65,7 @@ public class ExecutionPlanService {
     @RequestMapping(value = "{execution_plan_id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE+UTF8, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionPlan updateExecutionPlan(@RequestBody ExecutionPlan executionPlan) {
-        logger.info("A put request for execution plan: "+executionPlan.toString());
+        logger.info("A put distribute for execution plan: "+executionPlan.toString());
         if(executionPlan.getId() != null){
             return executionPlanDao.update(executionPlan);
         }else{
@@ -76,7 +76,7 @@ public class ExecutionPlanService {
     @RequestMapping(value = "{execution_plan_id}/execution_plan_meta", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE+UTF8, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
     public ExecutionPlanMeta updateExecutionPlanMeta(@RequestBody ExecutionPlanMeta executionPlanMeta) {
-        logger.info("A put request for execution plan meta: "+executionPlanMeta.toString());
+        logger.info("A put distribute for execution plan meta: "+executionPlanMeta.toString());
         if(executionPlanMeta.getId() != null) {
             return executionPlanMetaDao.update(executionPlanMeta);
         }else{
@@ -93,7 +93,7 @@ public class ExecutionPlanService {
     @RequestMapping(value = "{execution_plan_id}/execution_plan_meta/{execution_plan_meta_id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteExecutionPlanMeta(@PathVariable("execution_plan_meta_id") int executionPlanMetaId) {
-        logger.info("A delete request for execution plan meta: "+executionPlanMetaId);
+        logger.info("A delete distribute for execution plan meta: "+executionPlanMetaId);
         executionPlanMetaDao.delete(executionPlanMetaId);
     }
 

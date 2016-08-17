@@ -1,9 +1,12 @@
 package com.xieziming.stap.core.execution;
 
 import com.xieziming.stap.core.constants.ExecutionStatusType;
+import com.xieziming.stap.core.constants.LogLevel;
 import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
 import com.xieziming.stap.core.model.execution.converter.ExecutionConverter;
+import com.xieziming.stap.core.model.execution.dao.ExecutionLogDao;
 import com.xieziming.stap.core.model.execution.pojo.Execution;
+import com.xieziming.stap.core.model.execution.pojo.ExecutionLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +17,29 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ExecutionRequestHandler {
-    private static Logger log = LoggerFactory.getLogger(ExecutionRequestHandler.class);
+    private static Logger logger = LoggerFactory.getLogger(ExecutionRequestHandler.class);
     @Autowired
-    ExecutionConverter executionConverter;
+    private ExecutionConverter executionConverter;
     @Autowired
-    ExecutionDao executionDao;
+    private ExecutionDao executionDao;
+    @Autowired
+    private ExecutionLogDao executionLogDao;
 
-    public synchronized ExecutionResponse handle(ExecutionRequest executionRequest){
+    public synchronized ExecutionRequestResult handle(ExecutionRequest executionRequest){
         Execution execution = executionDao.findById(executionRequest.getExecutionId());
-        if(ExecutionStatusType.INPROGRESS != execution.getStatus()){
-            log.info("execution {} has assigned to ", executionRequest.getExecutionId(), executionRequest.getRequester()+"("+executionRequest.getFromIp()+")");
+        ExecutionLog executionLog = new ExecutionLog();
+        executionLog.setExecutionId(execution.getId());
+        if(!ExecutionStatusType.INPROGRESS.equalsIgnoreCase(execution.getStatus())){
             execution.setStatus(ExecutionStatusType.INPROGRESS);
             executionDao.update(execution);
-            return new ExecutionResponse("yes", executionConverter.convert(execution));
+
+            executionLog.setLevel(LogLevel.INFO);
+            executionLog.setContent("execution has been assigned to "+executionRequest.getExecutor()+" from host: "+executionRequest.getHost());
+            executionLogDao.add(executionLog);
+
+            return new ExecutionRequestResult(true, null, executionConverter.convert(execution));
         }else {
-            log.info("{} 's request to run execution {} has been rejected!", executionRequest.getRequester()+"("+executionRequest.getFromIp()+")", executionRequest.getExecutionId());
-            return new ExecutionResponse("not", null);
+            return new ExecutionRequestResult(false, "execution is already in process.", null);
         }
     }
 }

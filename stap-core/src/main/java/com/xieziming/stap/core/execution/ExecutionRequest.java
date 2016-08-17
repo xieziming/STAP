@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ExecutionRequest {
     private Integer executionId;
-    private String requester;
-    private String fromIp;
+    private String executor;
+    private String host;
 }

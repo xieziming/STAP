@@ -1,8 +1,6 @@
-package com.xieziming.stap.channel.services;
+package com.xieziming.stap.channel.services.execution;
 
-import com.xieziming.stap.core.execution.ExecutionController;
-import com.xieziming.stap.core.execution.ExecutionRequest;
-import com.xieziming.stap.core.execution.ExecutionResponse;
+import com.xieziming.stap.core.execution.ExecutionRequestController;
 import com.xieziming.stap.core.model.comment.converter.CommentConverter;
 import com.xieziming.stap.core.model.comment.dao.CommentDao;
 import com.xieziming.stap.core.model.comment.dto.CommentDto;
@@ -38,7 +36,7 @@ public class ExecutionService {
     @Autowired
     private ExecutionDao executionDao;
     @Autowired
-    private ExecutionController executionController;
+    private ExecutionRequestController executionRequestController;
     @Autowired
     private ExecutionBriefConverter executionBriefConverter;
     @Autowired
@@ -65,12 +63,6 @@ public class ExecutionService {
     public ExecutionBriefDto getExecutionBrief(@PathVariable("execution_id") int executionId) {
         Execution execution = executionDao.findById(executionId);
         return executionBriefConverter.convert(execution);
-    }
-
-    @RequestMapping(value = "{execution_id}/request", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
-    @ResponseBody
-    public ExecutionResponse requestExecution(@PathVariable("execution_id") int executionId) {
-        return executionController.request(new ExecutionRequest(executionId, "suny", "124"));
     }
 
     @RequestMapping(value = "{execution_id}/comment", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)

@@ -17,12 +17,12 @@ import java.util.List;
 public class ExecutionOutputTextDao {
 
     public void add(ExecutionOutputText executionOutputText) {
-        String sql = "INSERT INTO "+StapDbTables.EXECUTION_OUTPUT_TEXT+" SET Execution_Id=?, Execution_Step_Id=?, `Type`=?, Field=?, `Value`=?, Remark";
+        String sql = "INSERT INTO "+StapDbTables.EXECUTION_OUTPUT_TEXT+" SET Execution_Id=?, Execution_Step_Id=?, `Type`=?, Field=?, `Value`=?, Remark=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionOutputText.getExecutionId(), executionOutputText.getExecutionStepId(), executionOutputText.getType(), executionOutputText.getField(), executionOutputText.getValue(), executionOutputText.getRemark()});
     }
 
     public void update(ExecutionOutputText executionOutputText) {
-        String sql = "UPDATE "+StapDbTables.EXECUTION_OUTPUT_TEXT+" SET Execution_Id=?, Execution_Step_Id=?, `Type`=?, Field=?, `Value`=?, Remark WHERE Id=?";
+        String sql = "UPDATE "+StapDbTables.EXECUTION_OUTPUT_TEXT+" SET Execution_Id=?, Execution_Step_Id=?, `Type`=?, Field=?, `Value`=?, Remark=? WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionOutputText.getExecutionId(), executionOutputText.getExecutionStepId(), executionOutputText.getType(), executionOutputText.getField(), executionOutputText.getValue(), executionOutputText.getRemark(), executionOutputText.getId()});
     }
 

@@ -43,7 +43,7 @@ public class GatewayController {
 
     @RequestMapping("/**")
     public ResponseEntity<?> getResponse(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        log.info("got request for " + req.getRequestURI());
+        log.info("got distribute for " + req.getRequestURI());
         if(!isAuthorized(req)) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
         CloseableHttpResponse httpResponse = (CloseableHttpResponse) gatewayService.getResponse(req, resp);

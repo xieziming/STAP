@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
-    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss:SSS} %l %m%n" />
-        </layout>
-        <filter class="org.apache.log4j.varia.LevelRangeFilter">
-            <param name="LevelMax" value="ERROR" />
-            <param name="LevelMin" value="DEBUG" />
-        </filter>
-    </appender>
-
     <appender name="STAP_LOG" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="File" value="stap-channel.log" />
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -25,13 +15,6 @@
 
     <root>
         <priority value="INFO" />
-        <appender-ref ref="CONSOLE" />
-        <appender-ref ref="GATEWAY_LOG" />
-    </root>
-
-    <category name="com.xieziming.stap">
-        <priority value="DEBUG" />
         <appender-ref ref="STAP_LOG" />
-    </category>
-
+    </root>
 </log4j:configuration>

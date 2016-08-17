@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExecutionResponse {
-    private String approved;
+public class ExecutionRequestResult {
+    private Boolean approved;
+    private String remark;
     private ExecutionDto executionDto;
 }
