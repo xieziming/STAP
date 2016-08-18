@@ -49,22 +49,22 @@ public class CommentDao {
     }
 
     public void delete(int id) {
-        String sql = "DELETE FROM "+StapDbTables.EXECUTION+" WHERE Id=?";
+        String sql = "DELETE FROM "+StapDbTables.COMMENT+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
     }
 
     public void deleteAllByExecutionPlanId(int executionPlanId) {
-        String sql = "DELETE FROM "+StapDbTables.EXECUTION+" WHERE Execution_Plan_Id=?";
+        String sql = "DELETE FROM "+StapDbTables.COMMENT+" WHERE Execution_Plan_Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanId});
     }
 
     public void deleteAllByExecutionId(int executionId) {
-        String sql = "DELETE FROM "+StapDbTables.EXECUTION+" WHERE Execution_Id=?";
+        String sql = "DELETE FROM "+StapDbTables.COMMENT+" WHERE Execution_Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionId});
     }
 
     public void deleteAllByTestCaseId(int testCaseId) {
-        String sql = "DELETE FROM "+StapDbTables.EXECUTION+" WHERE Test_Case_Id=?";
+        String sql = "DELETE FROM "+StapDbTables.COMMENT+" WHERE Test_Case_Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseId});
     }
 

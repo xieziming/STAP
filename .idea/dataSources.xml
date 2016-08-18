@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1077481175">
+  <component name="DataSourceManagerImpl" format="xml" hash="798239183">
     <data-source source="LOCAL" name="Stap DB" uuid="9c8aed48-928b-4c23-90ca-b6d4ac842e5e">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

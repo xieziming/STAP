@@ -29,16 +29,10 @@ public class ExecutionContextRevisionDao {
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionContextId}, executionContextRevisionRowMapper);
     }
 
-    public void delete(int id) {
-        String sql = "DELETE FROM "+StapDbTables.EXECUTION_REVISION+" WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
-    }
-
     public void deleteAll(int executionContextId) {
         String sql = "DELETE FROM "+StapDbTables.EXECUTION_REVISION+" WHERE Execution_Context_Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionContextId});
     }
-
 
     private RowMapper<ExecutionContextRevision> executionContextRevisionRowMapper = new RowMapper<ExecutionContextRevision>() {
         public ExecutionContextRevision mapRow(ResultSet resultSet, int i) throws SQLException {

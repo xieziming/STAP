@@ -1,5 +1,8 @@
 package com.xieziming.stap.core.model.testcase.dao;
 
+import com.xieziming.stap.core.model.comment.dao.CommentDao;
+import com.xieziming.stap.core.model.execution.dao.ExecutionDao;
+import com.xieziming.stap.core.model.notification.dao.WatchListDao;
 import com.xieziming.stap.core.model.testcase.pojo.TestCase;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
@@ -18,15 +21,20 @@ import java.util.List;
 public class TestCaseDao {
     @Autowired
     private TestCaseMetaDao testCaseMetaDao;
-
     @Autowired
     private TestCaseRelationDao testCaseRelationDao;
-
     @Autowired
     private TestStepDao testStepDao;
-
     @Autowired
     private TestDataDao testDataDao;
+    @Autowired
+    private CommentDao commentDao;
+    @Autowired
+    private ExecutionDao executionDao;
+    @Autowired
+    private WatchListDao watchListDao;
+    @Autowired
+    private TestCaseRevisionDao testCaseRevisionDao;
 
     public void add(TestCase testCase) {
         String sql = "INSERT INTO "+StapDbTables.TEST_CASE+" SET Name=?, Status=?, Description=?";
@@ -38,11 +46,22 @@ public class TestCaseDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCase.getName(), testCase.getStatus(), testCase.getDescription(), testCase.getId()});
     }
 
+    public void deleteAll(){
+        List<TestCase> testCaseList = findAll();
+        for(TestCase testCase : testCaseList){
+            delete(testCase.getId());
+        }
+    }
+
     public void delete(int id) {
+        commentDao.deleteAllByTestCaseId(id);
+        watchListDao.deleteAllByTestCaseId(id);
         testStepDao.deleteAllByTestCaseId(id);
         testCaseMetaDao.deleteByTestCaseId(id);
         testDataDao.deleteAllByTestCaseId(id);
         testCaseRelationDao.deleteAllByTestCaseId(id);
+        executionDao.deleteAllByTestCaseId(id);
+        testCaseRevisionDao.deleteAll(id);
 
         String sql = "DELETE FROM "+StapDbTables.TEST_CASE+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
@@ -56,6 +75,11 @@ public class TestCaseDao {
     public TestCase findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.TEST_CASE + " WHERE Id=?";
         return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, testCaseRowMapper);
+    }
+
+    public TestCase findByName(String name) {
+        String sql = "SELECT * FROM " + StapDbTables.TEST_CASE + " WHERE Name=?";
+        return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{name}, testCaseRowMapper);
     }
 
     RowMapper<TestCase> testCaseRowMapper = new RowMapper<TestCase>() {

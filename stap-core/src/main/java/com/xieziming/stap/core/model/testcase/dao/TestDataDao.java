@@ -30,9 +30,9 @@ public class TestDataDao {
     }
 
     public void delete(TestData testData) {
-        testDataDefinitionDao.deleteById(testData.getTestDataDefinitionId());
         String sql = "DELETE FROM "+StapDbTables.TEST_DATA+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testData.getId()});
+        testDataDefinitionDao.deleteLocalById(testData.getTestDataDefinitionId());
     }
 
     public void deleteById(int id) {

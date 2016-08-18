@@ -70,4 +70,16 @@ public class ExecutionService {
     public List<CommentDto> getComments(@PathVariable("execution_id") int executionId) {
         return commentConverter.convertAll(commentDao.findAllByExecutionId(executionId));
     }
+
+    @RequestMapping(value = "{execution_id}/clean", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public void cleanExecution(@PathVariable("execution_id") int executionId) {
+        executionDao.clean(executionId);
+    }
+
+    @RequestMapping(value = "{execution_id}/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public void deleteExecution(@PathVariable("execution_id") int executionId) {
+        executionDao.delete(executionId);
+    }
 }

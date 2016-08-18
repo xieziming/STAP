@@ -1,6 +1,8 @@
 package com.xieziming.stap.core.model.execution.dao;
 
+import com.xieziming.stap.core.model.comment.dao.CommentDao;
 import com.xieziming.stap.core.model.execution.pojo.ExecutionPlan;
+import com.xieziming.stap.core.model.notification.dao.WatchListDao;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,12 @@ public class ExecutionPlanDao {
     private ExecutionPlanMetaDao executionPlanMetaDao;
     @Autowired
     private ExecutionLogDao executionLogDao;
+    @Autowired
+    private CommentDao commentDao;
+    @Autowired
+    private WatchListDao watchListDao;
+    @Autowired
+    private ExecutionPlanRevisionDao executionPlanRevisionDao;
 
     public ExecutionPlan add(ExecutionPlan executionPlan) {
         String sql = "INSERT INTO "+ StapDbTables.EXECUTION_PLAN+" SET Name=?, Description=?, Status=?";
@@ -40,15 +48,17 @@ public class ExecutionPlanDao {
         return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{executionPlan.getName(), executionPlan.getDescription(), executionPlan.getStatus()}, executionPlanRowMapper);
     }
 
-    public void delete(ExecutionPlan executionPlan) {
-        delete(executionPlan.getId());
+    public void clean(int executionPlanId) {
+        executionDao.cleanByExecutionPlanId(executionPlanId);
     }
 
     public void delete(int executionPlanId) {
+        commentDao.deleteAllByExecutionPlanId(executionPlanId);
+        watchListDao.deleteAllByExecutionPlanId(executionPlanId);
         executionDao.deleteAllByExecutionPlanId(executionPlanId);
         executionLogDao.deleteAllByExecutionPlanId(executionPlanId);
         executionPlanMetaDao.deleteAllByExecutionPlanId(executionPlanId);
-
+        executionPlanRevisionDao.deleteAllByExecutionPlanId(executionPlanId);
         String sql = "DELETE FROM "+StapDbTables.EXECUTION_PLAN+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanId});
     }

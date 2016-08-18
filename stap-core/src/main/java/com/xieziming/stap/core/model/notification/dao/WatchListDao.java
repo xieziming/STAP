@@ -5,6 +5,7 @@ import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,8 @@ import java.util.List;
 @Component
 public class WatchListDao {
     private static Logger logger = LoggerFactory.getLogger(WatchListDao.class);
-
+    @Autowired
+    private NotificationDao notificationDao;
     public WatchList findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.WATCH_LIST+ " WHERE Id=?";
         return StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, watchListDtoRowMapper);
@@ -54,23 +56,28 @@ public class WatchListDao {
     }
 
     public void delete(int id) {
+        notificationDao.deleteAllByWatchListId(id);
+
         String sql = "DELETE FROM "+StapDbTables.WATCH_LIST+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
     }
 
+    public void delete(List<WatchList> watchLists) {
+        for(WatchList watchList : watchLists){
+            delete(watchList.getId());
+        }
+    }
+
     public void deleteAllByExecutionPlanId(int executionPlanId) {
-        String sql = "DELETE FROM "+StapDbTables.WATCH_LIST+" WHERE Execution_Plan_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanId});
+        delete(findAllByExecutionPlanId(executionPlanId));
     }
 
     public void deleteAllByExecutionId(int executionId) {
-        String sql = "DELETE FROM "+StapDbTables.WATCH_LIST+" WHERE Execution_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionId});
+        delete(findAllByExecutionId(executionId));
     }
 
     public void deleteAllByTestCaseId(int testCaseId) {
-        String sql = "DELETE FROM "+StapDbTables.WATCH_LIST+" WHERE Test_Case_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseId});
+        delete(findAllByTestCaseId(testCaseId));
     }
 
     private RowMapper<WatchList> watchListDtoRowMapper = new RowMapper<WatchList>() {

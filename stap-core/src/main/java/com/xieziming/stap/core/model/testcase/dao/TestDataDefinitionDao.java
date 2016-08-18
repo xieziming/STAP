@@ -4,6 +4,7 @@ import com.xieziming.stap.core.constants.TestDataType;
 import com.xieziming.stap.core.model.testcase.pojo.TestDataDefinition;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,8 @@ import java.util.List;
  */
 @Component
 public class TestDataDefinitionDao {
+    @Autowired
+    private TestDataDefinitionRevisionDao testDataDefinitionRevisionDao;
 
     public void add(TestDataDefinition testDataDefinition) {
         String sql = "INSERT INTO "+StapDbTables.TEST_DATA_DEFINITION+" SET Field=?, Value=?, Remark=?, Type=?, File_Id=?";
@@ -27,13 +30,24 @@ public class TestDataDefinitionDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testDataDefinition.getField(), testDataDefinition.getValue(), testDataDefinition.getRemark(), testDataDefinition.getType(), testDataDefinition.getFileId(), testDataDefinition.getId()});
     }
 
-    public void deleteById(Integer id){
-        String sql = "DELETE FROM "+StapDbTables.TEST_DATA_DEFINITION+" WHERE Type != ? AND Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{TestDataType.GLOBAL, id});
+    public boolean canDelete(Integer id){
+        String sql = "SELECT COUNT(ID) FROM "+StapDbTables.TEST_DATA_DEFINITION+" WHERE Type != ? AND Id=?";
+        int recordNo = StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{TestDataType.GLOBAL, id}, Integer.class);
+        if(recordNo > 0) return true;
+        return false;
+    }
+
+    public void deleteLocalById(Integer id){
+        if(canDelete(id)) delete(id);
     }
 
     public void deleteGlobalById(int id){
-        String sql = "DELETE FROM "+StapDbTables.TEST_DATA_DEFINITION+" WHERE Type = ? AND Id=?";
+        delete(id);
+    }
+
+    private void delete(Integer id){
+        testDataDefinitionRevisionDao.deleteAll(id);
+        String sql = "DELETE FROM "+StapDbTables.TEST_DATA_DEFINITION+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{TestDataType.GLOBAL, id});
     }
 
@@ -45,6 +59,11 @@ public class TestDataDefinitionDao {
     public TestDataDefinition findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.TEST_DATA_DEFINITION + " WHERE Id=?";
         return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, testDataDefinitionRowMapper);
+    }
+
+    public TestDataDefinition findByField(String field) {
+        String sql = "SELECT * FROM " + StapDbTables.TEST_DATA_DEFINITION + " WHERE Field=?";
+        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{field}, testDataDefinitionRowMapper);
     }
 
     RowMapper<TestDataDefinition> testDataDefinitionRowMapper = new RowMapper<TestDataDefinition>() {

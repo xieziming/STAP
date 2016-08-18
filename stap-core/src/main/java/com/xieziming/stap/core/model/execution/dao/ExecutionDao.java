@@ -1,6 +1,9 @@
 package com.xieziming.stap.core.model.execution.dao;
 
+import com.xieziming.stap.core.constants.ExecutionStatusType;
+import com.xieziming.stap.core.model.comment.dao.CommentDao;
 import com.xieziming.stap.core.model.execution.pojo.Execution;
+import com.xieziming.stap.core.model.notification.dao.WatchListDao;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.slf4j.Logger;
@@ -28,6 +31,10 @@ public class ExecutionDao {
     private ExecutionOutputFileDao executionOutputFileDao;
     @Autowired
     private ExecutionOutputTextDao executionOutputTextDao;
+    @Autowired
+    private CommentDao commentDao;
+    @Autowired
+    private WatchListDao watchListDao;
 
     public Execution findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.EXECUTION+ " WHERE Id=?";
@@ -59,15 +66,30 @@ public class ExecutionDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{execution.getExecutionPlanId(), execution.getTestCaseId(), execution.getExecutionContextId(), execution.getStartTime(), execution.getEndTime(), execution.getStatus(), execution.getResult(), execution.getRemark(), execution.getId()});
     }
 
-    public void delete(Execution execution) {
-        delete(execution.getId());
+    public void clean(int executionId) {
+        String sql = "UPDATE "+StapDbTables.EXECUTION+" SET Start_Time=?, End_Time=?, Status=?, Result=? WHERE Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{null, null, ExecutionStatusType.READY, "", executionId});
+    }
+
+    public void cleanByExecutionPlanId(int executionPlanId) {
+        String sql = "UPDATE "+StapDbTables.EXECUTION+" SET Start_Time=?, End_Time=?, Status=?, Result=? WHERE Execution_Plan_Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{null, null, ExecutionStatusType.READY, null, executionPlanId});
+    }
+
+    public void deleteAllByTestCaseId(int testCaseId) {
+        List<Execution> executionList = findAllByTestCaseId(testCaseId);
+        for(Execution execution : executionList){
+            delete(execution.getId());
+        }
     }
 
     public void delete(int executionId) {
-        executionStepDao.deleteAllByExecutionId(executionId);
+        commentDao.deleteAllByExecutionId(executionId);
+        watchListDao.deleteAllByExecutionId(executionId);
         executionLogDao.deleteAllByExecutionId(executionId);
         executionOutputFileDao.deleteAllByExecutionId(executionId);
         executionOutputTextDao.deleteAllByExecutionId(executionId);
+        executionStepDao.deleteAllByExecutionId(executionId);
 
         String sql = "DELETE FROM "+StapDbTables.EXECUTION+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionId});
@@ -76,16 +98,8 @@ public class ExecutionDao {
     public void deleteAllByExecutionPlanId(int executionPlanId) {
         List<Execution> executionList = findAllByExecutionPlanId(executionPlanId);
         for(Execution execution : executionList) {
-            executionStepDao.deleteAllByExecutionId(execution.getId());
-            executionLogDao.deleteAllByExecutionId(execution.getId());
-            executionOutputFileDao.deleteAllByExecutionId(execution.getId());
-            executionOutputTextDao.deleteAllByExecutionId(execution.getId());
+            delete(execution.getId());
         }
-
-        executionLogDao.deleteAllByExecutionPlanId(executionPlanId);
-
-        String sql = "DELETE FROM "+StapDbTables.EXECUTION+" WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanId});
     }
 
     private RowMapper<Execution> executionRowMapper = new RowMapper<Execution>() {

@@ -53,24 +53,32 @@ public class NotificationDao {
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{notification.getWatchListId(), notification.getContent(), notification.getStatus(), notification.getId()});
     }
 
+
+    public void deleteAllByWatchListId(int watchListId) {
+        String sql = "DELETE FROM "+StapDbTables.NOTIFICATION+" WHERE Watch_List_Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{watchListId});
+    }
+
     public void delete(int id) {
         String sql = "DELETE FROM "+StapDbTables.NOTIFICATION+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
     }
 
+    public void delete(List<WatchList> watchLists){
+        for(WatchList watchList : watchLists){
+            watchListDao.delete(watchList.getId());
+        }
+    }
     public void deleteAllByExecutionPlanId(int executionPlanId) {
-        String sql = "DELETE FROM "+StapDbTables.NOTIFICATION+" WHERE Execution_Plan_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanId});
+        delete(watchListDao.findAllByExecutionPlanId(executionPlanId));
     }
 
     public void deleteAllByExecutionId(int executionId) {
-        String sql = "DELETE FROM "+StapDbTables.NOTIFICATION+" WHERE Execution_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionId});
+        delete(watchListDao.findAllByExecutionId(executionId));
     }
 
     public void deleteAllByTestCaseId(int testCaseId) {
-        String sql = "DELETE FROM "+StapDbTables.NOTIFICATION+" WHERE Test_Case_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseId});
+        delete(watchListDao.findAllByTestCaseId(testCaseId));
     }
 
     private RowMapper<Notification> notificationDtoRowMapper = new RowMapper<Notification>() {

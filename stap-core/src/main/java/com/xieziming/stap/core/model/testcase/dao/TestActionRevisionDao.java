@@ -34,10 +34,6 @@ public class TestActionRevisionDao {
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId}, testActionRevisionRowMapper);
     }
 
-    public void delete(int id) {
-        String sql = "DELETE FROM "+StapDbTables.TEST_CASE_REVISION+" WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
-    }
 
     public void deleteAll(int testActionId) {
         String sql = "DELETE FROM "+StapDbTables.TEST_CASE_REVISION+" WHERE Test_Action_Id=?";

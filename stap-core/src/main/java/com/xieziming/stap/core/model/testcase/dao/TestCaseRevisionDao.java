@@ -29,15 +29,14 @@ public class TestCaseRevisionDao {
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{testCaseId}, testCaseRevisionRowMapper);
     }
 
+    public void deleteAll(int testCaseId) {
+        String sql = "DELETE FROM "+StapDbTables.TEST_CASE_REVISION+" WHERE Test_Case_Id=?";
+        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseId});
+    }
 
     public void delete(int id) {
         String sql = "DELETE FROM "+StapDbTables.TEST_CASE_REVISION+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
-    }
-
-    public void deleteAll(int testCaseId) {
-        String sql = "DELETE FROM "+StapDbTables.TEST_CASE_REVISION+" WHERE Test_Case_Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{testCaseId});
     }
 
     private RowMapper<TestCaseRevision> testCaseRevisionRowMapper = new RowMapper<TestCaseRevision>() {

@@ -114,4 +114,16 @@ public class ExecutionPlanService {
     public List<CommentDto> getComments(@PathVariable("execution_plan_id") int executionPlanId) {
         return commentConverter.convertAll(commentDao.findAllByExecutionPlanId(executionPlanId));
     }
+
+    @RequestMapping(value = "{execution_plan_id}/clean", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public void cleanPlan(@PathVariable("execution_plan_id") int executionPlanId) {
+        executionPlanDao.clean(executionPlanId);
+    }
+
+    @RequestMapping(value = "{execution_plan_id}/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+    @ResponseBody
+    public void deletePlan(@PathVariable("execution_plan_id") int executionPlanId) {
+        executionPlanDao.delete(executionPlanId);
+    }
 }

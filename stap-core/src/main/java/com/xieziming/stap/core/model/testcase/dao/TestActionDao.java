@@ -41,6 +41,12 @@ public class TestActionDao {
         return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{id}, testActionRowMapper);
     }
 
+    public TestAction findByName(String name) {
+        String sql = "SELECT * FROM " + StapDbTables.TEST_ACTION + " WHERE Name=?";
+        return  StapDbUtil.getJdbcTemplate().queryForObject(sql, new Object[]{name}, testActionRowMapper);
+    }
+
+
     RowMapper<TestAction> testActionRowMapper = new RowMapper<TestAction>() {
         public TestAction mapRow(ResultSet resultSet, int i) throws SQLException {
             TestAction testAction = new TestAction();

@@ -28,12 +28,7 @@ public class ExecutionPlanRevisionDao {
         return  StapDbUtil.getJdbcTemplate().query(sql, new Object[]{executionPlanId}, executionPlanRevisionRowMapper);
     }
 
-    public void delete(int id) {
-        String sql = "DELETE FROM "+StapDbTables.EXECUTION_REVISION+" WHERE Id=?";
-        StapDbUtil.getJdbcTemplate().update(sql, new Object[]{id});
-    }
-
-    public void deleteAll(int executionPlanId) {
+    public void deleteAllByExecutionPlanId(int executionPlanId) {
         String sql = "DELETE FROM "+StapDbTables.EXECUTION_REVISION+" WHERE Execution_Plan_Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionPlanId});
     }

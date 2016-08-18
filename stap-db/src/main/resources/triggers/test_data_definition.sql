@@ -6,7 +6,7 @@ DROP TRIGGER IF EXISTS `test_data_definition_insert_trigger`;
 DELIMITER $$
 CREATE TRIGGER `test_data_definition_insert_trigger` AFTER INSERT ON `test_data_definition`
 FOR EACH ROW
-    INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Insert', Content = CONCAT('Insert definition { type : ', NEW.Type , ', field: ', NEW.Field, ', value: ', NEW.Value, ', fileId: ', NEW.File_Id, ', remark: ', NEW.Remark, ' }')
+    INSERT INTO test_case_revision SET Test_Data_Definition_Id = NEW.Id, Type='Insert', Content = CONCAT('Insert definition { type : ', NEW.Type , ', field: ', NEW.Field, ', value: ', NEW.Value, ', remark: ', NEW.Remark, ' }')
 $$
 DELIMITER ;
 
