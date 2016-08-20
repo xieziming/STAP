@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Suny on 5/10/16.
@@ -28,6 +29,11 @@ public class ExecutionContextDao {
     public void delete(ExecutionContext executionContext) {
         String sql = "DELETE FROM "+StapDbTables.EXECUTION_CONTEXT+" WHERE Id=?";
         StapDbUtil.getJdbcTemplate().update(sql, new Object[]{executionContext.getId()});
+    }
+
+    public List<ExecutionContext> findAll(){
+        String sql = "SELECT * FROM " + StapDbTables.EXECUTION_CONTEXT;
+        return  StapDbUtil.getJdbcTemplate().query(sql, new Object[0], executionContextRowMapper);
     }
 
     public ExecutionContext findById(int id) {

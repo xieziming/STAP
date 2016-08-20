@@ -15,10 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -77,9 +74,11 @@ public class ExecutionService {
         executionDao.clean(executionId);
     }
 
-    @RequestMapping(value = "{execution_id}/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE+UTF8)
+
+
+    @RequestMapping(value = "add", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE+UTF8)
     @ResponseBody
-    public void deleteExecution(@PathVariable("execution_id") int executionId) {
-        executionDao.delete(executionId);
+    public void deleteExecution(@RequestBody Execution execution) {
+        executionDao.add(execution);
     }
 }

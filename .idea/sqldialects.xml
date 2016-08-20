@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/comment.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution_context.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution_plan.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution_plan_meta.sql" dialect="MySQL" />

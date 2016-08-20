@@ -58,8 +58,7 @@
                                     <a ng-if="notification.watchListDto.source == 'testCase'" ui-sref="app.test_case.detail({id : notification.watchListDto.sourceId})" ng-class="{ unread: notification.status != 'Consumed' }">
                                         <div class="clearfix">
                                             <div class="thread-content">
-                                                <span class="author">{{notification.watchListDto.sourceName}}</span>
-                                                <span class="preview">{{ notification.content | htmlToPlaintext | words:15 :true }}</span>
+                                                <span class="preview"><strong>[{{notification.watchListDto.sourceName}}]</strong> {{ notification.content | htmlToPlaintext | words:15 :true }}</span>
                                                 <span class="time"> {{ notification.time }}</span>
                                             </div>
                                         </div>
@@ -67,8 +66,7 @@
                                     <a ng-if="notification.watchListDto.source == 'executionPlan'" ui-sref="app.execution_plan.detail({id : notification.watchListDto.sourceId})" ng-class="{ unread: notification.status != 'Consumed' }">
                                         <div class="clearfix">
                                             <div class="thread-content">
-                                                <span class="author">{{notification.watchListDto.sourceName}}</span>
-                                                <span class="preview">{{ notification.content | htmlToPlaintext | words:15 :true }}</span>
+                                                <span class="preview"><strong>[{{notification.watchListDto.sourceName}}]</strong> {{ notification.content | htmlToPlaintext | words:15 :true }}</span>
                                                 <span class="time"> {{ notification.time }}</span>
                                             </div>
                                         </div>
@@ -76,8 +74,7 @@
                                     <a ng-if="notification.watchListDto.source == 'execution'" ui-sref="app.execution.detail({id : notification.watchListDto.sourceId})" ng-class="{ unread: notification.status != 'Consumed' }">
                                         <div class="clearfix">
                                             <div class="thread-content">
-                                                <span class="author">{{notification.watchListDto.sourceName}}</span>
-                                                <span class="preview">{{ notification.content | htmlToPlaintext | words:15 :true }}</span>
+                                                <span class="preview"><strong>[{{notification.watchListDto.sourceName}}]</strong> {{ notification.content | htmlToPlaintext | words:15 :true }}</span>
                                                 <span class="time"> {{ notification.time }}</span>
                                             </div>
                                         </div>

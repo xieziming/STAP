@@ -1,10 +1,12 @@
 package com.xieziming.stap.core.model.comment.dao;
 
 import com.xieziming.stap.core.model.comment.pojo.Comment;
+import com.xieziming.stap.core.notification.NotificationManager;
 import com.xieziming.stap.db.StapDbTables;
 import com.xieziming.stap.db.StapDbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,8 @@ import java.util.List;
 @Component
 public class CommentDao {
     private static Logger logger = LoggerFactory.getLogger(CommentDao.class);
+    @Autowired
+    private NotificationManager notificationManager;
 
     public Comment findById(int id) {
         String sql = "SELECT * FROM " + StapDbTables.COMMENT+ " WHERE Id=?";
