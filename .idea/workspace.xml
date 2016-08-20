@@ -2,44 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30bf8e2b-0dbc-4c88-9028-7f1a968260bf" name="Default" comment="daily commit">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/constants/NotificationStatus.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/notification/Notifiable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/notification/NotificationManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/stap-db/src/main/resources/triggers/comment.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution.sql" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_1_1_RELEASE.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_1_1_RELEASE.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_2_4_RELEASE.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_1_1_RELEASE.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_4_2_4_RELEASE.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_1_1_RELEASE.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_2_4_RELEASE.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_1_1_RELEASE.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_2_4_RELEASE.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-core/target/stap-core-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/stap-core/target/stap-core-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/stap_channel_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/stap_channel_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/stap_file_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/stap_file_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/stap_gateway_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/stap_gateway_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Stap.iml" afterPath="$PROJECT_DIR$/Stap.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-channel/src/main/java/com/xieziming/stap/channel/services/execution/ExecutionService.java" afterPath="$PROJECT_DIR$/stap-channel/src/main/java/com/xieziming/stap/channel/services/execution/ExecutionService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-channel/stap-channel.iml" afterPath="$PROJECT_DIR$/stap-channel/stap-channel.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/model/comment/dao/CommentDao.java" afterPath="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/model/comment/dao/CommentDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/model/execution/dao/ExecutionContextDao.java" afterPath="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/model/execution/dao/ExecutionContextDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-core/stap-core.iml" afterPath="$PROJECT_DIR$/stap-core/stap-core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-db/pom.xml" afterPath="$PROJECT_DIR$/stap-db/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution_plan.sql" afterPath="$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution_plan.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_case.sql" afterPath="$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_case.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-db/stap-db.iml" afterPath="$PROJECT_DIR$/stap-db/stap-db.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-executor/stap-executor.iml" afterPath="$PROJECT_DIR$/stap-executor/stap-executor.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-file/stap-file.iml" afterPath="$PROJECT_DIR$/stap-file/stap-file.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-gateway/pom.xml" afterPath="$PROJECT_DIR$/stap-gateway/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-gateway/stap-gateway.iml" afterPath="$PROJECT_DIR$/stap-gateway/stap-gateway.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-portal/assets/views/app.html" afterPath="$PROJECT_DIR$/stap-portal/assets/views/app.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-portal/assets/views/partials/top-navbar.html" afterPath="$PROJECT_DIR$/stap-portal/assets/views/partials/top-navbar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/notification/NotificationManager.java" afterPath="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/notification/NotificationManager.java" />
     </list>
     <ignored path="Stap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,16 +52,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_case.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_case.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="app.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stap-portal/assets/views/app.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -128,12 +82,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stap-gateway/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-323">
+            <state relative-caret-position="-317">
               <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NotificationManager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/notification/NotificationManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="201">
+              <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -261,7 +227,6 @@
         <option value="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/model/execution/dao/ExecutionContextDao.java" />
         <option value="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/constants/NotificationStatus.java" />
         <option value="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/notification/Notifiable.java" />
-        <option value="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/notification/NotificationManager.java" />
         <option value="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/model/comment/dao/CommentDao.java" />
         <option value="$PROJECT_DIR$/stap-db/src/main/resources/triggers/test_case.sql" />
         <option value="$PROJECT_DIR$/stap-db/src/main/resources/triggers/execution_plan.sql" />
@@ -272,6 +237,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/stap-db/pom.xml" />
         <option value="$PROJECT_DIR$/stap-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/notification/NotificationManager.java" />
       </list>
     </option>
   </component>
@@ -663,6 +629,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Stap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Stap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stap-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notification" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3433,7 +3433,7 @@
       <workItem from="1471355314935" duration="8718000" />
       <workItem from="1471445348163" duration="5906000" />
       <workItem from="1471527574234" duration="11017000" />
-      <workItem from="1471670700201" duration="14804000" />
+      <workItem from="1471670700201" duration="14928000" />
     </task>
     <task id="LOCAL-00001" summary="daily commit">
       <created>1471180361626</created>
@@ -3451,7 +3451,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="547066000" />
+    <option name="totallyTimeSpent" value="547190000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -3476,13 +3476,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26138613" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30259067" sideWeight="0.5244942" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970297" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21865284" sideWeight="0.6144835" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21865284" sideWeight="0.6144835" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1943557" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20553781" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36373058" sideWeight="0.5048465" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36373058" sideWeight="0.5048465" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -4069,16 +4069,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/notification/NotificationManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/model/comment/dao/CommentDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="722">
@@ -4228,9 +4218,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stap-gateway/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
+        <state relative-caret-position="-317">
           <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stap-core/src/main/java/com/xieziming/stap/core/notification/NotificationManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

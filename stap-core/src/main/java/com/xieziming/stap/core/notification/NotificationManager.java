@@ -1,8 +1,6 @@
 package com.xieziming.stap.core.notification;
 
 import com.xieziming.stap.core.constants.NotificationStatus;
-import com.xieziming.stap.core.model.comment.pojo.Comment;
-import com.xieziming.stap.core.model.execution.pojo.Execution;
 import com.xieziming.stap.core.model.notification.dao.NotificationDao;
 import com.xieziming.stap.core.model.notification.dao.WatchListDao;
 import com.xieziming.stap.core.model.notification.pojo.Notification;
@@ -26,7 +24,6 @@ public class NotificationManager {
     private UserDao userDao;
 
     private List<WatchList> watchLists;
-    private
 
     public NotificationManager withExecutionId(int executionId) {
         watchLists = watchListDao.findAllByExecutionId(executionId);
