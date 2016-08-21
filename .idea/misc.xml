@@ -4,9 +4,9 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$/stap-channel" />
-    <file type="web" url="file://$PROJECT_DIR$/stap-file" />
-    <file type="web" url="file://$PROJECT_DIR$/stap-gateway" />
+    <file type="web" url="file://$PROJECT_DIR$/../stap-channel/stap-channel" />
+    <file type="web" url="file://$PROJECT_DIR$/../stap-file" />
+    <file type="web" url="file://$PROJECT_DIR$/../stap-gateway" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -18,6 +18,9 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/stap-execution/pom.xml" />
+        <option value="$PROJECT_DIR$/stap-executor/pom.xml" />
+        <option value="$PROJECT_DIR$/../stap-file/pom.xml" />
+        <option value="$PROJECT_DIR$/../stap-gateway/pom.xml" />
       </set>
     </option>
   </component>

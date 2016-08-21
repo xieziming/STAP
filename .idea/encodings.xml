@@ -2,13 +2,12 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/stap-channel" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/stap-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/stap-db" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/stap-executor" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/stap-file" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/stap-gateway" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/stap-portal/assets/i18n/zh_CN.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../stap-channel/stap-channel" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../stap-file" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../stap-gateway" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
