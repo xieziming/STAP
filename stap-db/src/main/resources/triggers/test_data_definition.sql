@@ -37,11 +37,3 @@ FOR EACH ROW
     END
 $$
 DELIMITER ;
-
-DROP TRIGGER IF EXISTS `test_data_definition_delete_trigger`;
-DELIMITER $$
-CREATE TRIGGER `test_data_definition_delete_trigger` AFTER DELETE ON `test_data_definition`
-FOR EACH ROW
-    INSERT INTO test_case_revision SET Test_Data_Definition_Id = OLD.Id, Type='Delete', Content = CONCAT('Delete definition of field : ', OLD.Field)
-$$
-DELIMITER ;

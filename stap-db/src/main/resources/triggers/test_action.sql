@@ -31,13 +31,3 @@ FOR EACH ROW
     END
 $$
 DELIMITER ;
-
-DROP TRIGGER IF EXISTS `test_action_delete_trigger`;
-DELIMITER $$
-CREATE TRIGGER `test_action_delete_trigger` AFTER DELETE ON `test_action`
-FOR EACH ROW
-    BEGIN
-        INSERT INTO test_case_revision SET Test_Action_Id = OLD.Id, Type='Delete', Content = CONCAT('Delete action of : ', OLD.Name);
-    END
-$$
-DELIMITER ;
